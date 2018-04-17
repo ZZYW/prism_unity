@@ -900,7 +900,7 @@ GameObject:
   - component: {fileID: 1559715418}
   - component: {fileID: 1559715417}
   m_Layer: 0
-  m_Name: MirrorGenerator
+  m_Name: MirrorManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -914,7 +914,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1559715416}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f445f9595ece64e54b629cc5db7c2a51, type: 3}
+  m_Script: {fileID: 11500000, guid: 5cbc347bf1b6b4cad9549cb906122865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mirrorMat: {fileID: 2100000, guid: 2652c98b7c43b4b82b1a6d7e471f547a, type: 2}

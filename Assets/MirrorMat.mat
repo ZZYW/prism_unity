@@ -20,6 +20,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -101,10 +105,11 @@ Material:
     - _DispProbability: 0.1
     - _Distance: 0
     - _DstBlend: 10
+    - _EnableExternalAlpha: 0
     - _Exposure: 1
     - _GlitchInterval: 0.01
     - _GlossMapScale: 1
-    - _Glossiness: 1
+    - _Glossiness: 0.773
     - _GlossyReflections: 1
     - _InvFade: 1
     - _Metallic: 0
@@ -135,8 +140,10 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 0.491}
     - _EmissionColor: {r: 0.026708473, g: 0.03288388, b: 0.09558821, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
     - _ReflectColor: {r: 1, g: 1, b: 1, a: 0.5}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0, g: 0, b: 0, a: 1}
     - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
     - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}

@@ -14,14 +14,23 @@ public class WebStream : MonoBehaviour
 
     public Texture latestFrame { get; private set; }
 
-    public Texture[] frames { get; private set; }
+    //public Texture[] frames { get; private set; }
 
-    int frameNumber = 100;
+    int frameNumber;
+
+    float freq = 0.05f;
+
+    public static List<Texture> Frames;
+
+
 
     private void Awake()
     {
+        frameNumber = MirrorManager.Dimension.n;
         main = this;
-        frames = new Texture[frameNumber];
+        Frames = new List<Texture>();
+        InvokeRepeating("AddFrame", 0, freq);
+
     }
 
     private void Start()
@@ -32,7 +41,17 @@ public class WebStream : MonoBehaviour
 
     private void Update()
     {
-        
+
+    }
+
+
+    void AddFrame()
+    {
+        Frames.Add(latestFrame);
+        if (Frames.Count > frameNumber)
+        {
+            Frames.RemoveAt(0);
+        }
     }
 
 

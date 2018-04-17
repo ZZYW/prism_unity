@@ -11,10 +11,10 @@ public class Mirror : MonoBehaviour
 
     //texture scaling
     Material material;
-    Vector2 textureScale;
-    float ix, iy;
-    float ixPlus;
-    bool changeTextureScaling;
+    //Vector2 textureScale;
+    //float ix, iy;
+    //float ixPlus;
+    //bool changeTextureScaling;
 
     public Vector3 spaceID;
 
@@ -24,15 +24,17 @@ public class Mirror : MonoBehaviour
 
         //material/texture
         material = GetComponent<Renderer>().material;
-        textureScale = new Vector2(1, 1);
-        ixPlus = Random.Range(0.01f, 0.03f);
-        if (Random.Range(0f, 1f) > 0.7f)
-        {
-            changeTextureScaling = true;
-        }
+        //textureScale = new Vector2(1, 1);
+
+        //ixPlus = Random.Range(0.01f, 0.03f);
+
+        //if (Random.Range(0f, 1f) > 0.1f)
+        //{
+        //    changeTextureScaling = true;
+        //}
 
 
-        changeTextureScaling = false;
+        //changeTextureScaling = false;
 
 
         //self rotate
@@ -44,16 +46,21 @@ public class Mirror : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (changeTextureScaling)
+        //if (changeTextureScaling)
+        //{
+        //    ix += ixPlus * Time.deltaTime;
+
+        //    textureScale = new Vector2((Mathf.Sin(ix) + 1) * 50, 1);
+
+        //    material.mainTextureScale = textureScale;
+        //}
+
+        if (WebStream.Frames.Count > (int)spaceID.x)
         {
-            ix += ixPlus * Time.deltaTime;
-
-            textureScale = new Vector2((Mathf.Sin(ix) + 1) * 50, 1);
-
-            material.mainTextureScale = textureScale;
+            material.mainTexture = WebStream.Frames[(int)spaceID.x];
         }
 
-        material.mainTexture = WebStream.main.latestFrame;
+
         transform.Rotate(rotateAxis, rotateSpeed * Time.deltaTime);
 
     }

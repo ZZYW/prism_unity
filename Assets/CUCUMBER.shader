@@ -6,12 +6,12 @@
      _Metallic ("Metallic", Range(0,1)) = 0.0
  }
  SubShader {
-     Tags { "RenderType"="Fade" }
+     Tags { "Queue" = "Transparent" "RenderType"="Transparent" }
      LOD 200
      
      CGPROGRAM
      // Physically based Standard lighting model, and enable shadows on all light types
-     #pragma surface surf Standard fullforwardshadows finalcolor:mycolor vertex:vert
+     #pragma surface surf Standard fullforwardshadows finalcolor:mycolor vertex:vert alpha
              #include "ClassicNoise3D.hlsl"
      // Use shader model 3.0 target, to get nicer looking lighting
      #pragma target 3.0
@@ -37,12 +37,12 @@
 
     void vert (inout appdata_full v, out Input o) {       
       UNITY_INITIALIZE_OUTPUT(Input,o);
-    //  v.vertex += cnoise(v.vertex.xyz + _Time.yyy*0.1) * 1;
+      //v.vertex += cnoise(v.vertex.xyz + _Time.yyy*0.1) * 1;
       o.vertex = v.vertex;
     }
 
     void mycolor (Input IN, SurfaceOutputStandard o, inout fixed4 color){
-
+        
     }
 
      void surf (Input IN, inout SurfaceOutputStandard o) {

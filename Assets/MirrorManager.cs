@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GenerateMirror : MonoBehaviour
+public class MirrorManager : MonoBehaviour
 {
+
+    public static Dimensional Dimension;
     public struct Dimensional
     {
         public int n
@@ -35,35 +37,22 @@ public class GenerateMirror : MonoBehaviour
             }
         }
     }
-    public static GenerateMirror main;
-
+    public static MirrorManager main;
     public Material mirrorMat;
 
-
-
-
     GameObject[] mirrors;
-
-
-    public static Dimensional Dimension;
-
-
     float rotateAngle = 1f;
 
     private void Awake()
     {
         main = this;
+        mirrors = new GameObject[(int)Mathf.Pow(Dimension.n, 3)];
     }
 
     // Use this for initialization
     void Start()
     {
-
-
-        mirrors = new GameObject[(int)Mathf.Pow(Dimension.n, 3)];
-
-        print(mirrors.Length);
-
+        print(mirrors.Length + " mirror in total.");
 
         int i = 0;
 
@@ -81,7 +70,7 @@ public class GenerateMirror : MonoBehaviour
                     mirrors[i].transform.parent = transform;
                     mirrors[i].transform.localScale = new Vector3(size, size, size);
                     mirrors[i].GetComponent<Collider>().enabled = false;
-
+                    mirrors[i].isStatic = true;
                     mirrors[i].transform.position = new Vector3(x * scale - Dimension.diameter / 2, y * scale - diameter / 2, z * scale - diameter / 2);
                     mirrors[i].GetComponent<Renderer>().material = mirrorMat;
                     Mirror code = mirrors[i].AddComponent<Mirror>();
@@ -97,8 +86,6 @@ public class GenerateMirror : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         transform.Rotate(Vector3.up + Vector3.forward / 2, rotateAngle * Time.deltaTime);
-
     }
 }

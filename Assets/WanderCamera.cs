@@ -18,7 +18,7 @@ public class WanderCamera : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        area = GenerateMirror.Dimension.diameter * 1.2f;
+        area = MirrorManager.Dimension.diameter * 1.2f;
         x1 = Random.Range(0f, 100f);
         x2 = Random.Range(0f, 100f);
         y1 = Random.Range(0f, 100f);
