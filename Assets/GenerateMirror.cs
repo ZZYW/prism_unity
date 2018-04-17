@@ -4,44 +4,99 @@ using UnityEngine;
 
 public class GenerateMirror : MonoBehaviour
 {
+    public struct Dimensional
+    {
+        public int n
+        {
+            get
+            {
+                return 10;
+            }
+        }
+        public float diameter
+        {
+            get
+            {
+                return grid * n;
+            }
+        }
+        public float grid
+        {
+            get
+            {
+                return 50;
+            }
+        }
+        public float size
+        {
+            get
+            {
+                return 0.8f * grid;
+            }
+        }
+    }
+    public static GenerateMirror main;
 
     public Material mirrorMat;
 
 
-    int n = 700;
-    float area = 500;
 
-    float scale = 100;
 
     GameObject[] mirrors;
 
 
+    public static Dimensional Dimension;
+
+
     float rotateAngle = 1f;
+
+    private void Awake()
+    {
+        main = this;
+    }
 
     // Use this for initialization
     void Start()
     {
-        mirrors = new GameObject[n];
 
-        for (int i = 0; i < mirrors.Length; i++)
+
+        mirrors = new GameObject[(int)Mathf.Pow(Dimension.n, 3)];
+
+        print(mirrors.Length);
+
+
+        int i = 0;
+
+        float scale = Dimension.grid;
+        float diameter = Dimension.diameter;
+        float size = Dimension.size;
+
+        for (int x = 0; x < Dimension.n; x++)
         {
-            mirrors[i] = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            mirrors[i].transform.parent = transform;
-            mirrors[i].transform.localScale = new Vector3(scale, scale, scale);
-            mirrors[i].GetComponent<Collider>().enabled = false;
-            //mirrors[i].isStatic = true;
-            mirrors[i].transform.position = new Vector3(Random.Range(-area, area), Random.Range(-area, area), Random.Range(-area, area));
-            mirrors[i].transform.Rotate(new Vector3(Random.Range(-180, 180), Random.Range(-180, 180), Random.Range(-180, 180)));
-            mirrors[i].GetComponent<Renderer>().material = mirrorMat;
-            mirrors[i].AddComponent<Mirror>();
+            for (int y = 0; y < Dimension.n; y++)
+            {
+                for (int z = 0; z < Dimension.n; z++)
+                {
+                    mirrors[i] = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    mirrors[i].transform.parent = transform;
+                    mirrors[i].transform.localScale = new Vector3(size, size, size);
+                    mirrors[i].GetComponent<Collider>().enabled = false;
+
+                    mirrors[i].transform.position = new Vector3(x * scale - Dimension.diameter / 2, y * scale - diameter / 2, z * scale - diameter / 2);
+                    mirrors[i].GetComponent<Renderer>().material = mirrorMat;
+                    Mirror code = mirrors[i].AddComponent<Mirror>();
+                    code.spaceID = new Vector3(x, y, z);
+                    i++;
+                }
+            }
+
         }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //mirrorMat.mainTexture = WebStream.main.latestFrame;
-
 
         transform.Rotate(Vector3.up + Vector3.forward / 2, rotateAngle * Time.deltaTime);
 

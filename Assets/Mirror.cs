@@ -6,7 +6,6 @@ public class Mirror : MonoBehaviour
 {
 
     //self rotate
-
     float rotateSpeed;
     Vector3 rotateAxis;
 
@@ -16,6 +15,8 @@ public class Mirror : MonoBehaviour
     float ix, iy;
     float ixPlus;
     bool changeTextureScaling;
+
+    public Vector3 spaceID;
 
     // Use this for initialization
     void Start()
@@ -29,6 +30,10 @@ public class Mirror : MonoBehaviour
         {
             changeTextureScaling = true;
         }
+
+
+        changeTextureScaling = false;
+
 
         //self rotate
         rotateAxis = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
@@ -49,7 +54,6 @@ public class Mirror : MonoBehaviour
         }
 
         material.mainTexture = WebStream.main.latestFrame;
-
         transform.Rotate(rotateAxis, rotateSpeed * Time.deltaTime);
 
     }

@@ -14,16 +14,27 @@ public class WebStream : MonoBehaviour
 
     public Texture latestFrame { get; private set; }
 
+    public Texture[] frames { get; private set; }
+
+    int frameNumber = 100;
 
     private void Awake()
     {
         main = this;
+        frames = new Texture[frameNumber];
     }
 
     private void Start()
     {
         StartCoroutine(CheckFrame());
     }
+
+
+    private void Update()
+    {
+        
+    }
+
 
     IEnumerator CheckFrame()
     {
