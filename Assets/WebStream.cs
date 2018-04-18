@@ -10,7 +10,8 @@ public class WebStream : MonoBehaviour
 
     public static WebStream main;
 
-    public string url = "http://192.168.1.12:8080/video";
+    public string ip = "192.168.1.16:8080";
+    string url;
 
     public Texture latestFrame { get; private set; }
 
@@ -39,6 +40,12 @@ public class WebStream : MonoBehaviour
     }
 
 
+    public void ResetIP(string newip){
+        ip = newip;
+        StopCoroutine("AddFrame");
+        StartCoroutine(CheckFrame());
+    }
+
     private void Update()
     {
 
@@ -59,6 +66,8 @@ public class WebStream : MonoBehaviour
     {
         while (true)
         {
+            url = "http://" + ip + "/shot.jpg";
+            //print(url);
             using (WWW www = new WWW(url))
             {
                 yield return www;
