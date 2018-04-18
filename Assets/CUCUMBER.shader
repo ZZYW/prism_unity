@@ -1,4 +1,6 @@
-﻿Shader "Custom/CUCUMBER" {
+﻿// Upgrade NOTE: upgraded instancing buffer 'Props' to new syntax.
+
+Shader "Custom/CUCUMBER" {
  Properties {
      _Color ("Color", Color) = (1,1,1,1)
      _MainTex ("Albedo (RGB)", 2D) = "white" {}
@@ -31,8 +33,8 @@
 
 
     
-     UNITY_INSTANCING_CBUFFER_START(Props)
-     UNITY_INSTANCING_CBUFFER_END
+     UNITY_INSTANCING_BUFFER_START(Props)
+     UNITY_INSTANCING_BUFFER_END(Props)
 
 
     void vert (inout appdata_full v, out Input o) {       
