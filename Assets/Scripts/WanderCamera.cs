@@ -14,11 +14,15 @@ public class WanderCamera : MonoBehaviour
     float y1, y2;
     float z1, z2;
 
+    Quaternion originalRot;
+
+    public bool BigPrismMode { get; set; }
+
 
     // Use this for initialization
     void Start()
     {
-        area = MirrorManager.Dimension.diameter * 1.2f;
+        area = MirrorManager.main.Dimension.diameter * 1f;
         x1 = Random.Range(0f, 100f);
         x2 = Random.Range(0f, 100f);
         y1 = Random.Range(0f, 100f);
@@ -26,25 +30,41 @@ public class WanderCamera : MonoBehaviour
         z1 = Random.Range(0f, 100f);
         z2 = Random.Range(0f, 100f);
 
+        originalRot = transform.rotation;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float x = Mathf.PerlinNoise(x1, x2) * area - area / 3;
-        float y = Mathf.PerlinNoise(y1, y2) * area - area / 3;
-        float z = Mathf.PerlinNoise(z1, z2) * area - area / 3;
+        if (BigPrismMode)
+        {
+            transform.position = new Vector3(5.4f, 41f, -120f);
+            transform.LookAt(MainPrism.main.gameObject.transform);
+        }
+        else
+        {
+            float x = Mathf.PerlinNoise(x1, x2) * area - area / 3;
+            float y = Mathf.PerlinNoise(y1, y2) * area - area / 3;
+            float z = Mathf.PerlinNoise(z1, z2) * area - area / 3;
 
-        x1 += speed * Time.deltaTime;
-        x2 += speed * Time.deltaTime;
-        y1 += speed * Time.deltaTime;
-        y2 += speed * Time.deltaTime;
-        z1 += speed * Time.deltaTime;
-        z2 += speed * Time.deltaTime;
+            x1 += speed * Time.deltaTime;
+            x2 += speed * Time.deltaTime;
+            y1 += speed * Time.deltaTime;
+            y2 += speed * Time.deltaTime;
+            z1 += speed * Time.deltaTime;
+            z2 += speed * Time.deltaTime;
 
-        Vector3 nextPos = new Vector3(x, y, z);
+            Vector3 nextPos = new Vector3(x, y, z);
 
-        transform.position = nextPos;
+            transform.position = nextPos;
+        }
+
+    }
+
+    public void SwitchMode(bool lookAtBigPrism)
+    {
+        BigPrismMode = lookAtBigPrism;
+        if (!BigPrismMode) transform.rotation = originalRot;
     }
 
 }

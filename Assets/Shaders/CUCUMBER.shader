@@ -39,7 +39,7 @@ Shader "Custom/CUCUMBER" {
 
     void vert (inout appdata_full v, out Input o) {       
       UNITY_INITIALIZE_OUTPUT(Input,o);
-      v.vertex += cnoise(v.vertex.xyz + _Time.yyy * 0.1) * 1;
+      v.vertex += cnoise(v.vertex.xyz + _Time.yyy * 0.01) * 1;
       o.vertex = v.vertex;
     }
 

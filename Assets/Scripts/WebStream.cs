@@ -14,7 +14,6 @@ public class WebStream : MonoBehaviour
     string url;
 
     Texture latestFrame;
-    int frameNumber;
 
     float freq = 0.05f;
 
@@ -26,7 +25,6 @@ public class WebStream : MonoBehaviour
 
     private void Awake()
     {
-        frameNumber = MirrorManager.Dimension.n;
         main = this;
         //Frames = new List<Texture>();
         //InvokeRepeating("AddFrame", 0, freq);

@@ -5,60 +5,54 @@ using UnityEngine;
 public class Mirror : MonoBehaviour
 {
 
-    //self rotate
+    public bool SelfRotate { get; set; }
+    public Vector3 SpaceID { get; set; }
+
+
+
     float rotateSpeed;
     Vector3 rotateAxis;
-    Material material;
+
+    //Vector3 oScale;
+    //Vector3 minScale;
+
+    //float scaleDelta;
+    //float scaleFactor;
 
 
-    public Vector3 spaceID;
-
-    //Color originalColor;
-
-    bool inMemory;
-
-
-    public bool selfRotate;
 
     // Use this for initialization
     void Start()
     {
-        //material/texture
-        //material = GetComponent<Renderer>().material;
-        //originalColor = material.color;
-
         rotateAxis = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
         rotateSpeed = Random.Range(1f, 10f);
+        //oScale = transform.localScale;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        //if (Random.Range(0f, 100f) > 99.9f && !inMemory)
-        //{
-        //    GoInMemory();
-        //}
+        if (SelfRotate) transform.Rotate(rotateAxis, rotateSpeed * Time.deltaTime);
 
-      
-           // material.mainTexture = WebStream.main.GetLatestFrame();
-       
+        //scaleFactor = (Mathf.Sin(scaleDelta) + 1f) / 2f;
+        //transform.localScale = scaleFactor * oScale;
 
-        if(selfRotate) transform.Rotate(rotateAxis, rotateSpeed * Time.deltaTime);
+
+
+        //scaleDelta += 0.1f * Time.deltaTime;
+
+
     }
 
-    //void GoInMemory()
+    //private void OnGUI()
     //{
-    //    inMemory = true;
-    //    material.color = new Color32(247, 222, 96, 125);
-
-    //    float stay = Random.Range(20, 30);
-    //    Invoke("BackToMirror", stay);
+    //    if ((int)SpaceID.x == 0 && (int)SpaceID.y == 0 && (int)SpaceID.z == 0 )
+    //    {
+    //        GUI.TextField(new Rect(10, 10, 100, 20), scaleFactor.ToString());
+    //    }
     //}
 
-    //void BackToMirror()
-    //{
-    //    inMemory = false;
-    //    material.color = originalColor;
-    //}
+
+
 }
