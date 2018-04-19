@@ -4,49 +4,28 @@ using UnityEngine;
 
 public class MirrorManager : MonoBehaviour
 {
-
     public static Dimensional Dimension;
     public struct Dimensional
     {
-        public int n
-        {
-            get
-            {
-                return 10;
-            }
-        }
-        public float diameter
-        {
-            get
-            {
-                return grid * n;
-            }
-        }
-        public float grid
-        {
-            get
-            {
-                return 50;
-            }
-        }
-        public float size
-        {
-            get
-            {
-                return 0.3f * grid;
-            }
-        }
+        public int n { get { return 10; } }
+        public float diameter { get { return grid * n; } }
+        public float grid { get { return 50; } }
+        public float size { get { return 0.3f * grid; } }
     }
-
+    //Materials
     public Material mirrorMat;
     public Material lineMat;
 
+    //controls
+    public bool cubeSelfRotate;
+
+    //containers
     static GameObject wireframeCubeContainer;
 
+    //vars
     GameObject[] mirrors;
     float rotateAngle = 1f;
 
-    public bool cubeSelfRotate;
 
     private void Awake()
     {
@@ -70,22 +49,23 @@ public class MirrorManager : MonoBehaviour
             {
                 for (int z = 0; z < Dimension.n; z++)
                 {
+
+
                     mirrors[i] = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     mirrors[i].transform.parent = transform;
                     mirrors[i].transform.localScale = new Vector3(size, size, size);
                     mirrors[i].GetComponent<Collider>().enabled = false;
-                    //mirrors[i].isStatic = true;
                     mirrors[i].transform.position = new Vector3(x * scale - Dimension.diameter / 2 + transform.position.x,
                                                                 y * scale - diameter / 2 + transform.position.y,
                                                                 z * scale - diameter / 2 + transform.position.z);
                     mirrors[i].GetComponent<Renderer>().material = mirrorMat;
-                    //mirrors[i].
                     Mirror code = mirrors[i].AddComponent<Mirror>();
                     code.selfRotate = cubeSelfRotate;
                     code.spaceID = new Vector3(x, y, z);
                     i++;
 
 
+                    //wireframe
 
                     if (wireframeCubeContainer == null) wireframeCubeContainer = new GameObject("Wireframe Cube Container");
 
@@ -124,6 +104,5 @@ public class MirrorManager : MonoBehaviour
 
         transform.Rotate(Vector3.up + Vector3.forward / 2, rotateAngle * Time.deltaTime);
 
-        //for (int i = 0;i<)
     }
 }
