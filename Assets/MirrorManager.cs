@@ -12,7 +12,7 @@ public class MirrorManager : MonoBehaviour
         {
             get
             {
-                return 10;
+                return 12;
             }
         }
         public float diameter
@@ -37,7 +37,7 @@ public class MirrorManager : MonoBehaviour
             }
         }
     }
-    public static MirrorManager main;
+
     public Material mirrorMat;
 
     GameObject[] mirrors;
@@ -45,7 +45,6 @@ public class MirrorManager : MonoBehaviour
 
     private void Awake()
     {
-        main = this;
         mirrors = new GameObject[(int)Mathf.Pow(Dimension.n, 3)];
     }
 
@@ -70,8 +69,10 @@ public class MirrorManager : MonoBehaviour
                     mirrors[i].transform.parent = transform;
                     mirrors[i].transform.localScale = new Vector3(size, size, size);
                     mirrors[i].GetComponent<Collider>().enabled = false;
-                    mirrors[i].isStatic = true;
-                    mirrors[i].transform.position = new Vector3(x * scale - Dimension.diameter / 2, y * scale - diameter / 2, z * scale - diameter / 2);
+                    //mirrors[i].isStatic = true;
+                    mirrors[i].transform.position = new Vector3(x * scale - Dimension.diameter / 2 + transform.position.x,
+                                                                y * scale - diameter / 2 + transform.position.y,
+                                                                z * scale - diameter / 2 + transform.position.z);
                     mirrors[i].GetComponent<Renderer>().material = mirrorMat;
                     Mirror code = mirrors[i].AddComponent<Mirror>();
                     code.spaceID = new Vector3(x, y, z);
@@ -86,6 +87,10 @@ public class MirrorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //mirrorMat.mainTexture = WebStream.main.GetLatestFrame();
+
         transform.Rotate(Vector3.up + Vector3.forward / 2, rotateAngle * Time.deltaTime);
+
+        //for (int i = 0;i<)
     }
 }

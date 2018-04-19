@@ -14,6 +14,7 @@ public class GUIController : MonoBehaviour
     private void Start()
     {
         UpdateSyphonState(defaultSyphonState);
+        panel.SetActive(vis);
     }
 
 
@@ -40,11 +41,6 @@ public class GUIController : MonoBehaviour
         syphon.screenHeight = int.Parse(sh);
     }
 
-
-    void UpdateSyphonOutputRes()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()

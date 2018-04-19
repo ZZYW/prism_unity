@@ -8,60 +8,57 @@ public class Mirror : MonoBehaviour
     //self rotate
     float rotateSpeed;
     Vector3 rotateAxis;
-
-    //texture scaling
     Material material;
-    //Vector2 textureScale;
-    //float ix, iy;
-    //float ixPlus;
-    //bool changeTextureScaling;
+
 
     public Vector3 spaceID;
+
+    Color originalColor;
+
+    bool inMemory;
+
+
 
     // Use this for initialization
     void Start()
     {
-
         //material/texture
         material = GetComponent<Renderer>().material;
-        //textureScale = new Vector2(1, 1);
+        originalColor = material.color;
 
-        //ixPlus = Random.Range(0.01f, 0.03f);
-
-        //if (Random.Range(0f, 1f) > 0.1f)
-        //{
-        //    changeTextureScaling = true;
-        //}
-
-
-        //changeTextureScaling = false;
-
-
-        //self rotate
         rotateAxis = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
         rotateSpeed = Random.Range(1f, 10f);
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (changeTextureScaling)
+
+        //if (Random.Range(0f, 100f) > 99.9f && !inMemory)
         //{
-        //    ix += ixPlus * Time.deltaTime;
-
-        //    textureScale = new Vector2((Mathf.Sin(ix) + 1) * 50, 1);
-
-        //    material.mainTextureScale = textureScale;
+        //    GoInMemory();
         //}
 
-        if (WebStream.Frames.Count > (int)spaceID.x)
+        if (!inMemory)
         {
-            material.mainTexture = WebStream.Frames[(int)spaceID.x];
+            material.mainTexture = WebStream.main.GetLatestFrame();
         }
 
-
-        transform.Rotate(rotateAxis, rotateSpeed * Time.deltaTime);
-
+       transform.Rotate(rotateAxis, rotateSpeed * Time.deltaTime);
     }
+
+    //void GoInMemory()
+    //{
+    //    inMemory = true;
+    //    material.color = new Color32(247, 222, 96, 125);
+
+    //    float stay = Random.Range(20, 30);
+    //    Invoke("BackToMirror", stay);
+    //}
+
+    //void BackToMirror()
+    //{
+    //    inMemory = false;
+    //    material.color = originalColor;
+    //}
 }
