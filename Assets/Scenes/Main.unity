@@ -472,7 +472,7 @@ GameObject:
   - component: {fileID: 552150028}
   - component: {fileID: 552150027}
   m_Layer: 0
-  m_Name: WebStream
+  m_Name: Video Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1843,7 +1843,7 @@ GameObject:
   - component: {fileID: 1559715418}
   - component: {fileID: 1559715417}
   m_Layer: 0
-  m_Name: MirrorManager
+  m_Name: Mirror Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

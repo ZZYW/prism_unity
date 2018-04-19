@@ -12,7 +12,7 @@ public class MirrorManager : MonoBehaviour
         {
             get
             {
-                return 12;
+                return 10;
             }
         }
         public float diameter
@@ -40,6 +40,8 @@ public class MirrorManager : MonoBehaviour
 
     public Material mirrorMat;
     public Material lineMat;
+
+    static GameObject wireframeCubeContainer;
 
     GameObject[] mirrors;
     float rotateAngle = 1f;
@@ -84,20 +86,34 @@ public class MirrorManager : MonoBehaviour
                     i++;
 
 
+
+                    if (wireframeCubeContainer == null) wireframeCubeContainer = new GameObject("Wireframe Cube Container");
+
+
                     GameObject wireframeCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    Destroy(wireframeCube.GetComponent<Collider>());
                     wireframeCube.name = "wireframe Cube";
                     wireframeCube.transform.parent = transform;
                     wireframeCube.transform.position = new Vector3(x * scale - Dimension.diameter / 2 + transform.position.x,
                                                                 y * scale - diameter / 2 + transform.position.y,
                                                                 z * scale - diameter / 2 + transform.position.z);
                     wireframeCube.transform.localScale = new Vector3(scale, scale, scale);
-                    wireframeCube.GetComponent<Renderer>().material = lineMat;
-                    Destroy(wireframeCube.GetComponent<Collider>());
-                    
+
+                    Renderer r = wireframeCube.GetComponent<Renderer>();
+                    r.material = lineMat;
+                    r.lightProbeUsage = UnityEngine.Rendering.LightProbeUsage.Off;
+                    r.receiveShadows = false;
+                    r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                    wireframeCube.isStatic = true;
+                    wireframeCube.transform.parent = wireframeCubeContainer.transform;
+
                 }
             }
 
         }
+
+
+        wireframeCubeContainer.isStatic = true;
 
     }
 
