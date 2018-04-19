@@ -33,12 +33,13 @@ public class MirrorManager : MonoBehaviour
         {
             get
             {
-                return 0.8f * grid;
+                return 0.3f * grid;
             }
         }
     }
 
     public Material mirrorMat;
+    public Material lineMat;
 
     GameObject[] mirrors;
     float rotateAngle = 1f;
@@ -81,6 +82,18 @@ public class MirrorManager : MonoBehaviour
                     code.selfRotate = cubeSelfRotate;
                     code.spaceID = new Vector3(x, y, z);
                     i++;
+
+
+                    GameObject wireframeCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    wireframeCube.name = "wireframe Cube";
+                    wireframeCube.transform.parent = transform;
+                    wireframeCube.transform.position = new Vector3(x * scale - Dimension.diameter / 2 + transform.position.x,
+                                                                y * scale - diameter / 2 + transform.position.y,
+                                                                z * scale - diameter / 2 + transform.position.z);
+                    wireframeCube.transform.localScale = new Vector3(scale, scale, scale);
+                    wireframeCube.GetComponent<Renderer>().material = lineMat;
+                    Destroy(wireframeCube.GetComponent<Collider>());
+                    
                 }
             }
 
