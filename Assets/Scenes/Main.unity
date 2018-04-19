@@ -1914,7 +1914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d63d3ca4fc5d4f12a5277f422920641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swtichFreq: 30
+  swtichFreq: 60
   StagSwtichingSound: {fileID: 1571993010}
 --- !u!1 &1538289138
 GameObject:

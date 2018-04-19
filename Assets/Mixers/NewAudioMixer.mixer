@@ -31,8 +31,6 @@ AudioMixerGroupController:
   m_Pitch: 1e9d4b04aa92c4eadbf2baf89551f674
   m_Effects:
   - {fileID: 24400004}
-  - {fileID: 244477533098983066}
-  - {fileID: 244285460562157238}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -65,45 +63,3 @@ AudioMixerSnapshotController:
     c02a2dd60f3ea48eeade7c49c9733094: 0.79
     9815b50c55e4a48669cce10017375f80: 0.16299999
   m_TransitionOverrides: {}
---- !u!244 &244285460562157238
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_EffectID: fa82338d587514ca5a8308517a6df55d
-  m_EffectName: Normalize
-  m_MixLevel: 4f0168bf8aa0847f19eb60a361c4569e
-  m_Parameters:
-  - m_ParameterName: Fade in time
-    m_GUID: 662a8ebb7ff504406a6872004649efb1
-  - m_ParameterName: Lowest volume
-    m_GUID: 26c1e17485e8e494595946af61d85431
-  - m_ParameterName: Maximum amp
-    m_GUID: 9250e1a87aac34af785a4a1d8f423251
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
---- !u!244 &244477533098983066
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_EffectID: c68bce85eb4b446c2baec92ad5c5d176
-  m_EffectName: Echo
-  m_MixLevel: 7cabb10459d0941f3a8d9bfe9798ea1d
-  m_Parameters:
-  - m_ParameterName: Delay
-    m_GUID: 8a9dc12139cdb470892ce9ec68f36896
-  - m_ParameterName: Decay
-    m_GUID: 9815b50c55e4a48669cce10017375f80
-  - m_ParameterName: Max channels
-    m_GUID: 897c29306a9d74608ae78275124d1a2d
-  - m_ParameterName: Drymix
-    m_GUID: c02a2dd60f3ea48eeade7c49c9733094
-  - m_ParameterName: Wetmix
-    m_GUID: e3e73e715b7474978b47a82b4f2a982d
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
