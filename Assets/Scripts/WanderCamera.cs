@@ -67,4 +67,15 @@ public class WanderCamera : MonoBehaviour
         if (!BigPrismMode) transform.rotation = originalRot;
     }
 
+
+    public void GoForward(float value)
+    {
+        x1 += value;
+        x2 += value;
+        y1 += value;
+        y2 += value;
+        z1 += value;
+        z2 += value;
+    }
+
 }

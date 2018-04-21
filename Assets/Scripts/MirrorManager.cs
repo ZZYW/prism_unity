@@ -9,7 +9,7 @@ public class MirrorManager : MonoBehaviour
     public Dimensional Dimension { get; private set; }
     public struct Dimensional
     {
-        public int n { get { return 10; } }
+        public int n { get { return 12; } }
         public float diameter { get { return grid * n; } }
         public float grid { get { return 50; } }
         public float size { get { return 0.8f * grid; } }
@@ -127,6 +127,27 @@ public class MirrorManager : MonoBehaviour
         {
             float s = size * Dimension.grid;
             if (mirror != null) mirror.transform.localScale = new Vector3(s, s, s);
+        }
+    }
+
+
+    internal void SetSelfRotate(bool value)
+    {
+        try
+        {
+            foreach (GameObject mirror in mirrors)
+            {
+                Mirror code = mirror.GetComponent<Mirror>();
+                code.SelfRotate = value;
+                if (!value)
+                {
+                    mirror.transform.localRotation = Quaternion.identity;
+                }
+            }
+        }
+        catch (System.Exception e)
+        {
+            print(e);
         }
     }
 }

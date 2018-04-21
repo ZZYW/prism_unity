@@ -45,7 +45,7 @@ public class StageController : MonoBehaviour
         print("Proceeding Stage");
 
         activeStage++;
-        if (activeStage > 2) activeStage = 0;
+        if (activeStage > 3) activeStage = 0;
         SwtichStage(activeStage);
 
         StagSwtichingSound.Play();
@@ -60,6 +60,7 @@ public class StageController : MonoBehaviour
             case 0:
                 //mirrors
                 MirrorManager.mirrorContainer.gameObject.SetActive(true);
+                MirrorManager.main.SetSelfRotate(true);
                 //wireframe cubes
                 MirrorManager.wireframeCubeContainer.gameObject.SetActive(false);
                 //big prism
@@ -68,10 +69,12 @@ public class StageController : MonoBehaviour
                 MirrorManager.main.SetMirrorSize(0.8f);
                 camControl.SwitchMode(false);
                 break;
+
             //smaller mirror and wireframe
             case 1:
                 //mirror
                 MirrorManager.mirrorContainer.gameObject.SetActive(true);
+                MirrorManager.main.SetSelfRotate(true);
                 //wireframe cube
                 MirrorManager.wireframeCubeContainer.gameObject.SetActive(true);
                 //big prism
@@ -81,8 +84,23 @@ public class StageController : MonoBehaviour
                 camControl.SwitchMode(false);
                 break;
 
-            //just big prism
+            // mirror only but no self rotating
             case 2:
+                //mirror
+                MirrorManager.mirrorContainer.gameObject.SetActive(true);
+                MirrorManager.main.SetSelfRotate(false);
+                //wireframe cube
+                MirrorManager.wireframeCubeContainer.gameObject.SetActive(false);
+                //big prism
+                MainPrism.main.gameObject.SetActive(false);
+
+                MirrorManager.main.SetMirrorSize(0.6f);
+                camControl.SwitchMode(false);
+                camControl.GoForward(10);
+                break;
+
+            //just big prism
+            case 3:
                 //mirror
                 MirrorManager.mirrorContainer.gameObject.SetActive(false);
                 //wireframe cube
