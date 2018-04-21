@@ -8,7 +8,7 @@ public class MainPrism : MonoBehaviour
     public static MainPrism main;
     Material mat;
     Vector3 rotateAxis;
-    float rotateSpeed = 1;
+    public float rotateSpeed = 2;
 
 
     private void Awake()

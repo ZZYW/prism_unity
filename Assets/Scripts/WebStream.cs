@@ -15,9 +15,6 @@ public class WebStream : MonoBehaviour
 
     Texture latestFrame;
 
-    float freq = 0.05f;
-
-    //public List<Texture> Frames;
 
     public List<Texture> Memories;
 
