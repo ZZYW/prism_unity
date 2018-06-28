@@ -6,6 +6,8 @@ Shader "Custom/CUCUMBER" {
      _MainTex ("Albedo (RGB)", 2D) = "white" {}
      _Glossiness ("Smoothness", Range(0,1)) = 0.5
      _Metallic ("Metallic", Range(0,1)) = 0.0
+     _Shake("Shake", Range(1,10))=0.0
+     _ShakeFreq("Shake Freq", Range(0,1))=0.0
  }
  SubShader {
      Tags { "Queue" = "Transparent" "RenderType"="Transparent" }
@@ -30,6 +32,8 @@ Shader "Custom/CUCUMBER" {
      half _Glossiness;
      half _Metallic;
      fixed4 _Color;
+     float _Shake;
+     float _ShakeFreq;
 
 
     
@@ -39,7 +43,7 @@ Shader "Custom/CUCUMBER" {
 
     void vert (inout appdata_full v, out Input o) {       
       UNITY_INITIALIZE_OUTPUT(Input,o);
-      v.vertex += cnoise(v.vertex.xyz + _Time.yyy * 0.01) * 1;
+      v.vertex += cnoise(v.vertex.xyz + _Time.yyy * _ShakeFreq) * _Shake;
       o.vertex = v.vertex;
     }
 

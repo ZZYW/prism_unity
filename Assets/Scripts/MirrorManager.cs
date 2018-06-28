@@ -114,7 +114,7 @@ public class MirrorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mirrorMat.mainTexture = WebStream.main.GetLatestFrame();
+        //mirrorMat.mainTexture = WebStream.main.GetLatestFrame();
 
         transform.Rotate(Vector3.up + Vector3.forward / 2, rotateAngle * Time.deltaTime);
 

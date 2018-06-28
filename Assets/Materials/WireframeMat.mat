@@ -162,7 +162,7 @@ Material:
     - _V_WIRE_RenderingOptions_ODLEnumID: 0
     - _V_WIRE_RenderingOptions_PBREnumID: 0
     - _V_WIRE_RenderingOptions_UnlitEnumID: 0
-    - _V_WIRE_Size: 1
+    - _V_WIRE_Size: 0.739
     - _V_WIRE_Source_Options: 0
     - _V_WIRE_SpecularEnumID: 0
     - _V_WIRE_Tag: 0
@@ -189,7 +189,7 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Color: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _ReflectColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

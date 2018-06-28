@@ -26,7 +26,7 @@ public class MainPrism : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mat.mainTexture = WebStream.main.GetLatestFrame();
+        //mat.mainTexture = WebStream.main.GetLatestFrame();
         transform.Rotate(rotateAxis, rotateSpeed * Time.deltaTime);
     }
 }

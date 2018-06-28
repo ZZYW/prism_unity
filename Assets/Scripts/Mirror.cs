@@ -34,6 +34,8 @@ public class Mirror : MonoBehaviour
     float rotateSpeed;
     Vector3 rotateAxis;
 
+    public bool wander = true;
+
 
     Quaternion localRotation;
 
@@ -42,16 +44,24 @@ public class Mirror : MonoBehaviour
     {
         rotateAxis = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
         rotateSpeed = Random.Range(1f, 10f);
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        Vector3 pos = transform.position;
 
         if (SelfRotate)
         {
             transform.Rotate(rotateAxis, rotateSpeed * Time.deltaTime);
         }
+
+        //if (wander)
+        //{
+        //    float perlin = Mathf.PerlinNoise(pos.x, pos.y);
+        //    transform.Translate(perlin * transform.position * 0.01f);
+        //}
 
 
     }
