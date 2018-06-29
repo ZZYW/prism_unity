@@ -11,48 +11,32 @@ public class StageController : MonoBehaviour
     public AudioSource StagSwtichingSound;
 
 
+    public static StageController instance;
 
     int activeStage;
     WanderCamera camControl;
 
+
+    private void Awake()
+    {
+        instance = this;
+    }
     // Use this for initialization
     void Start()
     {
-        //InvokeRepeating("SwitchStage", 30f, swtichFreq);
         camControl = Camera.main.GetComponent<WanderCamera>();
-        SwtichStage(activeStage);
-        InvokeRepeating("ProceedStage", swtichFreq, swtichFreq);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.I))
-        {
-            ProceedStage();
-        }
 
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.R))
-        {
-            print("Reloading");
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
-        }
+
     }
 
 
-    void ProceedStage()
-    {
-        print("Proceeding Stage");
 
-        activeStage++;
-        if (activeStage > 3) activeStage = 0;
-        SwtichStage(activeStage);
-
-        StagSwtichingSound.Play();
-
-    }
-
-    void SwtichStage(int targetStage)
+    public void SwtichStage(int targetStage)
     {
         switch (targetStage)
         {

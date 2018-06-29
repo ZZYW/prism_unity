@@ -5,21 +5,24 @@ using UnityEngine;
 public class VariableController : MonoBehaviour
 {
 
-
-
     public int useShaderIndex;
 
+
+
+
+
+    [Header("material and shader")]
     public Shader[] mirrorMatShaders;
-
-    public Material mirrorMat;
-    public float vertexOffsetIntense;
-    public float vertexOffsetFreq;
-    public Color mirrorColor;
-
     public Material wireMat;
-    public Color wireColor;
+    //public Color wireColor;
     [Range(0.1f, 1f)]
     public float wireSize;
+    public Material mirrorMat;
+    [Range(0, 100)]
+    public float vertexOffsetIntense;
+    [Range(0, 100)]
+    public float vertexOffsetFreq;
+    public Color mirrorColor;
 
     [Header("glitch")]
     [SerializeField, Range(0, 1)]
@@ -33,8 +36,6 @@ public class VariableController : MonoBehaviour
     [SerializeField, Range(0, 1)]
     public float digitalGlitchIntensity;
 
-
-    public float[] spectrum = new float[256];
 
     Kino.AnalogGlitch analogGlitch;
     Kino.DigitalGlitch digitalGlitch;
@@ -56,17 +57,16 @@ public class VariableController : MonoBehaviour
 
         useShaderIndex = Mathf.Clamp(useShaderIndex, 0, mirrorMatShaders.Length - 1);
 
-        mirrorMat.shader = mirrorMatShaders[useShaderIndex];
 
         mirrorMat.color = mirrorColor;
         mirrorMat.SetFloat("_Shake", vertexOffsetIntense);
         mirrorMat.SetFloat("_ShakeFreq", vertexOffsetFreq);
 
-        if (useShaderIndex == 1)
-        {
-            mirrorMat.SetColor("_Color", wireColor);
-            mirrorMat.SetFloat("_V_WIRE_Size", wireSize);
-        }
+        //if (useShaderIndex == 1)
+        //{
+        //    //mirrorMat.SetColor("_Color", wireColor);
+        //    mirrorMat.SetFloat("_V_WIRE_Size", wireSize);
+        //}
 
 
         analogGlitch.scanLineJitter = lineJitter;
@@ -76,45 +76,42 @@ public class VariableController : MonoBehaviour
         digitalGlitch.intensity = digitalGlitchIntensity;
 
 
-        spectrum = new float[256];
-        AudioListener.GetSpectrumData(spectrum, 0, FFTWindow.Triangle);
-
-
-
-        for (int i = 0; i < spectrum.Length; i++)
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.R))
         {
-            spectrum[i] *= 10000f;
-            spectrum[i] = (int)spectrum[i];
+            print("Reloading");
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            StageController.instance.SwtichStage(0);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            StageController.instance.SwtichStage(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            StageController.instance.SwtichStage(2);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            StageController.instance.SwtichStage(3);
+        }
+
+
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            mirrorMat.shader=mirrorMatShaders[0];
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            mirrorMat.shader = mirrorMatShaders[1];
         }
 
 
 
-
-
-        if (controlStage == 0)
-        {
-            lineJitter = spectrum[10] / 100;
-            verticalJump = spectrum[12] / 200;
-            vertexOffsetIntense = 0;
-            vertexOffsetFreq = 0;
-        }
-        else if (controlStage == 1)
-        {
-            lineJitter = 0;
-            verticalJump = 0;
-            vertexOffsetIntense = spectrum[10] / 150;
-            vertexOffsetFreq = spectrum[12] / 200;
-        }
-
-
-        if (Input.GetKey(KeyCode.B))
-        {
-            controlStage++;
-            if (controlStage > 1)
-            {
-                controlStage = 0;
-            }
-        }
     }
 
 

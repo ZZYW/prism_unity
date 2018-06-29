@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: MirrorMat
-  m_Shader: {fileID: 4800000, guid: 66e1aa94aef9142fab873810a9699ebc, type: 3}
+  m_Shader: {fileID: 4800000, guid: ec189ca10b9647044a495a64f6d1c6b6, type: 3}
   m_ShaderKeywords: _ALBEDOMAP _COLORGLITCHON_ON _DISPGLITCHON_ON _EMISSION _GLITCHCOLOR_ON
     _MONOCHROM_ON _WRAPDISPCOORDS_ON _X_ON _Y_ON
   m_LightmapFlags: 1
@@ -143,6 +143,7 @@ Material:
     - _BumpScale: 2.1
     - _ColorGlitchOn: 1
     - _ColorIntensity: 0.3
+    - _ColorMask: 15
     - _ColorProbability: 1
     - _Cull: 2
     - _Cutoff: 0.5
@@ -173,16 +174,26 @@ Material:
     - _Scale: 0
     - _Shake: 0
     - _ShakeFreq: 0
+    - _Shininess: 0.078125
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Speed: 0
     - _Speed_Up: 0
     - _SrcBlend: 1
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
     - _UVSec: 0
+    - _UseUIAlphaClip: 0
     - _V_WIRE_DistanceFade: 0
     - _V_WIRE_DistanceFadeEnd: 10
     - _V_WIRE_DistanceFadeStart: 5
+    - _V_WIRE_DynamicGI: 0
+    - _V_WIRE_DynamicGIEnumID: 0
+    - _V_WIRE_DynamicGIStrength: 0
     - _V_WIRE_DynamicMaskEffectsBaseTexEnumID: 0
     - _V_WIRE_DynamicMaskEffectsBaseTexInvert: 0
     - _V_WIRE_DynamicMaskEnumID: 0
@@ -224,7 +235,7 @@ Material:
     - _t: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 0.7607843}
-    - _EmissionColor: {r: 0.021626303, g: 0.032871947, b: 0.14705884, a: 1}
+    - _EmissionColor: {r: 0, g: 0.38447738, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
     - _ReflectColor: {r: 1, g: 1, b: 1, a: 0.5}
@@ -233,6 +244,7 @@ Material:
     - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
     - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
     - _V_WIRE_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _V_WIRE_ObjectWorldPos: {r: 0, g: 0, b: 0, a: 0}
     - _V_WIRE_SourceTex_Scroll: {r: 0, g: 0, b: 0, a: 0}
     - _V_WIRE_WireTex_Scroll: {r: 0, g: 0, b: 0, a: 0}
     - _diff_Color: {r: 1, g: 1, b: 1, a: 1}
