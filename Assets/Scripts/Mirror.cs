@@ -35,13 +35,24 @@ public class Mirror : MonoBehaviour
     Vector3 rotateAxis;
 
     public bool wander = true;
+    bool brokeOut;
+    bool shaking;
+    [SerializeField]
+    float breakingOutProgress;
+    float breakingOutSpeed;
 
 
     Quaternion localRotation;
+    Vector3 pos;
 
     // Use this for initialization
     void Start()
     {
+        shaking = false;
+        brokeOut = false;
+        breakingOutProgress = 0;
+        breakingOutSpeed = 1f;
+
         rotateAxis = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
         rotateSpeed = Random.Range(1f, 10f);
 
@@ -57,12 +68,40 @@ public class Mirror : MonoBehaviour
             transform.Rotate(rotateAxis, rotateSpeed * Time.deltaTime);
         }
 
-        //if (wander)
-        //{
-        //    float perlin = Mathf.PerlinNoise(pos.x, pos.y);
-        //    transform.Translate(perlin * transform.position * 0.01f);
-        //}
 
+        if (shaking && !brokeOut)
+        {
+            breakingOutProgress += breakingOutSpeed * Time.deltaTime;
+            float randomRage = 10f * (breakingOutProgress / 100);
+            transform.position += new Vector3(Random.Range(-randomRage, randomRage), Random.Range(-randomRage, randomRage), Random.Range(-randomRage, randomRage));
+            if (breakingOutProgress > 100)
+            {
+                float force = 100000;
+                Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+                TrailRenderer tr = gameObject.AddComponent<TrailRenderer>();
+                tr.material = MirrorManager.main.trailMat;
+                tr.time = 10;
+                gameObject.AddComponent<BoxCollider>();
+                rb.AddForce(new Vector3(Random.Range(-force, force), Random.Range(-force, force), Random.Range(-force, force)));
+                brokeOut = true;
+            }
+
+        }
+
+    }
+
+    internal void StartBreak()
+    {
+        Invoke("StartShake", Random.Range(0f, 10f));
+    }
+
+    void StartShake()
+    {
+        if (!brokeOut)
+        {
+            shaking = true;
+            pos = transform.position;
+        }
 
     }
 

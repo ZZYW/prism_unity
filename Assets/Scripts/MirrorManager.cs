@@ -7,6 +7,7 @@ public class MirrorManager : MonoBehaviour
     public static MirrorManager main;
 
     public Dimensional Dimension;
+    public Material trailMat;
 
     [System.Serializable]
     public class Dimensional
@@ -116,12 +117,23 @@ public class MirrorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //mirrorMat.mainTexture = WebStream.main.GetLatestFrame();
-
         transform.Rotate(Vector3.up + Vector3.forward / 2, rotateAngle * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            KickOffBreaking();
+            Debug.Log("breaking out started");
+        }
+
 
     }
 
+    internal void KickOffBreaking() {
+        foreach (var mirror in mirrors)
+        {
+            mirror.GetComponent<Mirror>().StartBreak();
+        }
+    }
 
     internal void SetMirrorSize(float size)
     {
