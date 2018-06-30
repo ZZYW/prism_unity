@@ -6,7 +6,7 @@ public class MainPrism : MonoBehaviour
 {
 
     public static MainPrism main;
-    Material mat;
+    //Material mat;
     Vector3 rotateAxis;
     public float rotateSpeed = 2;
 
@@ -20,7 +20,7 @@ public class MainPrism : MonoBehaviour
     void Start()
     {
         rotateAxis = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
-        mat = GetComponent<Renderer>().material;
+        //mat = GetComponent<Renderer>().material;
     }
 
     // Update is called once per frame

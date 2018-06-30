@@ -6,12 +6,14 @@ public class MirrorManager : MonoBehaviour
 {
     public static MirrorManager main;
 
-    public Dimensional Dimension { get; private set; }
-    public struct Dimensional
+    public Dimensional Dimension;
+
+    [System.Serializable]
+    public class Dimensional
     {
-        public int n { get { return 12; } }
+        public int n = 10;
         public float diameter { get { return grid * n; } }
-        public float grid { get { return 50; } }
+        public float grid = 50;
         public float size { get { return 0.8f * grid; } }
     }
 

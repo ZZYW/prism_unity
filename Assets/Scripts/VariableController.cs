@@ -5,15 +5,15 @@ using UnityEngine;
 public class VariableController : MonoBehaviour
 {
 
+    public static VariableController instance;
+
     public int useShaderIndex;
-
-
-
-
 
     [Header("material and shader")]
     public Shader[] mirrorMatShaders;
     public Material wireMat;
+    public Material mainPrismMat;
+
     //public Color wireColor;
     [Range(0.1f, 1f)]
     public float wireSize;
@@ -22,6 +22,8 @@ public class VariableController : MonoBehaviour
     public float vertexOffsetIntense;
     [Range(0, 100)]
     public float vertexOffsetFreq;
+    [Range(0,1)]
+    public float vertexRandomMult;
     public Color mirrorColor;
 
     [Header("glitch")]
@@ -44,6 +46,11 @@ public class VariableController : MonoBehaviour
     public int controlStage = 0;
 
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -57,17 +64,15 @@ public class VariableController : MonoBehaviour
 
         useShaderIndex = Mathf.Clamp(useShaderIndex, 0, mirrorMatShaders.Length - 1);
 
-
         mirrorMat.color = mirrorColor;
         mirrorMat.SetFloat("_Shake", vertexOffsetIntense);
         mirrorMat.SetFloat("_ShakeFreq", vertexOffsetFreq);
+        mirrorMat.SetFloat("_RandomMult", vertexRandomMult);
 
-        //if (useShaderIndex == 1)
-        //{
-        //    //mirrorMat.SetColor("_Color", wireColor);
-        //    mirrorMat.SetFloat("_V_WIRE_Size", wireSize);
-        //}
 
+        mainPrismMat.SetFloat("_Shake", vertexOffsetIntense);
+        mainPrismMat.SetFloat("_ShakeFreq", vertexOffsetFreq);
+        mainPrismMat.SetFloat("_RandomMult", vertexRandomMult);
 
         analogGlitch.scanLineJitter = lineJitter;
         analogGlitch.verticalJump = verticalJump;
@@ -101,9 +106,9 @@ public class VariableController : MonoBehaviour
         }
 
 
-        if(Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            mirrorMat.shader=mirrorMatShaders[0];
+            mirrorMat.shader = mirrorMatShaders[0];
         }
         if (Input.GetKeyDown(KeyCode.V))
         {
