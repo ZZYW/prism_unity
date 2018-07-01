@@ -4,97 +4,150 @@ using UnityEngine;
 
 public class StageController : MonoBehaviour
 {
-
-    [SerializeField]
-    float swtichFreq = 10f;
-
-    public AudioSource StagSwtichingSound;
-
-
     public static StageController instance;
 
-    int activeStage;
     WanderCamera camControl;
 
+    public enum STAGE
+    {
+        SELF_ROT_MIRRORS, MIRROR_N_WIREFRAME, ALIGNED_MIRRORS, BIG_PRISM, LACC
+    }
+
+    STAGE stage;
+    public STAGE Stage
+    {
+        get
+        {
+            return stage;
+        }
+
+        set
+        {
+            stage = value;
+            SwtichStage((int)value);
+        }
+    }
 
     private void Awake()
     {
         instance = this;
     }
-    // Use this for initialization
+
     void Start()
     {
         camControl = Camera.main.GetComponent<WanderCamera>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-
-    }
-
-
-
     public void SwtichStage(int targetStage)
     {
+        //resets
+        ExitLACC();
+
+
         switch (targetStage)
         {
             //just mirrors
             case 0:
                 //mirrors
                 MirrorManager.mirrorContainer.gameObject.SetActive(true);
-                MirrorManager.main.SetSelfRotate(true);
-                //wireframe cubes
+                MirrorManager.instance.SetSelfRotate(true);
                 MirrorManager.wireframeCubeContainer.gameObject.SetActive(false);
-                //big prism
                 MainPrism.main.gameObject.SetActive(false);
+                MirrorManager.instance.SetMirrorSize(0.8f);
 
-                MirrorManager.main.SetMirrorSize(0.8f);
-                camControl.SwitchMode(false);
+                camControl.SwitchMode(WanderCamera.MODE.NORMAL);
                 break;
 
             //smaller mirror and wireframe
             case 1:
                 //mirror
                 MirrorManager.mirrorContainer.gameObject.SetActive(true);
-                MirrorManager.main.SetSelfRotate(true);
+                MirrorManager.instance.SetSelfRotate(true);
                 //wireframe cube
                 MirrorManager.wireframeCubeContainer.gameObject.SetActive(true);
                 //big prism
                 MainPrism.main.gameObject.SetActive(false);
 
-                MirrorManager.main.SetMirrorSize(0.2f);
-                camControl.SwitchMode(false);
+                MirrorManager.instance.SetMirrorSize(0.2f);
+
+                camControl.SwitchMode(WanderCamera.MODE.NORMAL);
+
                 break;
 
             // mirror only but no self rotating
             case 2:
                 //mirror
+
                 MirrorManager.mirrorContainer.gameObject.SetActive(true);
-                MirrorManager.main.SetSelfRotate(false);
+                MirrorManager.instance.SetSelfRotate(false);
                 //wireframe cube
                 MirrorManager.wireframeCubeContainer.gameObject.SetActive(false);
                 //big prism
                 MainPrism.main.gameObject.SetActive(false);
 
-                MirrorManager.main.SetMirrorSize(0.6f);
-                camControl.SwitchMode(false);
+                MirrorManager.instance.SetMirrorSize(0.6f);
+                camControl.SwitchMode(WanderCamera.MODE.NORMAL);
+
                 camControl.GoForward(10);
                 break;
 
             //just big prism
             case 3:
+
                 //mirror
                 MirrorManager.mirrorContainer.gameObject.SetActive(false);
                 //wireframe cube
                 MirrorManager.wireframeCubeContainer.gameObject.SetActive(false);
                 //big prism
                 MainPrism.main.gameObject.SetActive(true);
+                camControl.SwitchMode(WanderCamera.MODE.BIG_PRISM);
+                break;
 
-                camControl.SwitchMode(true);
+            case 4:
+                //mirror
+                MirrorManager.mirrorContainer.gameObject.SetActive(true);
+                MirrorManager.instance.SetSelfRotate(false);
+                //wireframe cube
+                MirrorManager.wireframeCubeContainer.gameObject.SetActive(false);
+                //big prism
+                MainPrism.main.gameObject.SetActive(false);
+                camControl.SwitchMode(WanderCamera.MODE.LOOK_AT_CENTER_CUBE);
+                EnterLACC();
+
+                MirrorManager.instance.SetMirrorSize(0.6f);
                 break;
         }
 
     }
+
+
+    void EnterLACC()
+    {
+        BoxCollider boxCollider = camControl.gameObject.AddComponent<BoxCollider>();
+        boxCollider.size = Vector3.one * 0.1f;
+        boxCollider.isTrigger = true;
+
+        boxCollider = MirrorManager.instance.centerCube.gameObject.GetComponent<BoxCollider>();
+        boxCollider.enabled = true;
+        boxCollider.isTrigger = true;
+
+        MirrorManager.instance.ChangeMirrorsShader(DATA.SHADER_DOUBLE_SIDE);
+    }
+
+    void ExitLACC()
+    {
+        MirrorManager.instance.ChangeMirrorsShader(DATA.SHADER_DEFAULT);
+
+        if (camControl.gameObject.GetComponent<BoxCollider>())
+        {
+            Destroy(camControl.gameObject.GetComponent<BoxCollider>());
+        }
+
+        BoxCollider boxCollider = MirrorManager.instance.centerCube.gameObject.GetComponent<BoxCollider>();
+        if (boxCollider != null)
+        {
+            boxCollider.enabled = false;
+        }
+    }
+
 }

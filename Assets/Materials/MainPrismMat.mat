@@ -68,9 +68,9 @@ Material:
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _NoisePara01: 0.305
-    - _NoisePara02: 1
-    - _NoisePara03: 5.85
+    - _NoisePara01: 0.743
+    - _NoisePara02: 3.4
+    - _NoisePara03: 11.6
     - _NormalRainbow: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02

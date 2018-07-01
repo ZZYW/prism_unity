@@ -6,23 +6,27 @@ public class WanderCamera : MonoBehaviour
 {
 
 
+
     public float speed = 1f;
+
     float area;
-
-
     float x1, x2;
     float y1, y2;
     float z1, z2;
-
     Quaternion originalRot;
+    GameObject target;
 
-    public bool BigPrismMode { get; set; }
+    public enum MODE
+    {
+        BIG_PRISM, NORMAL, LOOK_AT_CENTER_CUBE
+    }
 
+    public MODE Mode = MODE.NORMAL;
 
     // Use this for initialization
     void Start()
     {
-        area = MirrorManager.main.Dimension.diameter * 1f;
+        area = DATA.DimensionData.matrixDiameter * 1f;
         x1 = Random.Range(0f, 100f);
         x2 = Random.Range(0f, 100f);
         y1 = Random.Range(0f, 100f);
@@ -36,37 +40,60 @@ public class WanderCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (BigPrismMode)
+        switch (Mode)
         {
-            transform.position = new Vector3(5.4f, 41f, -120f);
-            transform.LookAt(MainPrism.main.gameObject.transform);
+            case MODE.BIG_PRISM:
+                transform.position = new Vector3(5.4f, 41f, -120f);
+                transform.LookAt(MainPrism.main.gameObject.transform);
+                break;
+
+
+            case MODE.NORMAL:
+                float x = Mathf.PerlinNoise(x1, x2) * area - area / 3;
+                float y = Mathf.PerlinNoise(y1, y2) * area - area / 3;
+                float z = Mathf.PerlinNoise(z1, z2) * area - area / 3;
+
+                x1 += speed * Time.deltaTime;
+                x2 += speed * Time.deltaTime;
+                y1 += speed * Time.deltaTime;
+                y2 += speed * Time.deltaTime;
+                z1 += speed * Time.deltaTime;
+                z2 += speed * Time.deltaTime;
+
+                Vector3 nextPos = new Vector3(x, y, z);
+
+                transform.position = nextPos;
+                break;
+
+
+            case MODE.LOOK_AT_CENTER_CUBE:
+                Vector3 pos = transform.position;
+                pos.z += 1f * Time.deltaTime;
+                transform.position = pos;
+                transform.LookAt(target.transform);
+                float dis = Vector3.Distance(transform.position, target.transform.position);
+
+                break;
         }
-        else
-        {
-            float x = Mathf.PerlinNoise(x1, x2) * area - area / 3;
-            float y = Mathf.PerlinNoise(y1, y2) * area - area / 3;
-            float z = Mathf.PerlinNoise(z1, z2) * area - area / 3;
 
-            x1 += speed * Time.deltaTime;
-            x2 += speed * Time.deltaTime;
-            y1 += speed * Time.deltaTime;
-            y2 += speed * Time.deltaTime;
-            z1 += speed * Time.deltaTime;
-            z2 += speed * Time.deltaTime;
-
-            Vector3 nextPos = new Vector3(x, y, z);
-
-            transform.position = nextPos;
-        }
 
     }
 
-    public void SwitchMode(bool lookAtBigPrism)
+
+    public void SwitchMode(MODE newMode)
     {
-        BigPrismMode = lookAtBigPrism;
-        if (!BigPrismMode) transform.rotation = originalRot;
+        Mode = newMode;
+        if (Mode == MODE.NORMAL)
+        {
+            transform.rotation = originalRot;
+        }
+        if (Mode == MODE.LOOK_AT_CENTER_CUBE)
+        {
+            //setup LACC mode
+            target = MirrorManager.instance.centerCube;
+            transform.position = target.transform.position;
+        }
     }
-
 
     public void GoForward(float value)
     {

@@ -27,7 +27,7 @@ public class Mirror : MonoBehaviour
 
         }
     }
-    public Vector3 SpaceID { get; set; }
+    public Vector3 SpaceID;
 
 
 
@@ -43,7 +43,9 @@ public class Mirror : MonoBehaviour
 
 
     Quaternion localRotation;
-    Vector3 pos;
+    //Vector3 pos;
+
+    public int id;
 
     // Use this for initialization
     void Start()
@@ -68,7 +70,6 @@ public class Mirror : MonoBehaviour
             transform.Rotate(rotateAxis, rotateSpeed * Time.deltaTime);
         }
 
-
         if (shaking && !brokeOut)
         {
             breakingOutProgress += breakingOutSpeed * Time.deltaTime;
@@ -79,7 +80,7 @@ public class Mirror : MonoBehaviour
                 float force = 10000;
                 Rigidbody rb = gameObject.AddComponent<Rigidbody>();
                 TrailRenderer tr = gameObject.AddComponent<TrailRenderer>();
-                tr.material = MirrorManager.main.trailMat;
+                tr.material = MirrorManager.instance.trailMat;
                 tr.time = 10;
                 gameObject.AddComponent<BoxCollider>();
                 rb.AddForce(new Vector3(Random.Range(-force, force), Random.Range(-force, force), Random.Range(-force, force)));
@@ -100,10 +101,21 @@ public class Mirror : MonoBehaviour
         if (!brokeOut)
         {
             shaking = true;
-            pos = transform.position;
+            //pos = transform.position;
         }
 
     }
+
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == Camera.main.gameObject)
+        {
+            Debug.Log("main cam exit");
+        }
+    }
+
+
 
 
 

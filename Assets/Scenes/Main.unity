@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 1753427091}
-  syphon: {fileID: 1462492530}
+  syphon: {fileID: 0}
   defaultSyphonState: 0
 --- !u!1 &347270268
 GameObject:
@@ -711,7 +711,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &662893326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2172,7 +2172,6 @@ GameObject:
   - component: {fileID: 1462492525}
   - component: {fileID: 1462492529}
   - component: {fileID: 1462492531}
-  - component: {fileID: 1462492530}
   - component: {fileID: 1462492532}
   - component: {fileID: 1462492533}
   m_Layer: 0
@@ -2257,23 +2256,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: e8d1df4daad394468ac7d13860a51d64, type: 2}
---- !u!114 &1462492530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1462492524}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d3c0b01ad228439a9d89134216071c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _screenWidth: 1920
-  _screenHeight: 1080
-  _antiAliasing: 1
-  _discardAlpha: 1
-  _renderMode: 1
-  _gammaShader: {fileID: 4800000, guid: 61221cb867c7a439fba6da3231ff64f7, type: 3}
 --- !u!114 &1462492531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2286,6 +2268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.005
+  Mode: 1
 --- !u!114 &1462492532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2324,6 +2307,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1537345732}
   - component: {fileID: 1537345733}
+  - component: {fileID: 1537345734}
   m_Layer: 0
   m_Name: Stage Controller
   m_TagString: Untagged
@@ -2355,8 +2339,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d63d3ca4fc5d4f12a5277f422920641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swtichFreq: 60
-  StagSwtichingSound: {fileID: 0}
+--- !u!114 &1537345734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1537345731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b3c2dd2606f4610aee2e7693db108a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1538289138
 GameObject:
   m_ObjectHideFlags: 0
@@ -2472,7 +2465,7 @@ MonoBehaviour:
   useShaderIndex: 0
   mirrorMatShaders:
   - {fileID: 4800000, guid: 66e1aa94aef9142fab873810a9699ebc, type: 3}
-  - {fileID: 4800000, guid: ec189ca10b9647044a495a64f6d1c6b6, type: 3}
+  - {fileID: 4800000, guid: b965f82ca09623c41afded17f5d27c27, type: 3}
   wireMat: {fileID: 2100000, guid: 023e6dcf57d0b4b63aa20513aa160ef3, type: 2}
   mainPrismMat: {fileID: 2100000, guid: 1b4f178df738d4b968eced243fa2d807, type: 2}
   wireSize: 0
@@ -2529,13 +2522,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cbc347bf1b6b4cad9549cb906122865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Dimension:
-    n: 10
-    grid: 50
   trailMat: {fileID: 2100000, guid: e5cf022b5715648e3bfcf813e475b8fb, type: 2}
   CubeSelfRotate: 1
   mirrorMat: {fileID: 2100000, guid: 2652c98b7c43b4b82b1a6d7e471f547a, type: 2}
   lineMat: {fileID: 2100000, guid: 023e6dcf57d0b4b63aa20513aa160ef3, type: 2}
+  centerCube: {fileID: 0}
 --- !u!4 &1559715418
 Transform:
   m_ObjectHideFlags: 0
@@ -2721,7 +2712,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1615710079
 MonoBehaviour:
   m_ObjectHideFlags: 0

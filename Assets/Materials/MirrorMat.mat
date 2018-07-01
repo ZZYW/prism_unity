@@ -154,6 +154,7 @@ Material:
     - _Distance: 0
     - _DstBlend: 0
     - _Emission: 1
+    - _EmissiveIntensity: 1
     - _EnableExternalAlpha: 0
     - _Exposure: 1
     - _GlitchInterval: 0.01
@@ -164,9 +165,10 @@ Material:
     - _MapScale: 1
     - _Metallic: 0
     - _Mode: 0
-    - _NoisePara01: 0
-    - _NoisePara02: 1
+    - _NoisePara01: 0.193
+    - _NoisePara02: 1.31
     - _NoisePara03: 0
+    - _NormalIntensity: 1
     - _NormalRainbow: 0
     - _NormalScale: 1
     - _OcclusionStr: 1
@@ -185,6 +187,7 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _SpecularIntensity: 0.2
     - _Speed: 0
     - _Speed_Up: 0
     - _SrcBlend: 1
@@ -241,7 +244,7 @@ Material:
     - _noise_details: 0
     - _t: 0
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 0.9019608}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0.38447738, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}

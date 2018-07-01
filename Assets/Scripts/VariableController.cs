@@ -14,7 +14,6 @@ public class VariableController : MonoBehaviour
     public Material wireMat;
     public Material mainPrismMat;
 
-    //public Color wireColor;
     [Range(0.1f, 1f)]
     public float wireSize;
     public Material mirrorMat;
@@ -67,7 +66,7 @@ public class VariableController : MonoBehaviour
 
         useShaderIndex = Mathf.Clamp(useShaderIndex, 0, mirrorMatShaders.Length - 1);
 
-        mirrorMat.color = mirrorColor;
+        //mirrorMat.color = mirrorColor;
         mirrorMat.SetFloat("_Shake", vertexOffsetIntense);
         mirrorMat.SetFloat("_ShakeFreq", vertexOffsetFreq);
         mirrorMat.SetFloat("_RandomMult", vertexRandomMult);
@@ -127,6 +126,10 @@ public class VariableController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             StageController.instance.SwtichStage(3);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            StageController.instance.SwtichStage(4);
         }
 
 
