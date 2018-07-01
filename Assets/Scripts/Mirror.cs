@@ -51,7 +51,7 @@ public class Mirror : MonoBehaviour
         shaking = false;
         brokeOut = false;
         breakingOutProgress = 0;
-        breakingOutSpeed = 1f;
+        breakingOutSpeed = 1.5f;
 
         rotateAxis = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
         rotateSpeed = Random.Range(1f, 10f);
@@ -76,7 +76,7 @@ public class Mirror : MonoBehaviour
             transform.position += new Vector3(Random.Range(-randomRage, randomRage), Random.Range(-randomRage, randomRage), Random.Range(-randomRage, randomRage));
             if (breakingOutProgress > 100)
             {
-                float force = 100000;
+                float force = 10000;
                 Rigidbody rb = gameObject.AddComponent<Rigidbody>();
                 TrailRenderer tr = gameObject.AddComponent<TrailRenderer>();
                 tr.material = MirrorManager.main.trailMat;

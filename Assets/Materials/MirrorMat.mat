@@ -164,17 +164,22 @@ Material:
     - _MapScale: 1
     - _Metallic: 0
     - _Mode: 0
+    - _NoisePara01: 0
+    - _NoisePara02: 1
+    - _NoisePara03: 0
+    - _NormalRainbow: 0
     - _NormalScale: 1
     - _OcclusionStr: 1
     - _OcclusionStrength: 1
     - _Opacity: 0
     - _Parallax: 0.005
     - _Power: 0
+    - _RMStyle: 0
     - _Random: 0
-    - _RandomMult: 0
+    - _RandomMult: 0.311
     - _Rotation: 0
     - _Scale: 0
-    - _Shake: 0
+    - _Shake: 0.2
     - _ShakeFreq: 0
     - _Shininess: 0.078125
     - _Smoothness: 0.5
