@@ -22,7 +22,7 @@ public class VariableController : MonoBehaviour
     public float vertexOffsetIntense;
     [Range(0, 100)]
     public float vertexOffsetFreq;
-    [Range(0,1)]
+    [Range(0, 1)]
     public float vertexRandomMult;
     public Color mirrorColor;
 
@@ -37,6 +37,9 @@ public class VariableController : MonoBehaviour
     public float colorDrift;
     [SerializeField, Range(0, 1)]
     public float digitalGlitchIntensity;
+
+    public bool useRMStyle;
+    public bool useRainbowStyle;
 
 
     Kino.AnalogGlitch analogGlitch;
@@ -87,6 +90,27 @@ public class VariableController : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
 
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            //turn on/off rosa style
+
+            useRMStyle = !useRMStyle;
+            useRainbowStyle = !useRMStyle;
+            print("rosa style: " + useRMStyle);
+            mainPrismMat.SetInt("_RMStyle", useRMStyle ? 1 : 0);
+            mirrorMat.SetInt("_RMStyle", useRMStyle ? 1 : 0);
+        }
+
+        if(Input.GetKeyDown(KeyCode.R)){
+            useRainbowStyle = !useRainbowStyle;
+            useRMStyle = !useRainbowStyle;
+            print("rainbow shader: " + useRainbowStyle);
+            mainPrismMat.SetInt("_NormalRainbow", useRainbowStyle ? 1 : 0);
+            mirrorMat.SetInt("_NormalRainbow", useRainbowStyle ? 1 : 0);
+        }
+
+
+
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -104,6 +128,8 @@ public class VariableController : MonoBehaviour
         {
             StageController.instance.SwtichStage(3);
         }
+
+
 
 
         if (Input.GetKeyDown(KeyCode.C))

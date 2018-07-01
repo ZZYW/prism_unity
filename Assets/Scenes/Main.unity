@@ -1448,7 +1448,11 @@ MonoBehaviour:
 
     V: Mirror Mat Use Shader STANDARD
 
-    L: Start Breaking Out Process'
+    L: Start Breaking Out Process
+
+    G: Toggle Rosa Menkmen Style
+
+    R: Toggle Rainbow Style'
 --- !u!222 &971038281
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2482,6 +2486,8 @@ MonoBehaviour:
   horiShakel: 0
   colorDrift: 0
   digitalGlitchIntensity: 0
+  useRMStyle: 0
+  useRainbowStyle: 0
   controlStage: 0
 --- !u!4 &1539232829
 Transform:

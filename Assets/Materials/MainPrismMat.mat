@@ -74,10 +74,10 @@ Material:
     - _NormalRainbow: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RMStyle: 1
+    - _RMStyle: 0
     - _Random: 0
-    - _RandomMult: 0.311
-    - _Shake: 0.2
+    - _RandomMult: 0
+    - _Shake: 0
     - _ShakeFreq: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

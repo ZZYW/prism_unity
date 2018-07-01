@@ -176,10 +176,10 @@ Material:
     - _Power: 0
     - _RMStyle: 0
     - _Random: 0
-    - _RandomMult: 0.311
+    - _RandomMult: 0
     - _Rotation: 0
     - _Scale: 0
-    - _Shake: 0.2
+    - _Shake: 0
     - _ShakeFreq: 0
     - _Shininess: 0.078125
     - _Smoothness: 0.5
