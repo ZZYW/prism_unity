@@ -47,6 +47,8 @@ public class VariableController : MonoBehaviour
 
     public int controlStage = 0;
 
+    //boolean 
+
 
     private void Awake()
     {
@@ -89,27 +91,6 @@ public class VariableController : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
 
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            //turn on/off rosa style
-
-            useRMStyle = !useRMStyle;
-            useRainbowStyle = !useRMStyle;
-            print("rosa style: " + useRMStyle);
-            mainPrismMat.SetInt("_RMStyle", useRMStyle ? 1 : 0);
-            mirrorMat.SetInt("_RMStyle", useRMStyle ? 1 : 0);
-        }
-
-        if(Input.GetKeyDown(KeyCode.R)){
-            useRainbowStyle = !useRainbowStyle;
-            useRMStyle = !useRainbowStyle;
-            print("rainbow shader: " + useRainbowStyle);
-            mainPrismMat.SetInt("_NormalRainbow", useRainbowStyle ? 1 : 0);
-            mirrorMat.SetInt("_NormalRainbow", useRainbowStyle ? 1 : 0);
-        }
-
-
-
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -142,6 +123,30 @@ public class VariableController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V))
         {
             mirrorMat.shader = mirrorMatShaders[1];
+        }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            useRMStyle = !useRMStyle;
+            useRainbowStyle = !useRMStyle;
+            print("rosa style: " + useRMStyle);
+            mainPrismMat.SetInt("_RMStyle", useRMStyle ? 1 : 0);
+            mirrorMat.SetInt("_RMStyle", useRMStyle ? 1 : 0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            useRainbowStyle = !useRainbowStyle;
+            useRMStyle = !useRainbowStyle;
+            print("rainbow shader: " + useRainbowStyle);
+            mainPrismMat.SetInt("_NormalRainbow", useRainbowStyle ? 1 : 0);
+            mirrorMat.SetInt("_NormalRainbow", useRainbowStyle ? 1 : 0);
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            MirrorManager.instance.matrixRotate = !MirrorManager.instance.matrixRotate;
         }
 
 

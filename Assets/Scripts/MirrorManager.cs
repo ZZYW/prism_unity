@@ -28,10 +28,12 @@ public class MirrorManager : MonoBehaviour
     GameObject[] mirrors;
     float rotateAngle = 1f;
 
+    public bool matrixRotate = true;
+
 
     private void Awake()
     {
-     
+
         instance = this;
 
         mirrors = new GameObject[(int)Mathf.Pow(DATA.DimensionData.npr, 3)];
@@ -120,7 +122,11 @@ public class MirrorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.up + Vector3.forward / 2, rotateAngle * Time.deltaTime);
+        if (matrixRotate)
+        {
+            transform.Rotate(Vector3.up + Vector3.forward / 2, rotateAngle * Time.deltaTime);
+
+        }
 
         if (Input.GetKeyDown(KeyCode.L))
         {

@@ -1,10 +1,13 @@
-﻿// Upgrade NOTE: upgraded instancing buffer 'Props' to new syntax.
+﻿// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+
+// Upgrade NOTE: upgraded instancing buffer 'Props' to new syntax.
 
 Shader "Custom/CUCUMBER" {
 
  Properties {
      _Color ("Color", Color) = (1,1,1,1)
      _MainTex ("Albedo (RGB)", 2D) = "white" {}
+     _2ndTex("2nd Tex", 2D) = "white" {}
      _Glossiness ("Smoothness", Range(0,1)) = 0.5
      _Metallic ("Metallic", Range(0,1)) = 0.0
      _Shake("Shake", Range(0,50))=0.0
@@ -14,9 +17,13 @@ Shader "Custom/CUCUMBER" {
      _NormalRainbow("Normal Rainbow", Int) = 0
      [Toggle]
      _RMStyle("Rosa Menkmen Style", Int) = 0
+       [Toggle]
+     _UseAlbedo("Use Albedo in RM Style", Int) = 0
      _NoisePara01("Noise Para01", Range(0,1)) = 0.2
-     _NoisePara02("Noise Para02", Range(1,5)) = 2
+     _NoisePara02("Noise Para02", Range(0.1,5)) = 2
      _NoisePara03("Noise Para03", Range(0,20)) = 0
+
+
  }
 
  SubShader {
@@ -31,13 +38,15 @@ Shader "Custom/CUCUMBER" {
      #pragma target 3.0
 
      sampler2D _MainTex;
+     sampler2D _2ndTex;
 
     struct Input {
-        float3 normal;
-        float4 vertex;
-        float2 uv_MainTex;
+        float3 viewDir;
         float3 worldPos;
-        float2 uv;
+        float3 localPos;
+        float2 uv_MainTex;
+        float2 uv_2ndTex;
+        float4 screenPos;
     };
 
      half _Glossiness;
@@ -51,6 +60,7 @@ Shader "Custom/CUCUMBER" {
      float _NoisePara01;
       float _NoisePara02;
       float _NoisePara03;
+      int _UseAlbedo;
 
     
      UNITY_INSTANCING_BUFFER_START(Props)
@@ -60,18 +70,23 @@ Shader "Custom/CUCUMBER" {
     float nrand(float2 uv){return frac(sin(dot(uv, float2(12.9898, 78.233))) * 43758.5453);}
 
     void vert (inout appdata_full v, out Input o) {       
-      UNITY_INITIALIZE_OUTPUT(Input,o);
-      o.uv = v.texcoord;
-      v.vertex += cnoise(v.vertex.xyz + _Time.yyy * _ShakeFreq) * _Shake * v.normal.xyzx;
-      v.vertex +=  (cnoise(v.vertex.xyz * _NoisePara03) - 0.5) * _RandomMult;
-      o.vertex = v.vertex;
+        UNITY_INITIALIZE_OUTPUT(Input,o);
+     
+        v.vertex += (cnoise(v.vertex.xyz + _Time.yyy * _ShakeFreq) - 0.5) * _Shake * v.normal.xyzx;
+        v.vertex +=  (cnoise(v.vertex.xyz * _NoisePara03) - 0.5) * _RandomMult;
+
+        o.localPos = v.vertex.xyz;
     }
 
    
     void mycolor (Input IN, SurfaceOutputStandard o, inout fixed4 color){
-        if(_NormalRainbow > 0) {
-            color = fixed4(IN.vertex.xyz+ fixed3(0.5,0.5,0.5),1);
+
+
+        if(_NormalRainbow > 0)
+        {     
+            color = tex2D (_2ndTex, IN.uv_2ndTex);
         }
+
         if(_RMStyle > 0) {
             float a = IN.uv_MainTex.x;
            // float b = step(a, 0.1);
@@ -81,11 +96,18 @@ Shader "Custom/CUCUMBER" {
                a = 0;
             }
 
-            if(cnoise(IN.vertex.xyz*_NoisePara02) > _NoisePara01){
+            if(cnoise(IN.worldPos.xyz*_NoisePara02) > _NoisePara01){
                 a = 0;
             }
 
-            color = fixed4(a,a,a,1);
+            float3 c = float3(a,a,a);
+            float mult = 0.3;
+            if(_UseAlbedo>0){
+               color = fixed4(c + color.rgb*mult - float3(0.1,0.1,0.1), 1);
+            }else{
+               color = fixed4(a,a,a,1);
+            }
+         
         }
     }
 
