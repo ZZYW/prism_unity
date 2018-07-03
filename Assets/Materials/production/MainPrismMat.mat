@@ -72,24 +72,26 @@ Material:
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _NoisePara01: 0
-    - _NoisePara02: 0.2
-    - _NoisePara03: 0.77
+    - _NoisePara01: 0.22
+    - _NoisePara02: 0.24
+    - _NoisePara03: 0
     - _NormalRainbow: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _RMStyle: 0
     - _Random: 0
-    - _RandomMult: 0.527
-    - _Shake: 0.5
-    - _ShakeFreq: 0.12
+    - _RandomMult: 0
+    - _Shake: 0
+    - _ShakeFreq: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _UseAlbedo: 0
+    - _UseBugFixValue: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FogColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}

@@ -140,6 +140,11 @@ public class MirrorManager : MonoBehaviour
         mirrorMat.shader = newShader;
     }
 
+    internal void UseBugFixValueInShader(bool ifUse)
+    {
+        mirrorMat.SetInt("_UseBugFixValue", ifUse ? 1 : 0);
+    }
+
 
     internal void KickOffBreaking()
     {

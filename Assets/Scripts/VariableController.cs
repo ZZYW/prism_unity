@@ -29,7 +29,7 @@ public class VariableController : MonoBehaviour
     [Range(0f, 1f)]
     public float noisePara01;
     [Range(0.1f, 5f)]
-    public float noiseScale;
+    public float noiseScale = 0.3f;
     [Range(0f, 20f)]
     public float randomNoiseScale;
 

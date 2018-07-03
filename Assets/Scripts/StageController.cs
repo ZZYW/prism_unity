@@ -44,6 +44,7 @@ public class StageController : MonoBehaviour
         ExitLACC();
         Color normalWorldColor = Color.white;
         Color bigPrismWorldColor = Color.black;
+        MirrorManager.instance.UseBugFixValueInShader(false);
 
         switch (targetStage)
         {
@@ -57,6 +58,7 @@ public class StageController : MonoBehaviour
                 MirrorManager.instance.SetMirrorSize(0.8f);
                 EnvController.instance.SetWorldColor(normalWorldColor);
                 camControl.SwitchMode(WanderCamera.MODE.NORMAL);
+                MirrorManager.instance.UseBugFixValueInShader(true);
                 break;
 
             //smaller mirror and wireframe
@@ -78,7 +80,7 @@ public class StageController : MonoBehaviour
             // mirror only but no self rotating
             case 2:
                 //mirror
-
+                MirrorManager.instance.UseBugFixValueInShader(true);
                 MirrorManager.mirrorContainer.gameObject.SetActive(true);
                 MirrorManager.instance.SetSelfRotate(false);
                 //wireframe cube
@@ -94,7 +96,6 @@ public class StageController : MonoBehaviour
 
             //just big prism
             case 3:
-
                 //mirror
                 MirrorManager.mirrorContainer.gameObject.SetActive(false);
                 //wireframe cube

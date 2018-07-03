@@ -169,9 +169,9 @@ Material:
     - _MapScale: 1
     - _Metallic: 0.07
     - _Mode: 0
-    - _NoisePara01: 0
-    - _NoisePara02: 0.2
-    - _NoisePara03: 0.77
+    - _NoisePara01: 0.22
+    - _NoisePara02: 0.24
+    - _NoisePara03: 0
     - _NormalIntensity: 1
     - _NormalRainbow: 0
     - _NormalScale: 1
@@ -182,11 +182,11 @@ Material:
     - _Power: 0
     - _RMStyle: 0
     - _Random: 0
-    - _RandomMult: 0.527
+    - _RandomMult: 0
     - _Rotation: 0
     - _Scale: 0
-    - _Shake: 0.5
-    - _ShakeFreq: 0.12
+    - _Shake: 0
+    - _ShakeFreq: 0
     - _Shininess: 0.078125
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -202,6 +202,7 @@ Material:
     - _StencilWriteMask: 255
     - _UVSec: 0
     - _UseAlbedo: 0
+    - _UseBugFixValue: 0
     - _UseUIAlphaClip: 0
     - _V_WIRE_DistanceFade: 0
     - _V_WIRE_DistanceFadeEnd: 10
@@ -252,6 +253,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0.38447738, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _FogColor: {r: 0, g: 0, b: 0, a: 1}
     - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
     - _ReflectColor: {r: 1, g: 1, b: 1, a: 0.5}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

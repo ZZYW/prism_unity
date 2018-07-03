@@ -7,7 +7,8 @@ Shader "Custom/CUCUMBER" {
  Properties {
      _Color ("Color", Color) = (1,1,1,1)
      _MainTex ("Albedo (RGB)", 2D) = "white" {}
-     _2ndTex("2nd Tex", 2D) = "white" {}
+     _FogColor("Fog Color", Color) = (0.0,0.0,0.0,1.0)
+//     _2ndTex("2nd Tex", 2D) = "white" {}
      _Glossiness ("Smoothness", Range(0,1)) = 0.5
      _Metallic ("Metallic", Range(0,1)) = 0.0
      _Shake("Shake", Range(0,50))=0.0
@@ -22,10 +23,12 @@ Shader "Custom/CUCUMBER" {
      _NoisePara01("Noise Para01", Range(0,1)) = 0.2
      _NoisePara02("Noise Para02", Range(0.1,5)) = 2
      _NoisePara03("Noise Para03", Range(0,20)) = 0
+     [Toggle]
+      _UseBugFixValue("Use Bug Fix Value for Rainbow Shader", Int)=0
  }
 
  SubShader {
-     Tags { "Queue" = "Transparent"   "RenderType"="Transparent" }
+     Tags { "Queue" = "Transparent"   "RenderType"="Opaque" }
      LOD 200
      
      CGPROGRAM
@@ -36,15 +39,15 @@ Shader "Custom/CUCUMBER" {
      #pragma target 3.0
 
      sampler2D _MainTex;
-     sampler2D _2ndTex;
+    // sampler2D _2ndTex;
 
     struct Input {
         float3 viewDir;
         float3 worldPos;
         float3 localPos;
         float2 uv_MainTex;
-        float2 uv_2ndTex;
         float4 screenPos;
+        half fog;
     };
 
      half _Glossiness;
@@ -59,7 +62,12 @@ Shader "Custom/CUCUMBER" {
       float _NoisePara02;
       float _NoisePara03;
       int _UseAlbedo;
+      int _UseBugFixValue;
+       fixed4 _FogColor;
 
+
+    uniform half4 unity_FogStart;
+    uniform half4 unity_FogEnd;
     
      UNITY_INSTANCING_BUFFER_START(Props)
      UNITY_INSTANCING_BUFFER_END(Props)
@@ -74,15 +82,28 @@ Shader "Custom/CUCUMBER" {
         v.vertex +=  (cnoise(v.vertex.xyz * _NoisePara03) - 0.5) * _RandomMult;
 
         o.localPos = v.vertex.xyz;
+
+
+        float pos = length(UnityObjectToViewPos(v.vertex).xyz);
+      float diff = unity_FogEnd.x - unity_FogStart.x;
+      float invDiff = 1.0f / diff;
+      o.fog = clamp ((unity_FogEnd.x - pos) * invDiff, 0.0, 1.0);
+
+
     }
 
    
     void mycolor (Input IN, SurfaceOutputStandard o, inout fixed4 color){
 
 
-        if(_NormalRainbow > 0)
-        {     
-            color = tex2D (_2ndTex, IN.uv_2ndTex);
+        float bugFixValue = 1;
+
+        if(_UseBugFixValue){
+            bugFixValue = 200;
+        }
+
+        if(_NormalRainbow > 0){     
+            color = fixed4((IN.localPos.xyz + 0.5)/bugFixValue,1);
         }
 
         if(_RMStyle > 0) {
@@ -105,8 +126,13 @@ Shader "Custom/CUCUMBER" {
             }else{
                color = fixed4(a,a,a,1);
             }
-         
+
+           UNITY_APPLY_FOG_COLOR(IN.fog, color, unity_FogColor);
+       
+
         }
+
+         
     }
 
      void surf (Input IN, inout SurfaceOutputStandard o) {
