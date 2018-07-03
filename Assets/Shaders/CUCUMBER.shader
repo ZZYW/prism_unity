@@ -22,8 +22,6 @@ Shader "Custom/CUCUMBER" {
      _NoisePara01("Noise Para01", Range(0,1)) = 0.2
      _NoisePara02("Noise Para02", Range(0.1,5)) = 2
      _NoisePara03("Noise Para03", Range(0,20)) = 0
-
-
  }
 
  SubShader {
@@ -102,7 +100,7 @@ Shader "Custom/CUCUMBER" {
 
             float3 c = float3(a,a,a);
             float mult = 0.3;
-            if(_UseAlbedo>0){
+            if(_UseAlbedo > 0){
                color = fixed4(c + color.rgb*mult - float3(0.1,0.1,0.1), 1);
             }else{
                color = fixed4(a,a,a,1);

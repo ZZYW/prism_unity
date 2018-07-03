@@ -72,17 +72,17 @@ Material:
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _NoisePara01: 0.209
-    - _NoisePara02: 2.4
-    - _NoisePara03: 10
+    - _NoisePara01: 0
+    - _NoisePara02: 0.2
+    - _NoisePara03: 0.77
     - _NormalRainbow: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RMStyle: 1
+    - _RMStyle: 0
     - _Random: 0
-    - _RandomMult: 0
-    - _Shake: 0
-    - _ShakeFreq: 0
+    - _RandomMult: 0.527
+    - _Shake: 0.5
+    - _ShakeFreq: 0.12
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1

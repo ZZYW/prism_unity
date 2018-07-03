@@ -1706,7 +1706,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8b731480060bf48a48040d90453a4e2b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2464,26 +2464,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83c8213e1db46468d92c862f68769bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useShaderIndex: 0
   mirrorMatShaders:
   - {fileID: 4800000, guid: 66e1aa94aef9142fab873810a9699ebc, type: 3}
   - {fileID: 4800000, guid: b965f82ca09623c41afded17f5d27c27, type: 3}
   wireMat: {fileID: 2100000, guid: 023e6dcf57d0b4b63aa20513aa160ef3, type: 2}
   mainPrismMat: {fileID: 2100000, guid: 1b4f178df738d4b968eced243fa2d807, type: 2}
-  wireSize: 0
+  planeMat: {fileID: 2100000, guid: 8b731480060bf48a48040d90453a4e2b, type: 2}
   mirrorMat: {fileID: 2100000, guid: 2652c98b7c43b4b82b1a6d7e471f547a, type: 2}
   vertexOffsetIntense: 0
   vertexOffsetFreq: 0
   vertexRandomMult: 0
-  mirrorColor: {r: 1, g: 1, b: 1, a: 0.9019608}
+  useRMStyle: 0
+  useRainbowStyle: 0
+  noisePara01: 0
+  noiseScale: 0
+  noisePara03: 0
+  UseAlbedoOnRM: 0
   lineJitter: 0
   verticalJump: 0
   horiShakel: 0
   colorDrift: 0
   digitalGlitchIntensity: 0
-  useRMStyle: 0
-  useRainbowStyle: 0
-  controlStage: 0
 --- !u!4 &1539232829
 Transform:
   m_ObjectHideFlags: 0
@@ -2976,6 +2977,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1795941790}
+  - component: {fileID: 1795941791}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -2998,6 +3000,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1795941791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1795941789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df7e58c67261d49a1a36aa128c357ece, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plane: {fileID: 1155379662}
 --- !u!1 &1848019208
 GameObject:
   m_ObjectHideFlags: 0

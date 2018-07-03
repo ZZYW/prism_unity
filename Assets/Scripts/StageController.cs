@@ -42,7 +42,8 @@ public class StageController : MonoBehaviour
     {
         //resets
         ExitLACC();
-
+        Color normalWorldColor = Color.white;
+        Color bigPrismWorldColor = Color.black;
 
         switch (targetStage)
         {
@@ -54,7 +55,7 @@ public class StageController : MonoBehaviour
                 MirrorManager.wireframeCubeContainer.gameObject.SetActive(false);
                 MainPrism.main.gameObject.SetActive(false);
                 MirrorManager.instance.SetMirrorSize(0.8f);
-
+                EnvController.instance.SetWorldColor(normalWorldColor);
                 camControl.SwitchMode(WanderCamera.MODE.NORMAL);
                 break;
 
@@ -69,7 +70,7 @@ public class StageController : MonoBehaviour
                 MainPrism.main.gameObject.SetActive(false);
 
                 MirrorManager.instance.SetMirrorSize(0.2f);
-
+                EnvController.instance.SetWorldColor(normalWorldColor);
                 camControl.SwitchMode(WanderCamera.MODE.NORMAL);
 
                 break;
@@ -87,7 +88,7 @@ public class StageController : MonoBehaviour
 
                 MirrorManager.instance.SetMirrorSize(0.6f);
                 camControl.SwitchMode(WanderCamera.MODE.NORMAL);
-
+                EnvController.instance.SetWorldColor(normalWorldColor);
                 camControl.GoForward(10);
                 break;
 
@@ -100,6 +101,7 @@ public class StageController : MonoBehaviour
                 MirrorManager.wireframeCubeContainer.gameObject.SetActive(false);
                 //big prism
                 MainPrism.main.gameObject.SetActive(true);
+                EnvController.instance.SetWorldColor(bigPrismWorldColor);
                 camControl.SwitchMode(WanderCamera.MODE.BIG_PRISM);
                 break;
 
@@ -113,7 +115,7 @@ public class StageController : MonoBehaviour
                 MainPrism.main.gameObject.SetActive(false);
                 camControl.SwitchMode(WanderCamera.MODE.LOOK_AT_CENTER_CUBE);
                 EnterLACC();
-
+                EnvController.instance.SetWorldColor(normalWorldColor);
                 MirrorManager.instance.SetMirrorSize(0.6f);
                 break;
         }

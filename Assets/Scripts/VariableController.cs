@@ -7,25 +7,36 @@ public class VariableController : MonoBehaviour
 
     public static VariableController instance;
 
-    public int useShaderIndex;
 
-    [Header("material and shader")]
+    [Header(">>>>> Link Mat Here")]
     public Shader[] mirrorMatShaders;
     public Material wireMat;
     public Material mainPrismMat;
-
-    [Range(0.1f, 1f)]
-    public float wireSize;
+    public Material planeMat;
     public Material mirrorMat;
+
+
+    [Header(">>>> Shader Variables")]
     [Range(0, 100)]
     public float vertexOffsetIntense;
-    [Range(0, 100)]
+    [Range(0, 3)]
     public float vertexOffsetFreq;
     [Range(0, 1)]
     public float vertexRandomMult;
-    public Color mirrorColor;
+    public bool useRMStyle;
+    public bool useRainbowStyle;
 
-    [Header("glitch")]
+    [Range(0f, 1f)]
+    public float noisePara01;
+    [Range(0.1f, 5f)]
+    public float noiseScale;
+    [Range(0f, 20f)]
+    public float randomNoiseScale;
+
+    public bool UseAlbedoOnRM;
+
+
+    [Header(">>>> Glitch")]
     [SerializeField, Range(0, 1)]
     public float lineJitter;
     [SerializeField, Range(0, 1)]
@@ -37,15 +48,13 @@ public class VariableController : MonoBehaviour
     [SerializeField, Range(0, 1)]
     public float digitalGlitchIntensity;
 
-    public bool useRMStyle;
-    public bool useRainbowStyle;
+
 
 
     Kino.AnalogGlitch analogGlitch;
     Kino.DigitalGlitch digitalGlitch;
 
 
-    public int controlStage = 0;
 
     //boolean 
 
@@ -66,23 +75,30 @@ public class VariableController : MonoBehaviour
     void Update()
     {
 
-        useShaderIndex = Mathf.Clamp(useShaderIndex, 0, mirrorMatShaders.Length - 1);
 
-        //mirrorMat.color = mirrorColor;
-        mirrorMat.SetFloat("_Shake", vertexOffsetIntense);
-        mirrorMat.SetFloat("_ShakeFreq", vertexOffsetFreq);
-        mirrorMat.SetFloat("_RandomMult", vertexRandomMult);
+        Material[] myMats = new Material[] { mirrorMat, mainPrismMat };
 
-
-        mainPrismMat.SetFloat("_Shake", vertexOffsetIntense);
-        mainPrismMat.SetFloat("_ShakeFreq", vertexOffsetFreq);
-        mainPrismMat.SetFloat("_RandomMult", vertexRandomMult);
 
         analogGlitch.scanLineJitter = lineJitter;
         analogGlitch.verticalJump = verticalJump;
         analogGlitch.colorDrift = colorDrift;
         analogGlitch.horizontalShake = horiShakel;
         digitalGlitch.intensity = digitalGlitchIntensity;
+
+
+        foreach (var s in myMats)
+        {
+            s.SetFloat("_Shake", vertexOffsetIntense);
+            s.SetFloat("_ShakeFreq", vertexOffsetFreq);
+            s.SetFloat("_RandomMult", vertexRandomMult);
+            s.SetFloat("_NoisePara01", noisePara01);
+            s.SetFloat("_NoisePara02", noiseScale);
+            s.SetFloat("_NoisePara03", randomNoiseScale);
+            s.SetInt("_RMStyle", useRMStyle ? 1 : 0);
+            s.SetInt("_NormalRainbow", useRainbowStyle ? 1 : 0);
+            s.SetInt("_UseAlbedo", UseAlbedoOnRM ? 1 : 0);
+        }
+
 
 
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.R))
@@ -128,21 +144,21 @@ public class VariableController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G))
         {
             useRMStyle = !useRMStyle;
-            useRainbowStyle = !useRMStyle;
             print("rosa style: " + useRMStyle);
-            mainPrismMat.SetInt("_RMStyle", useRMStyle ? 1 : 0);
-            mirrorMat.SetInt("_RMStyle", useRMStyle ? 1 : 0);
+
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
             useRainbowStyle = !useRainbowStyle;
-            useRMStyle = !useRainbowStyle;
             print("rainbow shader: " + useRainbowStyle);
-            mainPrismMat.SetInt("_NormalRainbow", useRainbowStyle ? 1 : 0);
-            mirrorMat.SetInt("_NormalRainbow", useRainbowStyle ? 1 : 0);
         }
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            UseAlbedoOnRM = !UseAlbedoOnRM;
+            print("use albedo on rm style: " + UseAlbedoOnRM);
+        }
 
         if (Input.GetKeyDown(KeyCode.N))
         {
