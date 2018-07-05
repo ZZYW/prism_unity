@@ -8,7 +8,10 @@ public class MeshDeformer : MonoBehaviour
     Vector3[] vertices;
     Vector3[] normals;
 
-    float speed = 0.001f;
+    [Range(0.0001f, 0.009f)]
+    public float speed = 0.001f;
+
+    //public float speed
 
     float a = 0;
     float b = 0;
@@ -29,7 +32,6 @@ public class MeshDeformer : MonoBehaviour
         //mesh.uv = newUV;
         //mesh.triangles = newTriangles;
         b += Mathf.PerlinNoise(Time.time * speed, 0) * 2 - 2.5f;
-
     }
 
     // Update is called once per frame
@@ -41,12 +43,6 @@ public class MeshDeformer : MonoBehaviour
         e = -b;
         f = -c;
 
-        //a = Random.Range(-5, 5);
-        //b = Random.Range(-1, 1);
-        //c = Random.Range(-5, 5);
-        //d = Random.Range(-1, 1);
-        //e = Random.Range(-5, 5);
-        //f = Random.Range(-1, 1);
 
         int i = 0;
         while (i < vertices.Length)

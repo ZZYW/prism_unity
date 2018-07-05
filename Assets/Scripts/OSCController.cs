@@ -94,22 +94,22 @@ public class OSCController : MonoBehaviour
     void ProcessMessage(OscMessage msg)
     {
 
-        Debug.Log(msg);
+        //Debug.Log(msg);
 
-        switch (msg.address)
-        {
-            case Paths.shakefreq:
-                VariableController.instance.vertexOffsetFreq = msg.GetFloat(0);
-                break;
-            case Paths.shakeintense:
-                VariableController.instance.vertexOffsetIntense = msg.GetFloat(0);
-                break;
-            case Paths.stage:
-                StageController.instance.SwtichStage((int)msg.GetFloat(0));
-                break;
-            default:
-                Debug.LogWarning("Incoming message has no matched handler");
-                break;
-        }
+        //switch (msg.address)
+        //{
+        //    case Paths.shakefreq:
+        //        VariableController.instance.vertexOffsetFreq = msg.GetFloat(0);
+        //        break;
+        //    case Paths.shakeintense:
+        //        VariableController.instance.vertexOffsetIntense = msg.GetFloat(0);
+        //        break;
+        //    case Paths.stage:
+        //        StageController.instance.SwtichStage((int)msg.GetFloat(0));
+        //        break;
+        //    default:
+        //        Debug.LogWarning("Incoming message has no matched handler");
+        //        break;
+        //}
     }
 }

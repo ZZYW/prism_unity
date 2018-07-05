@@ -8,7 +8,6 @@ Shader "Custom/CUCUMBER" {
      _Color ("Color", Color) = (1,1,1,1)
      _MainTex ("Albedo (RGB)", 2D) = "white" {}
      _FogColor("Fog Color", Color) = (0.0,0.0,0.0,1.0)
-//     _2ndTex("2nd Tex", 2D) = "white" {}
      _Glossiness ("Smoothness", Range(0,1)) = 0.5
      _Metallic ("Metallic", Range(0,1)) = 0.0
      _Shake("Shake", Range(0,50))=0.0
@@ -39,7 +38,7 @@ Shader "Custom/CUCUMBER" {
      #pragma target 3.0
 
      sampler2D _MainTex;
-    // sampler2D _2ndTex;
+
 
     struct Input {
         float3 viewDir;
