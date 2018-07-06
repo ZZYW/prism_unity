@@ -318,6 +318,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 1545180869778118, guid: 5b33807265e344ef6b5a7960a018cf38, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1393223579286062, guid: 5b33807265e344ef6b5a7960a018cf38, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5b33807265e344ef6b5a7960a018cf38, type: 2}
   m_IsPrefabParent: 0
@@ -2390,7 +2398,6 @@ MonoBehaviour:
   mainPrismMat: {fileID: 2100000, guid: 1b4f178df738d4b968eced243fa2d807, type: 2}
   planeMat: {fileID: 2100000, guid: 8b731480060bf48a48040d90453a4e2b, type: 2}
   mirrorMat: {fileID: 2100000, guid: 2652c98b7c43b4b82b1a6d7e471f547a, type: 2}
-  jitterGlitch: {fileID: 0}
   bigPrismMat:
     vertexOffsetIntense: 0
     vertexOffsetFreq: 0
