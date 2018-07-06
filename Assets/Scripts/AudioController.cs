@@ -8,29 +8,40 @@ public class AudioController : MonoBehaviour
 
     public static AudioController instance;
 
-    //public audio
-    public AudioMixer mainMixer;
+    [SerializeField]
+    private AudioMixer mainMixer;
+    [SerializeField]
+    private AudioSource ambient01;
+    [SerializeField]
+    private AudioSource ambient02;
+    [SerializeField]
+    private AudioSource ambient03;
+    [SerializeField]
+    private AudioSource intro;
+    [SerializeField]
+    private AudioSource susbell;
+    [SerializeField]
+    private AudioSource bellscu;
+    [SerializeField]
+    private AudioSource scifiCommunication;
+    [SerializeField]
+    private AudioSource colorAmbient;
+    [SerializeField]
+    private AudioSource glitch;
+
+    public float ambient01DB { get; private set; }
+    public float ambient02DB { get; private set; }
+    public float ambient03DB { get; private set; }
+    public float scifiCommunicationDB { get; private set; }
+    public float colorAmbientDB { get; private set; }
+    public float glitchDB { get; private set; }
+    public float susbellDB { get; private set; }
+    public float introDB { get; private set; }
+    public float bellscuDB { get; private set; }
 
 
-    public AudioSource ambient01;
-    public AudioSource ambient02;
-    public AudioSource ambient03;
-    public AudioSource scifiCommunication;
-    public AudioSource colorAmbient;
-    public AudioSource glitch;
-
-    public float ambient01DB;
-    public float ambient02DB;
-    public float ambient03DB;
-    public float scifiCommunicationDB;
-    public float colorAmbientDB;
-    public float glitchDB;
-
-
-
-
-    bool inColorMode;
-    bool playGlitch;
+    //bool inColorMode;
+    //bool playGlitch;
 
 
     void Awake()
@@ -53,7 +64,9 @@ public class AudioController : MonoBehaviour
         scifiCommunicationDB = GetDB(scifiCommunication);
         glitchDB = GetDB(glitch);
         colorAmbientDB = GetDB(colorAmbient);
-
+        bellscuDB = GetDB(bellscu);
+        introDB = GetDB(intro);
+        susbellDB = GetDB(susbell);
 
         //sum /= spectrum.Length;
         //float avg = for(int )
