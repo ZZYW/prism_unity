@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class MirrorManager : MonoBehaviour
 {
-    public static MirrorManager main;
+    public static MirrorManager instance;
 
-    public Dimensional Dimension { get; private set; }
-    public struct Dimensional
-    {
-        public int n { get { return 12; } }
-        public float diameter { get { return grid * n; } }
-        public float grid { get { return 50; } }
-        public float size { get { return 0.8f * grid; } }
-    }
+    public Material trailMat;
+
+
 
     //controls
     public bool CubeSelfRotate;
@@ -27,15 +22,21 @@ public class MirrorManager : MonoBehaviour
     public static GameObject wireframeCubeContainer;
     public static GameObject mirrorContainer;
 
+    public GameObject centerCube;
+
     //vars
     GameObject[] mirrors;
     float rotateAngle = 1f;
 
+    public bool matrixRotate = true;
+
 
     private void Awake()
     {
-        main = this;
-        mirrors = new GameObject[(int)Mathf.Pow(Dimension.n, 3)];
+
+        instance = this;
+
+        mirrors = new GameObject[(int)Mathf.Pow(DATA.DimensionData.npr, 3)];
 
 
         if (wireframeCubeContainer == null)
@@ -59,27 +60,34 @@ public class MirrorManager : MonoBehaviour
 
         int i = 0;
 
-        float scale = Dimension.grid;
-        float diameter = Dimension.diameter;
-        float size = Dimension.size;
+        float scale = DATA.DimensionData.gridSize;
+        float diameter = DATA.DimensionData.matrixDiameter;
+        float size = DATA.DimensionData.cubeDia;
 
-        for (int x = 0; x < Dimension.n; x++)
+        for (int x = 0; x < DATA.DimensionData.npr; x++)
         {
-            for (int y = 0; y < Dimension.n; y++)
+            for (int y = 0; y < DATA.DimensionData.npr; y++)
             {
-                for (int z = 0; z < Dimension.n; z++)
+                for (int z = 0; z < DATA.DimensionData.npr; z++)
                 {
                     mirrors[i] = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     mirrors[i].transform.parent = mirrorContainer.transform;
                     mirrors[i].transform.localScale = new Vector3(size, size, size);
                     mirrors[i].GetComponent<Collider>().enabled = false;
-                    mirrors[i].transform.position = new Vector3(x * scale - Dimension.diameter / 2 + transform.position.x,
+                    mirrors[i].transform.position = new Vector3(x * scale - DATA.DimensionData.matrixDiameter / 2 + transform.position.x,
                                                                 y * scale - diameter / 2 + transform.position.y,
                                                                 z * scale - diameter / 2 + transform.position.z);
                     mirrors[i].GetComponent<Renderer>().material = mirrorMat;
                     Mirror code = mirrors[i].AddComponent<Mirror>();
                     code.SelfRotate = CubeSelfRotate;
                     code.SpaceID = new Vector3(x, y, z);
+
+                    int n = DATA.DimensionData.npr;
+                    if (x == n / 2 && y == n / 2 && z == n / 2)
+                    {
+                        centerCube = mirrors[i];
+                    }
+
                     i++;
 
 
@@ -88,7 +96,7 @@ public class MirrorManager : MonoBehaviour
                     Destroy(wireframeCube.GetComponent<Collider>());
                     wireframeCube.name = "wireframe Cube";
                     wireframeCube.transform.parent = transform;
-                    wireframeCube.transform.position = new Vector3(x * scale - Dimension.diameter / 2 + transform.position.x,
+                    wireframeCube.transform.position = new Vector3(x * scale - DATA.DimensionData.matrixDiameter / 2 + transform.position.x,
                                                                 y * scale - diameter / 2 + transform.position.y,
                                                                 z * scale - diameter / 2 + transform.position.z);
                     wireframeCube.transform.localScale = new Vector3(scale, scale, scale);
@@ -114,19 +122,44 @@ public class MirrorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mirrorMat.mainTexture = WebStream.main.GetLatestFrame();
+        if (matrixRotate)
+        {
+            transform.Rotate(Vector3.up + Vector3.forward / 2, rotateAngle * Time.deltaTime);
 
-        transform.Rotate(Vector3.up + Vector3.forward / 2, rotateAngle * Time.deltaTime);
+        }
 
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            KickOffBreaking();
+            Debug.Log("breaking out started");
+        }
+    }
+
+    internal void ChangeMirrorsShader(Shader newShader)
+    {
+        mirrorMat.shader = newShader;
+    }
+
+    internal void UseBugFixValueInShader(bool ifUse)
+    {
+        mirrorMat.SetInt("_UseBugFixValue", ifUse ? 1 : 0);
     }
 
 
-    internal void SetMirrorSize(float size)
+    internal void KickOffBreaking()
+    {
+        foreach (var mirror in mirrors)
+        {
+            mirror.GetComponent<Mirror>().StartBreak();
+        }
+    }
+
+    internal void SetMirrorSize(float newSize)
     {
         foreach (GameObject mirror in mirrors)
         {
-            float s = size * Dimension.grid;
-            if (mirror != null) mirror.transform.localScale = new Vector3(s, s, s);
+            DATA.DimensionData.resetSize(newSize);
+            if (mirror != null) mirror.transform.localScale = new Vector3(DATA.DimensionData.cubeDia, DATA.DimensionData.cubeDia, DATA.DimensionData.cubeDia);
         }
     }
 
