@@ -132,12 +132,6 @@ public class MirrorManager : MonoBehaviour
             transform.Rotate(Vector3.up + Vector3.forward / 2, rotateAngle * Time.deltaTime);
 
         }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            KickOffBreaking();
-            Debug.Log("breaking out started");
-        }
     }
 
     internal void ChangeMirrorsShader(Shader newShader)

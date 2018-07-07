@@ -964,6 +964,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragbleProgressBar: {fileID: 184715404}
   nondragbleProgressBar: {fileID: 753175725}
+  timeline: {fileID: 0}
 --- !u!1 &669167931
 GameObject:
   m_ObjectHideFlags: 0
@@ -1285,6 +1286,8 @@ GameObject:
   m_Component:
   - component: {fileID: 788545352}
   - component: {fileID: 788545351}
+  - component: {fileID: 788545353}
+  - component: {fileID: 788545354}
   m_Layer: 0
   m_Name: Main Timeline
   m_TagString: Untagged
@@ -1342,8 +1345,10 @@ PlayableDirector:
     value: {fileID: 630496598}
   - key: {fileID: 114922418260278906, guid: 057d403550ca9486e9f5e547d40cbda3, type: 2}
     value: {fileID: 1537345731}
-  - key: {fileID: 114623453743802820, guid: 057d403550ca9486e9f5e547d40cbda3, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 1539232827}
+  - key: {fileID: 114389555977098420, guid: 057d403550ca9486e9f5e547d40cbda3, type: 2}
+    value: {fileID: 788545350}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &788545352
@@ -1359,6 +1364,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &788545353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 788545350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c8213e1db46468d92c862f68769bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlVariablesByCode: 1
+  mirrorMatShaders:
+  - {fileID: 4800000, guid: 66e1aa94aef9142fab873810a9699ebc, type: 3}
+  - {fileID: 4800000, guid: b965f82ca09623c41afded17f5d27c27, type: 3}
+  wireMat: {fileID: 2100000, guid: 023e6dcf57d0b4b63aa20513aa160ef3, type: 2}
+  mainPrismMat: {fileID: 2100000, guid: 1b4f178df738d4b968eced243fa2d807, type: 2}
+  planeMat: {fileID: 2100000, guid: 8b731480060bf48a48040d90453a4e2b, type: 2}
+  mirrorMat: {fileID: 2100000, guid: 2652c98b7c43b4b82b1a6d7e471f547a, type: 2}
+  lineJitter: 0
+  verticalJump: 0
+  horiShakel: 0
+  colorDrift: 0
+  digitalGlitchIntensity: 0
+  enterColorMode: 0
+  breaking: 0
+--- !u!95 &788545354
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 788545350}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &807681559
 GameObject:
   m_ObjectHideFlags: 0
@@ -3058,14 +3107,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1539232829}
   - component: {fileID: 1539232828}
-  - component: {fileID: 1539232830}
   m_Layer: 0
   m_Name: '------CONTROLLER'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1539232828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3085,33 +3133,13 @@ MonoBehaviour:
   mainPrismMat: {fileID: 2100000, guid: 1b4f178df738d4b968eced243fa2d807, type: 2}
   planeMat: {fileID: 2100000, guid: 8b731480060bf48a48040d90453a4e2b, type: 2}
   mirrorMat: {fileID: 2100000, guid: 2652c98b7c43b4b82b1a6d7e471f547a, type: 2}
-  bigPrismMatSettings:
-    vertexOffsetIntense: 0
-    vertexOffsetFreq: 0
-    vertexRandomMult: 0
-    useRMStyle: 0
-    useRainbowStyle: 0
-    noisePara01: 0
-    noiseScale: 0.3
-    randomNoiseScale: 0
-    UseAlbedoOnRM: 0
-  mirrorMatSettings:
-    vertexOffsetIntense: 0.69
-    vertexOffsetFreq: 1.13
-    vertexRandomMult: 0
-    useRMStyle: 0
-    useRainbowStyle: 1
-    noisePara01: 0
-    noiseScale: 0.3
-    randomNoiseScale: 0
-    UseAlbedoOnRM: 0
   lineJitter: 0
   verticalJump: 0
   horiShakel: 0
   colorDrift: 0
   digitalGlitchIntensity: 0
   enterColorMode: 0
-  broken: 0
+  breaking: 0
 --- !u!4 &1539232829
 Transform:
   m_ObjectHideFlags: 0
@@ -3125,24 +3153,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1539232830
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1539232827}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1559715416
 GameObject:
   m_ObjectHideFlags: 0

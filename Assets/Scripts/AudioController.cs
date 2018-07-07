@@ -104,7 +104,8 @@ public class AudioController : MonoBehaviour
         return ambient01.time / LENGTH;
     }
 
-    public void muteNonColorTracks(){
+    public void muteNonColorTracks()
+    {
         intro.mute = true;
         ambient01.mute = true;
         ambient02.mute = true;

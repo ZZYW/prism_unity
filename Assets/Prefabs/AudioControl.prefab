@@ -797,7 +797,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 243147841909769842, guid: 9482753966b6a4a1fb67d6192cf37d55,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 8f72c2b34aca44cf8a2fd3a6f45a993e, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1178,7 +1178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96b36406d96a94f6fa7ba49e8ceb4e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMixer: {fileID: 24100000, guid: 9482753966b6a4a1fb67d6192cf37d55, type: 2}
+  timeline: {fileID: 0}
+  trackAmbient01: {fileID: 0}
   ambient01: {fileID: 82547617004037664}
   ambient02: {fileID: 82944652017048588}
   ambient03: {fileID: 82340691746944872}

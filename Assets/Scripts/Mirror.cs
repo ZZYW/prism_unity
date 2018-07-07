@@ -39,7 +39,7 @@ public class Mirror : MonoBehaviour
     bool shaking;
     [SerializeField]
     float breakingOutProgress;
-    float breakingOutSpeed;
+    //float breakingOutSpeed;
 
 
     Quaternion localRotation;
@@ -53,7 +53,7 @@ public class Mirror : MonoBehaviour
         shaking = false;
         brokeOut = false;
         breakingOutProgress = 0;
-        breakingOutSpeed = 1.5f;
+        //breakingOutSpeed = 1f;
 
         rotateAxis = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
         rotateSpeed = Random.Range(1f, 10f);
@@ -72,10 +72,10 @@ public class Mirror : MonoBehaviour
 
         if (shaking && !brokeOut)
         {
-            breakingOutProgress += breakingOutSpeed * Time.deltaTime;
+            breakingOutProgress += 1f * Time.deltaTime;
             float randomRage = 10f * (breakingOutProgress / 100);
             transform.position += new Vector3(Random.Range(-randomRage, randomRage), Random.Range(-randomRage, randomRage), Random.Range(-randomRage, randomRage));
-            if (breakingOutProgress > 100)
+            if (breakingOutProgress > DATA.BREAKING_OUT_TIME_TAKEN)
             {
                 float force = 10000;
                 Rigidbody rb = gameObject.AddComponent<Rigidbody>();

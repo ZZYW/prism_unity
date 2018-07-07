@@ -70,7 +70,9 @@ public class VariableController : MonoBehaviour
 
 
     //stage control
-    public bool broken;
+    //HACK
+    public bool breaking = false;
+    private bool breakingKickedOff = false;
 
 
     //boolean 
@@ -96,7 +98,7 @@ public class VariableController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         if (controlVariablesByCode)
         {
             lineJitter = Map(audioController.glitchDB, 0f, 0.2f, 0f, 1f);
@@ -110,7 +112,7 @@ public class VariableController : MonoBehaviour
             }
 
             if (audioController.colorAmbientDB > 0.005f)
-            {   
+            {
                 //TODO: toggle off other tracks
                 foreach (var s in matVariables)
                 {
@@ -129,6 +131,12 @@ public class VariableController : MonoBehaviour
                     s.useRainbowStyle = false;
                     audioController.unmuteNonColorTracks();
                 }
+            }
+
+            if (breaking && !breakingKickedOff)
+            {
+                MirrorManager.instance.KickOffBreaking();
+                breakingKickedOff = true;
             }
 
 
