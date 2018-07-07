@@ -111,6 +111,8 @@ public class VariableController : MonoBehaviour
                 s.vertexOffsetIntense = Map(audioController.ambient01DB, 0, 10, 0, 3);
             }
 
+
+            //color effect controlled by colorshader track
             if (audioController.colorAmbientDB > 0.005f)
             {
                 //TODO: toggle off other tracks
@@ -137,6 +139,27 @@ public class VariableController : MonoBehaviour
             {
                 MirrorManager.instance.KickOffBreaking();
                 breakingKickedOff = true;
+            }
+
+
+            //RM style controlled by bell structure track
+            if (audioController.bellscuDB > 0.5f)
+            {
+                //TODO: toggle off other tracks
+                foreach (var s in matVariables)
+                {
+                    s.useRMStyle = true; 
+                    //print("audioController.colorAmbientDB " + audioController.colorAmbientDB);
+                    //print("s.useRainbowStyle " + s.useRainbowStyle);
+                    //print("s.useRMStyle " + s.useRMStyle);
+                }
+            }
+            else
+            {
+                foreach (var s in matVariables)
+                {
+                    s.useRMStyle = false;
+                }
             }
 
 
