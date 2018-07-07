@@ -16,6 +16,9 @@ public class SceneController : MonoBehaviour
     //For showing stage info on inspector
     public string currentStage;
 
+
+    public STAGE p_stage;
+
     STAGE stage;
     public STAGE Stage
     {
@@ -48,6 +51,9 @@ public class SceneController : MonoBehaviour
     private void Update()
     {
         currentStage = stage.ToString();
+        if(p_stage!=Stage){
+            Stage = p_stage;
+        }
     }
 
     private void SwtichStage(int targetStage)
