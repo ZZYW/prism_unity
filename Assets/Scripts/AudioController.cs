@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Timeline;
+using UnityEngine.Playables;
 
 public class AudioController : MonoBehaviour
 {
 
     public static AudioController instance;
+
+
+    public TimelineAsset timeline;
+    public TrackAsset trackAmbient01;
 
     //[SerializeField]
     //private AudioMixer mainMixer;
@@ -57,6 +63,9 @@ public class AudioController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //timeline.
+
         ambient01DB = GetDB(ambient01);
         ambient02DB = GetDB(ambient02);
         ambient03DB = GetDB(ambient03);
@@ -79,6 +88,8 @@ public class AudioController : MonoBehaviour
 
     private float GetDB(AudioSource source)
     {
+        //timeline.
+
         float[] spectrum = new float[64];
         source.GetSpectrumData(spectrum, 0, FFTWindow.Rectangular);
         float sum = 0;

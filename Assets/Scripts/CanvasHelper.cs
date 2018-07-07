@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Timeline;
+using UnityEngine.Playables;
 
 public class CanvasHelper : MonoBehaviour
 {
@@ -10,7 +12,8 @@ public class CanvasHelper : MonoBehaviour
     Slider dragbleProgressBar;
     [SerializeField]
     Slider nondragbleProgressBar;
-
+    [SerializeField]
+    TimelineAsset timeline;
 
     // Use this for initialization
     void Start()
