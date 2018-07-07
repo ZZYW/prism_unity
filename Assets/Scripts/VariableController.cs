@@ -18,7 +18,6 @@ public class VariableController : MonoBehaviour
     public Material mirrorMat;
 
 
-    [System.Serializable]
     public class MatVariables
     {
         [Range(0, 3)]
@@ -38,6 +37,8 @@ public class VariableController : MonoBehaviour
         public float randomNoiseScale;
 
         public bool UseAlbedoOnRM;
+
+
     }
 
 
@@ -95,7 +96,7 @@ public class VariableController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         if (controlVariablesByCode)
         {
             lineJitter = Map(audioController.glitchDB, 0f, 0.2f, 0f, 1f);
@@ -108,12 +109,17 @@ public class VariableController : MonoBehaviour
                 s.vertexOffsetIntense = Map(audioController.ambient01DB, 0, 10, 0, 3);
             }
 
-            if (audioController.colorAmbientDB > 0.1f)
-            {
+            if (audioController.colorAmbientDB > 0.005f)
+            {   
                 //TODO: toggle off other tracks
                 foreach (var s in matVariables)
                 {
                     s.useRainbowStyle = true;
+                    s.useRMStyle = false;
+                    audioController.muteNonColorTracks();
+                    //print("audioController.colorAmbientDB " + audioController.colorAmbientDB);
+                    //print("s.useRainbowStyle " + s.useRainbowStyle);
+                    //print("s.useRMStyle " + s.useRMStyle);
                 }
             }
             else
@@ -121,6 +127,7 @@ public class VariableController : MonoBehaviour
                 foreach (var s in matVariables)
                 {
                     s.useRainbowStyle = false;
+                    audioController.unmuteNonColorTracks();
                 }
             }
 
