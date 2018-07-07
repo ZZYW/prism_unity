@@ -95,7 +95,7 @@ Shader "Custom/CUCUMBER" {
     void mycolor (Input IN, SurfaceOutputStandard o, inout fixed4 color){
 
 
-        float bugFixValue = 1;
+        float bugFixValue = 0.8;
 
         if(_UseBugFixValue){
             bugFixValue = 200;
