@@ -162,7 +162,7 @@ Material:
     - _V_WIRE_RenderingOptions_ODLEnumID: 0
     - _V_WIRE_RenderingOptions_PBREnumID: 0
     - _V_WIRE_RenderingOptions_UnlitEnumID: 0
-    - _V_WIRE_Size: 0.739
+    - _V_WIRE_Size: 1
     - _V_WIRE_Source_Options: 0
     - _V_WIRE_SpecularEnumID: 0
     - _V_WIRE_Tag: 0
@@ -196,7 +196,7 @@ Material:
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _TintColor: {r: 0, g: 0, b: 0, a: 0.353}
-    - _V_WIRE_Color: {r: 0, g: 0, b: 0, a: 0.3254902}
+    - _V_WIRE_Color: {r: 0, g: 0, b: 0, a: 0.40392157}
     - _V_WIRE_MainTex_Scroll: {r: 0, g: 0, b: 0, a: 0}
     - _V_WIRE_ObjectWorldPos: {r: 0, g: 0, b: 0, a: 0}
     - _V_WIRE_SourceTex_Scroll: {r: 0, g: 0, b: 0, a: 0}

@@ -18,14 +18,22 @@ public class VariableController : MonoBehaviour
     public Material mirrorMat;
 
 
-    [Header(">>>>> For timeline animating")]
-    //for timeline mapping
-    [Range(0, 3)]
-    public float matsIntense;
+    //[Header(">>>>> For timeline control")]
+    ////for timeline mapping
+    //[Range(0, 3)]
+    //public float matsIntense;
+    //[Range(0.2f, 3)]
+    //public float matsFreq;
+    //[Range(0, 1)]
+    //public float randomMult;
+    //[Range(0f, 1f)]
+    //public float noisePara01;
+    //[Range(0.1f, 5f)]
+    //public float noiseScale;
+    //[Range(0f, 20f)]
+    //public float randomNoiseScale;
 
-    //public float matsRa
-
-
+    [System.Serializable]
     public class MatVariables
     {
         [Range(0, 3)]
@@ -45,8 +53,6 @@ public class VariableController : MonoBehaviour
         public float randomNoiseScale;
 
         public bool UseAlbedoOnRM;
-
-
     }
 
 
@@ -110,16 +116,16 @@ public class VariableController : MonoBehaviour
         if (controlVariablesByCode)
         {
             lineJitter = Map(audioController.glitchDB, 0f, 0.2f, 0f, 1f);
-
             horiShakel = Map(audioController.introDB, 0f, 1f, 0f, 0.4f);
+
             colorDrift = Map(audioController.susbellDB, 0, 1f, 0, 1f);
+
+
             foreach (var s in matVariables)
             {
                 s.vertexOffsetFreq = Map(audioController.bellscuDB, 0, 1, 0, 3);
-                //s.vertexOffsetIntense = Map(audioController.ambient01DB, 0, 10, 0, 3);
-                s.vertexOffsetIntense = matsIntense;
+                //s.vertexOffsetIntense = matsIntense;
             }
-
 
 
             //color effect controlled by colorshader track
@@ -291,6 +297,7 @@ public class VariableController : MonoBehaviour
         analogGlitch.colorDrift = colorDrift;
         analogGlitch.horizontalShake = horiShakel;
         digitalGlitch.intensity = digitalGlitchIntensity;
+
         for (int i = 0; i < myMats.Length; i++)
         {
             myMats[i].SetFloat("_Shake", matVariables[i].vertexOffsetIntense);
@@ -303,6 +310,8 @@ public class VariableController : MonoBehaviour
             myMats[i].SetInt("_NormalRainbow", matVariables[i].useRainbowStyle ? 1 : 0);
             myMats[i].SetInt("_UseAlbedo", matVariables[i].UseAlbedoOnRM ? 1 : 0);
         }
+
+
     }
 
 

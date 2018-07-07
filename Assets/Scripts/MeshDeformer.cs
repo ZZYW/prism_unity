@@ -20,6 +20,7 @@ public class MeshDeformer : MonoBehaviour
     float e = 0;
     float f = 0;
 
+
     //public Vector2[] newUV;
     //public int[] newTriangles;
 
@@ -47,7 +48,6 @@ public class MeshDeformer : MonoBehaviour
         int i = 0;
         while (i < vertices.Length)
         {
-
             var vertex = normals[i];
             //vertices[i] = normals[i] * Mathf.Sin(Mathf.PerlinNoise(Time.time, 0.0f));
 
@@ -55,15 +55,21 @@ public class MeshDeformer : MonoBehaviour
             float y = normals[i].y + Mathf.PerlinNoise(Time.time * speed, 0) * 5f - 2.5f;
             float z = normals[i].z + Mathf.PerlinNoise(Time.time * speed, 0) * 5f - 2.5f;
 
-             
             //print((z * Mathf.Sin(a * x) - Mathf.Cos(b * y)));
-            vertex.x += (z * Mathf.Sin(a * x) - Mathf.Cos(b * y)) - 1f;
-            vertex.y += (x * Mathf.Sin(c * y) - Mathf.Cos(d * z)) - 1f;
-            vertex.z += (y * Mathf.Sin(e * z) - Mathf.Cos(f * x)) - 1f;
+            float xoffset = (z * Mathf.Sin(a * x) - Mathf.Cos(b * y)) + 0.5f;
+            float yoffset = (x * Mathf.Sin(c * y) - Mathf.Cos(d * z)) + 0.5f;
+            float zoffset = (y * Mathf.Sin(e * z) - Mathf.Cos(f * x)) + 0.5f;
+
+         //   Debug.Log(xoffset + "," + yoffset + "," + zoffset);
+
+            vertex.x += xoffset;
+            vertex.y += yoffset;
+            vertex.z += zoffset;
             vertices[i] = vertex;
 
             i++;
         }
+
         mesh.vertices = vertices;
     }
 } 

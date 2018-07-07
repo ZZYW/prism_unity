@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: MainPrismMat
   m_Shader: {fileID: 4800000, guid: 66e1aa94aef9142fab873810a9699ebc, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: FILL_WITH_RED _RMSTYLE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -87,7 +87,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
-    - _Metallic: 1
+    - _Metallic: 0
     - _Mode: 0
     - _NoisePara01: 0
     - _NoisePara02: 0.3
@@ -99,7 +99,7 @@ Material:
     - _Random: 0
     - _RandomMult: 0
     - _Shake: 0
-    - _ShakeFreq: 0.0000096069125
+    - _ShakeFreq: 0.09892841
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1

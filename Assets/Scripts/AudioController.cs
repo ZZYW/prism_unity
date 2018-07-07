@@ -11,11 +11,7 @@ public class AudioController : MonoBehaviour
     public static AudioController instance;
 
 
-    public TimelineAsset timeline;
-    public TrackAsset trackAmbient01;
 
-    //[SerializeField]
-    //private AudioMixer mainMixer;
     [SerializeField]
     private AudioSource ambient01;
     [SerializeField]
@@ -54,31 +50,13 @@ public class AudioController : MonoBehaviour
         LENGTH = ambient01.clip.length;
     }
 
-    // Use this for initialization
     void Start()
     {
         allSources = new[] { ambient01, ambient02, ambient03, intro, susbell, bellscu, scifiCommunication, colorAmbient, glitch };
     }
 
-    // Update is called once per frame
     void Update()
     {
-
-        //TrackAsset root = timeline.GetRootTrack(3);
-        ////root.timelineAsset
-
-        //var tracks = timeline.GetOutputTracks();
-        //foreach(var track in tracks)
-        //{
-        //     var clips = track.GetClips();
-        //    foreach(var clip in clips)
-        //    {
-        //        AudioPlayableAsset audio =  (AudioPlayableAsset)clip.asset;
-        //        audio.
-
-        //    }
-        //}
-
         ambient01DB = GetDB(ambient01);
         ambient02DB = GetDB(ambient02);
         ambient03DB = GetDB(ambient03);
@@ -88,21 +66,21 @@ public class AudioController : MonoBehaviour
         bellscuDB = GetDB(bellscu);
         introDB = GetDB(intro);
         susbellDB = GetDB(susbell);
+
+       // playableDirector.timeUpdateMode = DirectorUpdateMode.GameTime;
+      
     }
 
-
-    public void SetProgress(float p)
+    public void SetProgress(float time)
     {
         foreach (AudioSource source in allSources)
         {
-            source.time = p * LENGTH;
+            source.time = time;
         }
     }
 
     private float GetDB(AudioSource source)
     {
-        //timeline.
-
         float[] spectrum = new float[64];
         source.GetSpectrumData(spectrum, 0, FFTWindow.Rectangular);
         float sum = 0;
@@ -112,6 +90,7 @@ public class AudioController : MonoBehaviour
         }
         return sum;
     }
+
     public float GetProgress()
     {
         return ambient01.time / LENGTH;
@@ -119,25 +98,25 @@ public class AudioController : MonoBehaviour
 
     public void muteNonColorTracks()
     {
-        intro.mute = true;
-        ambient01.mute = true;
-        ambient02.mute = true;
-        ambient03.mute = true;
-        susbell.mute = true;
-        bellscu.mute = true;
-        glitch.mute = true;
-        scifiCommunication.mute = true;
+        //intro.mute = true;
+        //ambient01.mute = true;
+        //ambient02.mute = true;
+        //ambient03.mute = true;
+        //susbell.mute = true;
+        //bellscu.mute = true;
+        //glitch.mute = true;
+        //scifiCommunication.mute = true;
     }
 
     public void unmuteNonColorTracks()
     {
-        intro.mute = false;
-        ambient01.mute = false;
-        ambient02.mute = false;
-        ambient03.mute = false;
-        susbell.mute = false;
-        bellscu.mute = false;
-        glitch.mute = false;
-        scifiCommunication.mute = false;
+        //intro.mute = false;
+        //ambient01.mute = false;
+        //ambient02.mute = false;
+        //ambient03.mute = false;
+        //susbell.mute = false;
+        //bellscu.mute = false;
+        //glitch.mute = false;
+        //scifiCommunication.mute = false;
     }
 }

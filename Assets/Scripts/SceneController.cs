@@ -14,7 +14,7 @@ public class SceneController : MonoBehaviour
     }
 
     //For showing stage info on inspector
-    public string currentStage;
+    //public string currentStage;
 
 
     public STAGE p_stage;
@@ -42,14 +42,16 @@ public class SceneController : MonoBehaviour
     void Start()
     {
         camControl = Camera.main.GetComponent<WanderCamera>();
+        Stage = STAGE.LACC;
 
     }
 
 
     private void Update()
     {
-        currentStage = stage.ToString();
-        if(p_stage!=Stage){
+        //currentStage = stage.ToString();
+        if (p_stage != Stage)
+        {
             Stage = p_stage;
         }
     }
@@ -71,7 +73,7 @@ public class SceneController : MonoBehaviour
                 MirrorManager.instance.SetSelfRotate(true);
                 MirrorManager.wireframeCubeContainer.gameObject.SetActive(false);
                 MainPrism.main.gameObject.SetActive(false);
-                MirrorManager.instance.SetMirrorSize(0.8f);
+                MirrorManager.instance.SetMirrorSize(DATA.LARGE_MIRROR_SIZE_PERCENTAGE);
                 EnvController.instance.SetWorldColor(normalWorldColor);
                 camControl.SwitchMode(WanderCamera.MODE.NORMAL);
                 MirrorManager.instance.UseBugFixValueInShader(true);
@@ -87,7 +89,7 @@ public class SceneController : MonoBehaviour
                 //big prism
                 MainPrism.main.gameObject.SetActive(false);
 
-                MirrorManager.instance.SetMirrorSize(0.2f);
+                MirrorManager.instance.SetMirrorSize(DATA.SMALL_MIRROR_SIZE_PERCENTAGE);
                 EnvController.instance.SetWorldColor(normalWorldColor);
                 camControl.SwitchMode(WanderCamera.MODE.NORMAL);
 
@@ -104,7 +106,7 @@ public class SceneController : MonoBehaviour
                 //big prism
                 MainPrism.main.gameObject.SetActive(false);
 
-                MirrorManager.instance.SetMirrorSize(0.6f);
+                MirrorManager.instance.SetMirrorSize(DATA.MEDIUM_MIRROR_SIZE_PERCENTAGE);
                 camControl.SwitchMode(WanderCamera.MODE.NORMAL);
                 EnvController.instance.SetWorldColor(normalWorldColor);
                 camControl.GoForward(10);
@@ -133,7 +135,7 @@ public class SceneController : MonoBehaviour
                 camControl.SwitchMode(WanderCamera.MODE.LOOK_AT_CENTER_CUBE);
                 EnterLACC();
                 EnvController.instance.SetWorldColor(normalWorldColor);
-                MirrorManager.instance.SetMirrorSize(0.6f);
+                MirrorManager.instance.SetMirrorSize(DATA.MEDIUM_MIRROR_SIZE_PERCENTAGE);
                 break;
         }
 

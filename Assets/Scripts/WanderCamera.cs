@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class WanderCamera : MonoBehaviour
 {
-
-
-
     public float speed = 1f;
 
     float area;
@@ -26,7 +23,7 @@ public class WanderCamera : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        area = DATA.DimensionData.matrixDiameter * 1f;
+        area = DATA.DimensionData.matrixDiameter * 0.8f;
         x1 = Random.Range(0f, 100f);
         x2 = Random.Range(0f, 100f);
         y1 = Random.Range(0f, 100f);

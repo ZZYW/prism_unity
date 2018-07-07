@@ -6,6 +6,9 @@ public class DATA : MonoBehaviour
 {
     public static Shader SHADER_DEFAULT;
     public static Shader SHADER_DOUBLE_SIDE;
+    public static float SMALL_MIRROR_SIZE_PERCENTAGE = 0.35f;
+    public static float LARGE_MIRROR_SIZE_PERCENTAGE = 0.8f;
+    public static float MEDIUM_MIRROR_SIZE_PERCENTAGE = 0.6f;
     public static Dimensional DimensionData { get; private set; }
     public static float BREAKING_OUT_TIME_TAKEN = 35f;
 

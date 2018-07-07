@@ -10,10 +10,16 @@ public class CanvasHelper : MonoBehaviour
 
     [SerializeField]
     Slider dragbleProgressBar;
-    [SerializeField]
-    Slider nondragbleProgressBar;
+    //[SerializeField]
+    //Slider nondragbleProgressBar;
     [SerializeField]
     TimelineAsset timeline;
+    [SerializeField]
+    PlayableDirector playableDirector;
+
+
+
+
 
     // Use this for initialization
     void Start()
@@ -24,11 +30,13 @@ public class CanvasHelper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        nondragbleProgressBar.value = AudioController.instance.GetProgress();
+       // nondragbleProgressBar.value = AudioController.instance.GetProgress();
     }
 
     void SetProgress(float p)
     {
-        AudioController.instance.SetProgress(p);
+        float time = p * AudioController.LENGTH;
+        AudioController.instance.SetProgress(time);
+        playableDirector.time = time;
     }
 }
