@@ -43,8 +43,6 @@ public class SceneController : MonoBehaviour
     {
         camControl = Camera.main.GetComponent<WanderCamera>();
 
-        SwtichStage(4);
-        //Invoke("StartStage",0.1f);
     }
 
 
