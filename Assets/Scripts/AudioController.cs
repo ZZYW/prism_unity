@@ -8,12 +8,13 @@ public class AudioController : MonoBehaviour
 
     public static AudioController instance;
 
-    [SerializeField]
-    private AudioMixer mainMixer;
+    //[SerializeField]
+    //private AudioMixer mainMixer;
     [SerializeField]
     private AudioSource ambient01;
     [SerializeField]
     private AudioSource ambient02;
+
     [SerializeField]
     private AudioSource ambient03;
     [SerializeField]
@@ -39,20 +40,19 @@ public class AudioController : MonoBehaviour
     public float introDB { get; private set; }
     public float bellscuDB { get; private set; }
 
-
-    //bool inColorMode;
-    //bool playGlitch;
-
+    private AudioSource[] allSources;
+    public static float LENGTH = 0;
 
     void Awake()
     {
         instance = this;
+        LENGTH = ambient01.clip.length;
     }
 
     // Use this for initialization
     void Start()
     {
-        //AudioMixerPlayable audioMixerPlayable = mixerGroups[0].
+        allSources = new[] { ambient01, ambient02, ambient03, intro, susbell, bellscu, scifiCommunication, colorAmbient, glitch };
     }
 
     // Update is called once per frame
@@ -67,34 +67,15 @@ public class AudioController : MonoBehaviour
         bellscuDB = GetDB(bellscu);
         introDB = GetDB(intro);
         susbellDB = GetDB(susbell);
-
-        //sum /= spectrum.Length;
-        //float avg = for(int )
-        //Debug.Log(sum);
+    }
 
 
-        //if (Input.GetKeyDown(KeyCode.A))
-        //{
-        //    inColorMode = !inColorMode;
-        //    EnterColorMode(inColorMode);
-        //}
-
-        ////if(Input.GetKeyDown)
-
-        //if (Input.GetKeyDown(KeyCode.M))
-        //{
-        //    if (glitch.isPlaying == false)
-        //    {
-        //        glitch.Play();
-        //    }
-        //}
-        //if (Input.GetKeyUp(KeyCode.M))
-        //{
-        //    if (glitch.isPlaying)
-        //    {
-        //        glitch.Pause();
-        //    }
-        //}
+    public void SetProgress(float p)
+    {
+        foreach (AudioSource source in allSources)
+        {
+            source.time = p * LENGTH;
+        }
     }
 
     private float GetDB(AudioSource source)
@@ -108,37 +89,9 @@ public class AudioController : MonoBehaviour
         }
         return sum;
     }
-
-
-    public void EnterColorMode(bool state)
-    {
-        //PlayGlitch(0.3f);
-        //if (state)
-        //{
-        //    if (colorTrack.isPlaying == false)
-        //    {
-        //        colorTrack.Play();
-        //    }
-        //    mainMixer.SetFloat("colorVol", 1);
-        //    mainMixer.SetFloat("finalVol", 0);
-        //}
-        //else
-        //{
-        //    mainMixer.SetFloat("colorVol", 0);
-        //    mainMixer.SetFloat("finalVol", 1);
-        //}
-        ////throw new System.NotImplementedException();
+    public float GetProgress(){
+        return ambient01.time / LENGTH;
     }
 
-    void PlayGlitch(float duration)
-    {
-        //glitchAS.Play();
-        //Invoke("StopGlitch", duration);
-    }
-
-    void StopGlitch()
-    {
-        //  glitchAS.Pause();
-    }
 
 }

@@ -51,11 +51,8 @@ public class MirrorManager : MonoBehaviour
             mirrorContainer = new GameObject("Mirror Container");
             mirrorContainer.transform.parent = transform;
         }
-    }
 
-    // Use this for initialization
-    void Start()
-    {
+
         print(mirrors.Length + " mirror in total.");
 
         int i = 0;
@@ -114,6 +111,14 @@ public class MirrorManager : MonoBehaviour
 
         }
 
+
+
+    }
+
+    // Use this for initialization
+    void Start()
+    {
+  
 
         //wireframeCubeContainer.isStatic = true;
 

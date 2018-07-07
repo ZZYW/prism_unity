@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageController : MonoBehaviour
+public class SceneController : MonoBehaviour
 {
-    public static StageController instance;
+    public static SceneController instance;
 
     WanderCamera camControl;
 
@@ -36,7 +36,11 @@ public class StageController : MonoBehaviour
     void Start()
     {
         camControl = Camera.main.GetComponent<WanderCamera>();
+
+        SwtichStage(4);
+        //Invoke("StartStage",0.1f);
     }
+
 
     public void SwtichStage(int targetStage)
     {

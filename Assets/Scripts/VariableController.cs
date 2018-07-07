@@ -8,6 +8,8 @@ public class VariableController : MonoBehaviour
     public static VariableController instance;
 
 
+    public bool controlVariablesByCode = true;
+
     [Header(">>>>> Link Mat Here")]
     public Shader[] mirrorMatShaders;
     public Material wireMat;
@@ -19,10 +21,10 @@ public class VariableController : MonoBehaviour
     [System.Serializable]
     public class MatVariables
     {
-        [Range(0, 100)]
-        public float vertexOffsetIntense;
         [Range(0, 3)]
-        public float vertexOffsetFreq;
+        public float vertexOffsetIntense;
+        [Range(0.2f, 3)]
+        public float vertexOffsetFreq = 0.2f;//min
         [Range(0, 1)]
         public float vertexRandomMult;
         public bool useRMStyle;
@@ -42,9 +44,9 @@ public class VariableController : MonoBehaviour
     MatVariables[] matVariables;
     [Header(">>>>> Materials")]
     [SerializeField]
-    MatVariables bigPrismMat = new MatVariables();
+    MatVariables bigPrismMatSettings = new MatVariables();
     [SerializeField]
-    MatVariables mirrorsMat = new MatVariables();
+    MatVariables mirrorMatSettings = new MatVariables();
 
 
     [Header(">>>> Glitch")]
@@ -63,6 +65,12 @@ public class VariableController : MonoBehaviour
     Kino.AnalogGlitch analogGlitch;
     Kino.DigitalGlitch digitalGlitch;
 
+    AudioController audioController;
+
+
+    //stage control
+    public bool broken;
+
 
     //boolean 
 
@@ -77,7 +85,10 @@ public class VariableController : MonoBehaviour
         analogGlitch = Camera.main.GetComponent<Kino.AnalogGlitch>();
         digitalGlitch = Camera.main.GetComponent<Kino.DigitalGlitch>();
 
-        matVariables = new[] { bigPrismMat, mirrorsMat };
+        matVariables = new[] { bigPrismMatSettings, mirrorMatSettings };
+        audioController = AudioController.instance;
+
+        //StageController.instance.SwtichStage(4);
 
     }
 
@@ -85,14 +96,39 @@ public class VariableController : MonoBehaviour
     void Update()
     {
 
-        lineJitter = Map(AudioController.instance.glitchDB, 0f, 0.2f, 0, 1f);
+        if (controlVariablesByCode)
+        {
+            lineJitter = Map(audioController.glitchDB, 0f, 0.2f, 0f, 1f);
 
-        //example
-        // bigPrismMat.vertexOffsetFreq = AudioController.instance.ambient01DB;
+            colorDrift = Map(audioController.introDB, 0f, 1f, 0f, 1f);
+
+            foreach (var s in matVariables)
+            {
+                s.vertexOffsetFreq = Map(audioController.bellscuDB, 0, 1, 0, 3);
+                s.vertexOffsetIntense = Map(audioController.ambient01DB, 0, 10, 0, 3);
+            }
+
+            if (audioController.colorAmbientDB > 0.1f)
+            {
+                //TODO: toggle off other tracks
+                foreach (var s in matVariables)
+                {
+                    s.useRainbowStyle = true;
+                }
+            }
+            else
+            {
+                foreach (var s in matVariables)
+                {
+                    s.useRainbowStyle = false;
+                }
+            }
 
 
 
-        //StageController.instance.SwtichStage(0);
+        }
+
+
 
         KeyControls();
         ApplyVariables();
@@ -115,23 +151,23 @@ public class VariableController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            StageController.instance.SwtichStage(0);
+            SceneController.instance.SwtichStage(0);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            StageController.instance.SwtichStage(1);
+            SceneController.instance.SwtichStage(1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            StageController.instance.SwtichStage(2);
+            SceneController.instance.SwtichStage(2);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            StageController.instance.SwtichStage(3);
+            SceneController.instance.SwtichStage(3);
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            StageController.instance.SwtichStage(4);
+            SceneController.instance.SwtichStage(4);
         }
 
 
