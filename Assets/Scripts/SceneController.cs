@@ -61,7 +61,7 @@ public class SceneController : MonoBehaviour
         //resets
         ExitLACC();
         Color normalWorldColor = Color.white;
-        Color bigPrismWorldColor = Color.white;
+        Color bigPrismWorldColor = Color.black;
         MirrorManager.instance.UseBugFixValueInShader(false);
 
         switch (targetStage)

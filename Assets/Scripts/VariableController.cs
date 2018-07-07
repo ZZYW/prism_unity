@@ -18,20 +18,7 @@ public class VariableController : MonoBehaviour
     public Material mirrorMat;
 
 
-    //[Header(">>>>> For timeline control")]
-    ////for timeline mapping
-    //[Range(0, 3)]
-    //public float matsIntense;
-    //[Range(0.2f, 3)]
-    //public float matsFreq;
-    //[Range(0, 1)]
-    //public float randomMult;
-    //[Range(0f, 1f)]
-    //public float noisePara01;
-    //[Range(0.1f, 5f)]
-    //public float noiseScale;
-    //[Range(0f, 20f)]
-    //public float randomNoiseScale;
+    public bool useRMStyle = false;
 
     [System.Serializable]
     public class MatVariables
@@ -124,7 +111,6 @@ public class VariableController : MonoBehaviour
             foreach (var s in matVariables)
             {
                 s.vertexOffsetFreq = Map(audioController.bellscuDB, 0, 1, 0, 3);
-                //s.vertexOffsetIntense = matsIntense;
             }
 
 
@@ -154,34 +140,40 @@ public class VariableController : MonoBehaviour
                 breakingKickedOff = true;
             }
 
-
-            if (SceneController.instance.Stage == SceneController.STAGE.BIG_PRISM && audioController.colorAmbientDB <= 0.005f)
+            //RM style
+            foreach (var s in matVariables)
             {
-                foreach (var s in matVariables)
-                {
-                    s.useRMStyle = true;
-                }
+                s.useRMStyle = useRMStyle;
             }
+
+
+            //if (SceneController.instance.Stage == SceneController.STAGE.BIG_PRISM && audioController.colorAmbientDB <= 0.005f)
+            //{
+            //    foreach (var s in matVariables)
+            //    {
+            //        s.useRMStyle = true;
+            //    }
+            //}
 
             //RM style controlled by bell structure track
-            if (audioController.bellscuDB > 0.3f)
-            {
-                //TODO: toggle off other tracks
-                foreach (var s in matVariables)
-                {
-                    s.useRMStyle = true;
-                    //print("audioController.colorAmbientDB " + audioController.colorAmbientDB);
-                    //print("s.useRainbowStyle " + s.useRainbowStyle);
-                    //print("s.useRMStyle " + s.useRMStyle);
-                }
-            }
-            else
-            {
-                foreach (var s in matVariables)
-                {
-                    s.useRMStyle = false;
-                }
-            }
+            //if (audioController.bellscuDB > 0.3f)
+            //{
+            //    //TODO: toggle off other tracks
+            //    foreach (var s in matVariables)
+            //    {
+            //        s.useRMStyle = true;
+            //        //print("audioController.colorAmbientDB " + audioController.colorAmbientDB);
+            //        //print("s.useRainbowStyle " + s.useRainbowStyle);
+            //        //print("s.useRMStyle " + s.useRMStyle);
+            //    }
+            //}
+            //else
+            //{
+            //    foreach (var s in matVariables)
+            //    {
+            //        s.useRMStyle = false;
+            //    }
+            //}
 
 
 

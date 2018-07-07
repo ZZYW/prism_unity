@@ -9,7 +9,7 @@ Material:
   m_Name: MirrorMat
   m_Shader: {fileID: 4800000, guid: 66e1aa94aef9142fab873810a9699ebc, type: 3}
   m_ShaderKeywords: _ALBEDOMAP _COLORGLITCHON_ON _DISPGLITCHON_ON _EMISSION _GLITCHCOLOR_ON
-    _MONOCHROM_ON _WRAPDISPCOORDS_ON _X_ON _Y_ON
+    _MONOCHROM_ON _RMSTYLE_ON _WRAPDISPCOORDS_ON _X_ON _Y_ON
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -180,13 +180,13 @@ Material:
     - _Opacity: 0
     - _Parallax: 0.005
     - _Power: 0
-    - _RMStyle: 0
+    - _RMStyle: 1
     - _Random: 0
     - _RandomMult: 0
     - _Rotation: 0
     - _Scale: 0
     - _Shake: 0
-    - _ShakeFreq: 0.09892841
+    - _ShakeFreq: 0.6239918
     - _Shininess: 0.078125
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -202,7 +202,7 @@ Material:
     - _StencilWriteMask: 255
     - _UVSec: 0
     - _UseAlbedo: 0
-    - _UseBugFixValue: 1
+    - _UseBugFixValue: 0
     - _UseUIAlphaClip: 0
     - _V_WIRE_DistanceFade: 0
     - _V_WIRE_DistanceFadeEnd: 10
