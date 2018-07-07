@@ -20,7 +20,7 @@ public class VariableController : MonoBehaviour
 
     [Header(">>>>> For timeline animating")]
     //for timeline mapping
-    [Range(0,3)]
+    [Range(0, 3)]
     public float matsIntense;
 
     //public float matsRa
@@ -149,13 +149,21 @@ public class VariableController : MonoBehaviour
             }
 
 
+            if (SceneController.instance.Stage == SceneController.STAGE.BIG_PRISM && audioController.colorAmbientDB <= 0.005f)
+            {
+                foreach (var s in matVariables)
+                {
+                    s.useRMStyle = true;
+                }
+            }
+
             //RM style controlled by bell structure track
-            if (audioController.bellscuDB > 0.5f)
+            if (audioController.bellscuDB > 0.3f)
             {
                 //TODO: toggle off other tracks
                 foreach (var s in matVariables)
                 {
-                    s.useRMStyle = true; 
+                    s.useRMStyle = true;
                     //print("audioController.colorAmbientDB " + audioController.colorAmbientDB);
                     //print("s.useRainbowStyle " + s.useRainbowStyle);
                     //print("s.useRMStyle " + s.useRMStyle);

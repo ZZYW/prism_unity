@@ -98,7 +98,7 @@ Material:
     - _RMStyle: 0
     - _Random: 0
     - _RandomMult: 0
-    - _Shake: 0.34744048
+    - _Shake: 0
     - _ShakeFreq: 0.0000096069125
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

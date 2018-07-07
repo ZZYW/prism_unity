@@ -64,7 +64,20 @@ public class AudioController : MonoBehaviour
     void Update()
     {
 
-        //timeline.
+        //TrackAsset root = timeline.GetRootTrack(3);
+        ////root.timelineAsset
+
+        //var tracks = timeline.GetOutputTracks();
+        //foreach(var track in tracks)
+        //{
+        //     var clips = track.GetClips();
+        //    foreach(var clip in clips)
+        //    {
+        //        AudioPlayableAsset audio =  (AudioPlayableAsset)clip.asset;
+        //        audio.
+
+        //    }
+        //}
 
         ambient01DB = GetDB(ambient01);
         ambient02DB = GetDB(ambient02);
