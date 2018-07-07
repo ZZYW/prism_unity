@@ -14,7 +14,6 @@ public class AudioController : MonoBehaviour
     private AudioSource ambient01;
     [SerializeField]
     private AudioSource ambient02;
-
     [SerializeField]
     private AudioSource ambient03;
     [SerializeField]
@@ -89,7 +88,8 @@ public class AudioController : MonoBehaviour
         }
         return sum;
     }
-    public float GetProgress(){
+    public float GetProgress()
+    {
         return ambient01.time / LENGTH;
     }
 

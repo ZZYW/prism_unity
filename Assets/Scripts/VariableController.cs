@@ -151,23 +151,23 @@ public class VariableController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            SceneController.instance.SwtichStage(0);
+            SceneController.instance.Stage = SceneController.STAGE.SELF_ROT_MIRRORS;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            SceneController.instance.SwtichStage(1);
+            SceneController.instance.Stage = SceneController.STAGE.MIRROR_N_WIREFRAME;
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            SceneController.instance.SwtichStage(2);
+            SceneController.instance.Stage = SceneController.STAGE.ALIGNED_MIRRORS;
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            SceneController.instance.SwtichStage(3);
+            SceneController.instance.Stage = SceneController.STAGE.BIG_PRISM;
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            SceneController.instance.SwtichStage(4);
+            SceneController.instance.Stage = SceneController.STAGE.LACC;
         }
 
 

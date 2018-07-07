@@ -13,6 +13,9 @@ public class SceneController : MonoBehaviour
         SELF_ROT_MIRRORS, MIRROR_N_WIREFRAME, ALIGNED_MIRRORS, BIG_PRISM, LACC
     }
 
+    //For showing stage info on inspector
+    public string currentStage;
+
     STAGE stage;
     public STAGE Stage
     {
@@ -42,7 +45,12 @@ public class SceneController : MonoBehaviour
     }
 
 
-    public void SwtichStage(int targetStage)
+    private void Update()
+    {
+        currentStage = stage.ToString();
+    }
+
+    private void SwtichStage(int targetStage)
     {
         //resets
         ExitLACC();
