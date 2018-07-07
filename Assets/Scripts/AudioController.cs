@@ -93,5 +93,26 @@ public class AudioController : MonoBehaviour
         return ambient01.time / LENGTH;
     }
 
+    public void muteNonColorTracks(){
+        intro.mute = true;
+        ambient01.mute = true;
+        ambient02.mute = true;
+        ambient03.mute = true;
+        susbell.mute = true;
+        bellscu.mute = true;
+        glitch.mute = true;
+        scifiCommunication.mute = true;
+    }
 
+    public void unmuteNonColorTracks()
+    {
+        intro.mute = false;
+        ambient01.mute = false;
+        ambient02.mute = false;
+        ambient03.mute = false;
+        susbell.mute = false;
+        bellscu.mute = false;
+        glitch.mute = false;
+        scifiCommunication.mute = false;
+    }
 }
