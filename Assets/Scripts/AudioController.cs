@@ -31,15 +31,15 @@ public class AudioController : MonoBehaviour
     [SerializeField]
     private AudioSource glitch;
 
-    public float ambient01DB { get; private set; }
-    public float ambient02DB { get; private set; }
-    public float ambient03DB { get; private set; }
-    public float scifiCommunicationDB { get; private set; }
-    public float colorAmbientDB { get; private set; }
-    public float glitchDB { get; private set; }
-    public float susbellDB { get; private set; }
-    public float introDB { get; private set; }
-    public float bellscuDB { get; private set; }
+    public float ambient01DB;
+    public float ambient02DB;
+    public float ambient03DB;
+    public float scifiCommunicationDB;
+    public float colorAmbientDB;
+    public float glitchDB;
+    public float susbellDB;
+    public float introDB;
+    public float bellscuDB;
 
     private AudioSource[] allSources;
     public static float LENGTH = 0;

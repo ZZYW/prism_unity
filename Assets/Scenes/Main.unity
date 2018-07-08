@@ -323,6 +323,20 @@ Prefab:
       propertyPath: playableDirector
       value: 
       objectReference: {fileID: 788545351}
+    - target: {fileID: 82799725910471670, guid: 5b33807265e344ef6b5a7960a018cf38,
+        type: 2}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82547617004037664, guid: 5b33807265e344ef6b5a7960a018cf38,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077633401663394, guid: 5b33807265e344ef6b5a7960a018cf38, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5b33807265e344ef6b5a7960a018cf38, type: 2}
   m_IsPrefabParent: 0
@@ -596,34 +610,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &556091331
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 556091332}
-  m_Layer: 0
-  m_Name: Save2Video
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &556091332
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 556091331}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1430, y: 540, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &564500709
 GameObject:
@@ -1001,7 +987,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &788545354
 Animator:
@@ -1594,7 +1580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1850,7 +1836,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1233938164}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a19555593263d40d79534038a53f0e58, type: 3}
   m_Name: 
@@ -2120,6 +2106,7 @@ GameObject:
   - component: {fileID: 1462492531}
   - component: {fileID: 1462492532}
   - component: {fileID: 1462492533}
+  - component: {fileID: 1462492530}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2149,8 +2136,8 @@ Camera:
   m_GameObject: {fileID: 1462492524}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_ClearFlags: 4
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -2202,6 +2189,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: e8d1df4daad394468ac7d13860a51d64, type: 2}
+--- !u!114 &1462492530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1462492524}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d3c0b01ad228439a9d89134216071c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _screenWidth: 2390
+  _screenHeight: 540
+  _antiAliasing: 1
+  _discardAlpha: 1
+  _renderMode: 1
+  _gammaShader: {fileID: 4800000, guid: 61221cb867c7a439fba6da3231ff64f7, type: 3}
 --- !u!114 &1462492531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2213,7 +2217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1150347cc8f39469bab928d2bac97f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.005
+  speed: 0.02
   Mode: 1
 --- !u!114 &1462492532
 MonoBehaviour:
@@ -2616,7 +2620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3103,6 +3107,7 @@ MonoBehaviour:
   mainPrismMat: {fileID: 2100000, guid: 1b4f178df738d4b968eced243fa2d807, type: 2}
   planeMat: {fileID: 2100000, guid: 8b731480060bf48a48040d90453a4e2b, type: 2}
   mirrorMat: {fileID: 2100000, guid: 2652c98b7c43b4b82b1a6d7e471f547a, type: 2}
+  useRMStyle: 0
   bigPrismMatSettings:
     vertexOffsetIntense: 0
     vertexOffsetFreq: 0.2
@@ -3141,7 +3146,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1894279286
 Animator:

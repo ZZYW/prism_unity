@@ -110,12 +110,14 @@ public class VariableController : MonoBehaviour
 
             foreach (var s in matVariables)
             {
-                s.vertexOffsetFreq = Map(audioController.bellscuDB, 0, 1, 0, 3);
+                s.vertexOffsetIntense = Map(audioController.bellscuDB, 0f, 0.5f, 0f, 3f);
             }
 
 
             //color effect controlled by colorshader track
-            if (audioController.colorAmbientDB > 0.005f)
+            if (audioController.colorAmbientDB > 0.005f
+              //  || audioController.introDB > 0.02f
+               )
             {
                 //TODO: toggle off other tracks
                 foreach (var s in matVariables)
