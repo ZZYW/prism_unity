@@ -31,6 +31,7 @@ public class AudioController : MonoBehaviour
     [SerializeField]
     private AudioSource glitch;
 
+    public float overallDB;
     public float ambient01DB;
     public float ambient02DB;
     public float ambient03DB;
@@ -66,6 +67,18 @@ public class AudioController : MonoBehaviour
         bellscuDB = GetDB(bellscu);
         introDB = GetDB(intro);
         susbellDB = GetDB(susbell);
+        //overallDB = GetDB()
+
+
+        float[] spectrum = new float[64];
+        AudioListener.GetSpectrumData(spectrum, 0, FFTWindow.Rectangular);
+        float sum = 0;
+        for (int i = 0; i < spectrum.Length; i++)
+        {
+            sum += spectrum[i];
+        }
+        overallDB = sum;
+
 
        // playableDirector.timeUpdateMode = DirectorUpdateMode.GameTime;
       
@@ -98,25 +111,25 @@ public class AudioController : MonoBehaviour
 
     public void muteNonColorTracks()
     {
-        //intro.mute = true;
-        //ambient01.mute = true;
-        //ambient02.mute = true;
-        //ambient03.mute = true;
-        //susbell.mute = true;
-        //bellscu.mute = true;
-        //glitch.mute = true;
-        //scifiCommunication.mute = true;
+        intro.mute = true;
+        ambient01.mute = true;
+        ambient02.mute = true;
+        ambient03.mute = true;
+        susbell.mute = true;
+        bellscu.mute = true;
+        glitch.mute = true;
+        scifiCommunication.mute = true;
     }
 
     public void unmuteNonColorTracks()
     {
-        //intro.mute = false;
-        //ambient01.mute = false;
-        //ambient02.mute = false;
-        //ambient03.mute = false;
-        //susbell.mute = false;
-        //bellscu.mute = false;
-        //glitch.mute = false;
-        //scifiCommunication.mute = false;
+        intro.mute = false;
+        ambient01.mute = false;
+        ambient02.mute = false;
+        ambient03.mute = false;
+        susbell.mute = false;
+        bellscu.mute = false;
+        glitch.mute = false;
+        scifiCommunication.mute = false;
     }
 }

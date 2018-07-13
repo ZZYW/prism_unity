@@ -102,12 +102,17 @@ public class VariableController : MonoBehaviour
 
         if (controlVariablesByCode)
         {
-            lineJitter = Map(audioController.glitchDB, 0f, 0.2f, 0f, 1f);
+            lineJitter = Map(audioController.glitchDB, 0f, 0.1f, 0f, 1f);
             horiShakel = Map(audioController.introDB, 0f, 1f, 0f, 0.4f);
 
             colorDrift = Map(audioController.susbellDB, 0, 1f, 0, 1f);
 
 
+            if (audioController.overallDB < 0.1f)
+            {
+                useRMStyle = false;
+            }
+           
             foreach (var s in matVariables)
             {
                 s.vertexOffsetIntense = Map(audioController.bellscuDB, 0f, 0.5f, 0f, 3f);
@@ -115,20 +120,20 @@ public class VariableController : MonoBehaviour
 
 
             //color effect controlled by colorshader track
-            if (audioController.colorAmbientDB > 0.005f
-              //  || audioController.introDB > 0.02f
-               )
+            if (audioController.colorAmbientDB > 0.005f)
             {
-                //TODO: toggle off other tracks
+
                 foreach (var s in matVariables)
                 {
                     s.useRainbowStyle = true;
                     s.useRMStyle = false;
                     audioController.muteNonColorTracks();
                 }
+                audioController.muteNonColorTracks();
             }
             else
             {
+                audioController.unmuteNonColorTracks();
                 foreach (var s in matVariables)
                 {
                     s.useRainbowStyle = false;

@@ -27,6 +27,7 @@ AudioMixerController:
     - 0e2c023a4cb9f4b7b89ebbb1094e81cc
     - 4d5f0b209c4644af7b64eb654f03fe66
     - 20fdb8bba71604c95a8965220365888b
+    - cc0580c0ceb4e47c88f4f00df29677a6
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -39,6 +40,7 @@ AudioMixerGroupController:
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: c2d2c20d526c945ce9f36fe921e07325
   m_Children:
+  - {fileID: 243486754274546150}
   - {fileID: 243147841909769842}
   - {fileID: 243235947722267756}
   - {fileID: 243161970950251328}
@@ -72,13 +74,43 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: affd2c9bb28f341d58428ed2ba2e6583
   m_FloatValues:
+    1ad5ad30e9d24431e882900d3119576a: 0.185
+    3279ee40b1f4644c2ba4e8b72da9965a: 0.361
+    e7e60f80213dd40b59ac36eb5f1cbf76: 200
     8a9dc12139cdb470892ce9ec68f36896: 1079
-    15e8d84183bde43edb5ad613a0284717: 0.10800299
+    15e8d84183bde43edb5ad613a0284717: 0.23288241
     e3e73e715b7474978b47a82b4f2a982d: 0.568
+    e3b37bd2f5fb0425496fa27ed0d357b0: 0.89
+    f8ac2e1493403408382f4f0adeab1e2f: 1.7699997
+    b4403d6453edd479b8f2eb18d63edcdf: 9.5
+    e6d5b9c45242f4438aaffeb08e7cad85: 0
+    472ea1a5a84e844bc81bd0fac025dee5: 7.63
+    e828ecd5e93724aa3a537756844f546c: -20.1
+    b9fafa16aec5c41349ef668abcdeeeec: 256
+    90755666882ac4180adc7bd833216534: 0.377
+    ba362f76b4e8f43b596389c13c8003cd: 1
     93bf28a689dc644728d8bd5e0b26c8f3: 0
     c02a2dd60f3ea48eeade7c49c9733094: 0.79
+    3c4e6b075ccc545ac9c5c4ee498b3e42: 1.78
+    bb85e0a73f62840069b8328a1a54168e: 0.777
+    a23357d76893741f2ba828fcd8285993: 2051
+    74fbb4988be0b4389894ffd040c12797: 0.938
+    ddebbbc95ce714fa691cd7c1456d9931: 991
+    874514f9be9bd497a82838355d3b781f: 0.2
+    f4dd169a185cb4743a72cfb4644b77ff: -293
+    a190b97ba12464b2d9fd4d049f49e8d7: 3.03
+    d788429bff403494f9297b68693f9302: 22.4
+    514f21abe224145e88deaac48264abac: 1769
+    e3a926bb1bc094ef4bee06d9ec19df17: 0
+    d8c9befb2ec4e446eb36d1e0d6af007b: 1
     9815b50c55e4a48669cce10017375f80: 0.16299999
+    f771bf3c2189f4890b71c980b4c86e29: 69
+    0df4618c8bbb44982b6c428df020c691: 0.599
+    1ed2eb5dd639d472cb11b8f30e1bed1b: 55
+    e993cbad362db46d481bfb6beb4b0b87: 308
+    03cfe40ea5ec24df18ffa68cec070fb0: 0.654
     70aa334e4a9694407b9138ef173af594: 0.10800299
+    76d6287ebc22b4d8496cdbacdd99a675: 1328.1224
   m_TransitionOverrides: {}
 --- !u!243 &243147841909769842
 AudioMixerGroupController:
@@ -131,6 +163,36 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!243 &243486754274546150
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: bell scu
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: cc0580c0ceb4e47c88f4f00df29677a6
+  m_Children: []
+  m_Volume: b95f3633d135b40c296d22f933513672
+  m_Pitch: e3b37bd2f5fb0425496fa27ed0d357b0
+  m_Effects:
+  - {fileID: 244084864551175092}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &244084864551175092
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: 813341ce4a73649aeac61cc5c724100b
+  m_EffectName: Attenuation
+  m_MixLevel: ccd2cec3937d74cd48e89678d4de39c3
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &244204990404674754
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
