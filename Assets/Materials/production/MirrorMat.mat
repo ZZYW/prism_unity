@@ -152,7 +152,7 @@ Material:
     - _ColorProbability: 1
     - _ColorSculpt: 0.5193893
     - _Cull: 2
-    - _Cutoff: 0.9
+    - _Cutoff: 0.5
     - _DarkColorBrightness: 0.3932824
     - _DetailNormalMapScale: 1
     - _DispGlitchOn: 1

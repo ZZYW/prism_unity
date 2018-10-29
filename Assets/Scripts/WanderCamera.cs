@@ -5,11 +5,14 @@ using UnityEngine;
 public class WanderCamera : MonoBehaviour
 {
     public float speed = 1f;
+	public MirrorManager MM;
+
 
     float area;
     float x1, x2;
     float y1, y2;
     float z1, z2;
+
     Quaternion originalRot;
     GameObject target;
 
@@ -24,7 +27,7 @@ public class WanderCamera : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        area = DATA.DimensionData.matrixDiameter * 0.8f;
+		area = MM.matrixDiameter * 0.8f;
         x1 = Random.Range(0f, 100f);
         x2 = Random.Range(0f, 100f);
         y1 = Random.Range(0f, 100f);
@@ -87,7 +90,6 @@ public class WanderCamera : MonoBehaviour
         }
         if (Mode == MODE.LOOK_AT_CENTER_CUBE)
         {
-            //setup LACC mode
             target = MirrorManager.instance.centerCube;
             transform.position = target.transform.position;
         }

@@ -12,7 +12,7 @@ public class SceneController : MonoBehaviour
 	//set a few stages
     public enum STAGE
     {
-        SELF_ROT_MIRRORS, MIRROR_N_WIREFRAME, ALIGNED_MIRRORS, BIG_PRISM, LACC
+        MIRRORS, BIG_PRISM
     }
 
     //For showing stage info on inspector
@@ -44,30 +44,38 @@ public class SceneController : MonoBehaviour
     void Start()
     {
         camControl = Camera.main.GetComponent<WanderCamera>();
-        Stage = STAGE.LACC;
-
     }
 
 
     private void Update()
     {
-        //currentStage = stage.ToString();
-//        if (p_stage != Stage)
-//        {
-//            Stage = p_stage;
-//        }
+		if (Input.GetKeyDown(KeyCode.Alpha1))
+		{
+			Stage = SceneController.STAGE.MIRRORS;
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha2))
+		{
+			Stage = SceneController.STAGE.BIG_PRISM;
+		}
+
     }
 
     private void SwtichStage(int targetStage)
     {
-        //resets
-//        ExitLACC();
-        Color normalWorldColor = Color.black;
-        Color bigPrismWorldColor = Color.black;
-        //MirrorManager.instance.UseBugFixValueInShader(false);
+
 
         switch (targetStage)
         {
+
+		case 0:
+			MirrorManager.mirrorContainer.SetActive (true);
+			MainPrism.main.gameObject.SetActive (false);
+			break;
+		case 1:
+			MirrorManager.mirrorContainer.SetActive (false);
+			MainPrism.main.gameObject.SetActive (true);
+			break;
+		/*
             //just mirrors
             case 0:
                 //mirrors
@@ -76,7 +84,7 @@ public class SceneController : MonoBehaviour
                 MirrorManager.wireframeCubeContainer.gameObject.SetActive(false);
                 MainPrism.main.gameObject.SetActive(false);
                 //MirrorManager.instance.SetMirrorSize(DATA.LARGE_MIRROR_SIZE_PERCENTAGE);
-                EnvController.instance.SetWorldColor(normalWorldColor);
+//                EnvController.instance.SetWorldColor(normalWorldColor);
                 camControl.SwitchMode(WanderCamera.MODE.NORMAL);
                 //MirrorManager.instance.UseBugFixValueInShader(true);
                 break;
@@ -92,7 +100,7 @@ public class SceneController : MonoBehaviour
                 MainPrism.main.gameObject.SetActive(false);
 
                 //MirrorManager.instance.SetMirrorSize(DATA.SMALL_MIRROR_SIZE_PERCENTAGE);
-                EnvController.instance.SetWorldColor(normalWorldColor);
+//                EnvController.instance.SetWorldColor(normalWorldColor);
                 camControl.SwitchMode(WanderCamera.MODE.NORMAL);
 
                 break;
@@ -110,7 +118,7 @@ public class SceneController : MonoBehaviour
 
                 //MirrorManager.instance.SetMirrorSize(DATA.MEDIUM_MIRROR_SIZE_PERCENTAGE);
                 camControl.SwitchMode(WanderCamera.MODE.NORMAL);
-                EnvController.instance.SetWorldColor(normalWorldColor);
+//                EnvController.instance.SetWorldColor(normalWorldColor);
                 camControl.GoForward(10);
                 break;
 
@@ -122,7 +130,7 @@ public class SceneController : MonoBehaviour
                 MirrorManager.wireframeCubeContainer.gameObject.SetActive(false);
                 //big prism
                 MainPrism.main.gameObject.SetActive(true);
-                EnvController.instance.SetWorldColor(bigPrismWorldColor);
+//                EnvController.instance.SetWorldColor(bigPrismWorldColor);
                 camControl.SwitchMode(WanderCamera.MODE.BIG_PRISM);
                 break;
 
@@ -135,10 +143,8 @@ public class SceneController : MonoBehaviour
                 //big prism
                 MainPrism.main.gameObject.SetActive(false);
                 camControl.SwitchMode(WanderCamera.MODE.LOOK_AT_CENTER_CUBE);
-//                EnterLACC();
-                EnvController.instance.SetWorldColor(normalWorldColor);
-                //MirrorManager.instance.SetMirrorSize(DATA.MEDIUM_MIRROR_SIZE_PERCENTAGE);
                 break;
+			*/
         }
 
     }

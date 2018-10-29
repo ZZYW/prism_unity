@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MirrorManager : MonoBehaviour
 {
-	int npr = 10; //number of cubes per roll. total is 10x10x10=1000
-	float gridSize = 50;
-	float cubeDia = 40; //0.8 x gridSize
-	float matrixDiameter = 500; //gridSize x npr
-	float cubeR = 20; //cubeDia/2
+	public int npr = 10; //number of cubes per roll. total is 10x10x10=1000
+	public float gridSize = 50;
+	public float cubeDia = 40; //0.8 x gridSize
+	public float matrixDiameter = 500; //gridSize x npr
+	public float cubeR = 20; //cubeDia/2
 
     public static MirrorManager instance;
 
