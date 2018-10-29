@@ -7,9 +7,9 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: MirrorMat
-  m_Shader: {fileID: 4800000, guid: 66e1aa94aef9142fab873810a9699ebc, type: 3}
+  m_Shader: {fileID: 4800000, guid: f4739628d08d2497da26a29f58c5fb82, type: 3}
   m_ShaderKeywords: _ALBEDOMAP _COLORGLITCHON_ON _DISPGLITCHON_ON _EMISSION _GLITCHCOLOR_ON
-    _MONOCHROM_ON _RMSTYLE_ON _USEBUGFIXVALUE_ON _WRAPDISPCOORDS_ON _X_ON _Y_ON
+    _MONOCHROM_ON _VERTEXOFFSET_ON _WRAPDISPCOORDS_ON _X_ON _Y_ON
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -84,7 +84,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 3aac3087967ea4fae858ec0494fd24d9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -141,6 +141,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - PixelSnap: 0
+    - _AmbientColorInfluence: 0.5
     - _Amount: 0
     - _Amplitude: 0
     - _Bias: 0
@@ -149,8 +150,10 @@ Material:
     - _ColorIntensity: 0.3
     - _ColorMask: 15
     - _ColorProbability: 1
+    - _ColorSculpt: 0.5193893
     - _Cull: 2
     - _Cutoff: 0.5
+    - _DarkColorBrightness: 0.3932824
     - _DetailNormalMapScale: 1
     - _DispGlitchOn: 1
     - _DispIntensity: 0.1
@@ -163,12 +166,17 @@ Material:
     - _Exposure: 1
     - _GlitchInterval: 0.01
     - _GlossMapScale: 1
-    - _Glossiness: 0
+    - _Glossiness: 0.3
     - _GlossyReflections: 1
     - _InvFade: 1
+    - _LerpScaler: 1
+    - _LightColorBrightness: 1
+    - _LightCutoff: 0.33
     - _MapScale: 1
-    - _Metallic: 0
+    - _Metallic: 1
     - _Mode: 0
+    - _Multiplier_displacement: 0.5
+    - _Multiplier_time: 1
     - _NoisePara01: 0
     - _NoisePara02: 0.3
     - _NoisePara03: 0
@@ -202,8 +210,10 @@ Material:
     - _StencilWriteMask: 255
     - _UVSec: 0
     - _UseAlbedo: 0
-    - _UseBugFixValue: 0
+    - _UseBugFixValue: 1
+    - _UseRainbowColors: 0
     - _UseUIAlphaClip: 0
+    - _UseVertexColor: 0
     - _V_WIRE_DistanceFade: 0
     - _V_WIRE_DistanceFadeEnd: 10
     - _V_WIRE_DistanceFadeStart: 5
@@ -238,6 +248,7 @@ Material:
     - _V_WIRE_TryQuad: 0
     - _V_WIRE_WireTex_UVSet: 0
     - _V_WIRE_WireVertexColor: 0
+    - _VertexOffset: 1
     - _WindQuality: 0
     - _WrapDispCoords: 1
     - _X: 1
@@ -250,8 +261,8 @@ Material:
     - _noise_details: 0
     - _t: 0
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0.38447738, b: 1, a: 1}
+    - _Color: {r: 1, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _FogColor: {r: 0, g: 0, b: 0, a: 1}
     - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
@@ -265,3 +276,6 @@ Material:
     - _V_WIRE_SourceTex_Scroll: {r: 0, g: 0, b: 0, a: 0}
     - _V_WIRE_WireTex_Scroll: {r: 0, g: 0, b: 0, a: 0}
     - _diff_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _rainbowcolor1: {r: 1, g: 0, b: 0, a: 1}
+    - _rainbowcolor2: {r: 0.07586192, g: 0, b: 1, a: 1}
+    - _rainbowcolor3: {r: 0, g: 1, b: 0.006896496, a: 1}

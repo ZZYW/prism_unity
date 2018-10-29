@@ -37,7 +37,7 @@ public class DATA : MonoBehaviour
     private void Awake()
     {
         DimensionData = new Dimensional();
-        SHADER_DEFAULT = Shader.Find("Custom/CUCUMBER");
+        SHADER_DEFAULT = Shader.Find("Custom/ZZ");
         SHADER_DOUBLE_SIDE = Shader.Find("Ciconia Studio/Double Sided/Standard/Diffuse Bump");
     }
 
