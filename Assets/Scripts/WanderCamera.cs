@@ -13,6 +13,7 @@ public class WanderCamera : MonoBehaviour
     Quaternion originalRot;
     GameObject target;
 
+	//Enumerations allow you to create a collection of related constants.
     public enum MODE
     {
         BIG_PRISM, NORMAL, LOOK_AT_CENTER_CUBE

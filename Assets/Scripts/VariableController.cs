@@ -143,7 +143,7 @@ public class VariableController : MonoBehaviour
 
             if (breaking && !breakingKickedOff)
             {
-                MirrorManager.instance.KickOffBreaking();
+                //MirrorManager.instance.KickOffBreaking();
                 breakingKickedOff = true;
             }
 

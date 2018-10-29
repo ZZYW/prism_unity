@@ -152,7 +152,7 @@ Material:
     - _ColorProbability: 1
     - _ColorSculpt: 0.5193893
     - _Cull: 2
-    - _Cutoff: 0.5
+    - _Cutoff: 0.9
     - _DarkColorBrightness: 0.3932824
     - _DetailNormalMapScale: 1
     - _DispGlitchOn: 1
@@ -169,14 +169,14 @@ Material:
     - _Glossiness: 0.3
     - _GlossyReflections: 1
     - _InvFade: 1
-    - _LerpScaler: 1
+    - _LerpScaler: 0.96
     - _LightColorBrightness: 1
     - _LightCutoff: 0.33
     - _MapScale: 1
     - _Metallic: 1
     - _Mode: 0
-    - _Multiplier_displacement: 0.5
-    - _Multiplier_time: 1
+    - _Multiplier_displacement: 0.22
+    - _Multiplier_time: 20
     - _NoisePara01: 0
     - _NoisePara02: 0.3
     - _NoisePara03: 0
@@ -210,7 +210,7 @@ Material:
     - _StencilWriteMask: 255
     - _UVSec: 0
     - _UseAlbedo: 0
-    - _UseBugFixValue: 1
+    - _UseBugFixValue: 0
     - _UseRainbowColors: 0
     - _UseUIAlphaClip: 0
     - _UseVertexColor: 0
