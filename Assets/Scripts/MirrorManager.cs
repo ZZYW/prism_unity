@@ -9,6 +9,7 @@ public class MirrorManager : MonoBehaviour
 	public float cubeDia = 40; //0.8 x gridSize
 	public float matrixDiameter = 500; //gridSize x npr
 	public float cubeR = 20; //cubeDia/2
+	public GameObject centerCube; //allow camera to look at the center of 1000 cubes
 
     public static MirrorManager instance;
 
@@ -28,7 +29,7 @@ public class MirrorManager : MonoBehaviour
     public static GameObject wireframeCubeContainer;
     public static GameObject mirrorContainer;
 
-    public GameObject centerCube;
+    public GameObject kkkk;
 
     //vars
     GameObject[] mirrors;
@@ -98,11 +99,12 @@ public class MirrorManager : MonoBehaviour
                     code.SelfRotate = CubeSelfRotate;
                     code.SpaceID = new Vector3(x, y, z);
 
+					//define center cube
                     int n = npr;
-//                    if (x == n / 2 && y == n / 2 && z == n / 2)
-//                    {
-//                        centerCube = mirrors[i];
-//                    }
+                    if (x == n / 2 && y == n / 2 && z == n / 2)
+                    {
+                        centerCube = mirrors[i];
+                    }
 
                     i++;
 
@@ -137,9 +139,8 @@ public class MirrorManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-  
 
-        //wireframeCubeContainer.isStatic = true;
+        wireframeCubeContainer.isStatic = true;
 
     }
 

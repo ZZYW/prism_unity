@@ -20,7 +20,6 @@ public class MeshDeformer : MonoBehaviour
     float e = 0;
     float f = 0;
 
-
     //public Vector2[] newUV;
     //public int[] newTriangles;
 

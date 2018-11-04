@@ -5,76 +5,87 @@ using UnityEngine;
 public class SceneController : MonoBehaviour
 {
 	//create a instance of SceneController so we can call this instance from other places directly
-    public static SceneController instance;
+	public static SceneController instance;
+	public AudioController AC;
 
-    WanderCamera camControl;
+	private Kino.DigitalGlitch digiGlitch;
+	private Kino.AnalogGlitch anaGlitch;
 
-	//set a few stages
-    public enum STAGE
-    {
-        MIRRORS, BIG_PRISM
-    }
-
-    //For showing stage info on inspector
-    //public string currentStage;
+	WanderCamera camControl;
+	//custom camera controller script we wrote ourselves
 
 
-//    public STAGE p_stage;
-
-    STAGE stage;
-    public STAGE Stage
-    {
-        get
-        {
-            return stage;
-        }
-
-        set
-        {
-            stage = value;
-            SwtichStage((int)value);
-        }
-    }
-
-    private void Awake()
-    {
-        instance = this;
-    }
-
-    void Start()
-    {
-        camControl = Camera.main.GetComponent<WanderCamera>();
-    }
+	public int stage;
 
 
-    private void Update()
-    {
-		if (Input.GetKeyDown(KeyCode.Alpha1))
-		{
-			Stage = SceneController.STAGE.MIRRORS;
+	private void Awake ()
+	{
+		instance = this;
+
+	}
+
+	void Start ()
+	{
+		camControl = Camera.main.GetComponent<WanderCamera> ();
+		digiGlitch = Camera.main.GetComponent<Kino.DigitalGlitch> ();
+		anaGlitch = Camera.main.GetComponent<Kino.AnalogGlitch> ();
+	}
+
+
+	private void Update ()
+	{
+		//set stage
+		if (Input.GetKeyDown (KeyCode.Alpha1)) {
+			SwitchStage (0);
 		}
-		if (Input.GetKeyDown(KeyCode.Alpha2))
-		{
-			Stage = SceneController.STAGE.BIG_PRISM;
+		if (Input.GetKeyDown (KeyCode.Alpha2)) {
+			SwitchStage (1);
 		}
 
-    }
-
-    private void SwtichStage(int targetStage)
-    {
-
-
-        switch (targetStage)
-        {
-
+		switch (stage) {
 		case 0:
-			MirrorManager.mirrorContainer.SetActive (true);
-			MainPrism.main.gameObject.SetActive (false);
+			anaGlitch.verticalJump = Map (AC.introDB, 0.002f, 0.08f, 0, 1);
+			digiGlitch.intensity = Map (AC.introDB, 0.002f, 0.08f, 0, 1);
+			Debug.Log ("introDB " + AC.introDB);
 			break;
 		case 1:
+			break;
+		}
+
+	}
+
+	private void SwitchStage (int targetStage)
+	{
+		switch (targetStage) {
+		case 0:
+			stage = 0;
+			MirrorManager.mirrorContainer.SetActive (true);
+			MainPrism.main.gameObject.SetActive (false);
+			camControl.generateAngel ();
+			camControl.generateRadius ();
+
+			for (int i = 0; i < AC.allSources.Length; i++) {
+				AC.allSources [i].Stop ();
+			}
+			AC.intro.Play ();
+			
+			break;
+		case 1:
+			stage = 1;
 			MirrorManager.mirrorContainer.SetActive (false);
 			MainPrism.main.gameObject.SetActive (true);
+			camControl.generateAngel ();
+			camControl.generateRadius ();
+			for (int i = 0; i < AC.allSources.Length; i++) {
+				AC.allSources [i].Stop ();
+			}
+			AC.intro.Play ();
+				//Debug.Log (AC.allSources[5].isPlaying);
+
+
 			break;
+		
+
 		/*
             //just mirrors
             case 0:
@@ -145,38 +156,14 @@ public class SceneController : MonoBehaviour
                 camControl.SwitchMode(WanderCamera.MODE.LOOK_AT_CENTER_CUBE);
                 break;
 			*/
-        }
+		}
 
-    }
+	}
 
 
-//    void EnterLACC()
-//    {
-//        BoxCollider boxCollider = camControl.gameObject.AddComponent<BoxCollider>();
-//        boxCollider.size = Vector3.one * 0.1f;
-//        boxCollider.isTrigger = true;
-//
-//        boxCollider = MirrorManager.instance.centerCube.gameObject.GetComponent<BoxCollider>();
-//        boxCollider.enabled = true;
-//        boxCollider.isTrigger = true;
-//
-//        MirrorManager.instance.ChangeMirrorsShader(DATA.SHADER_DOUBLE_SIDE);
-//    }
-//
-//    void ExitLACC()
-//    {
-//        MirrorManager.instance.ChangeMirrorsShader(DATA.SHADER_DEFAULT);
-//
-//        if (camControl.gameObject.GetComponent<BoxCollider>())
-//        {
-//            Destroy(camControl.gameObject.GetComponent<BoxCollider>());
-//        }
-//
-//        BoxCollider boxCollider = MirrorManager.instance.centerCube.gameObject.GetComponent<BoxCollider>();
-//        if (boxCollider != null)
-//        {
-//            boxCollider.enabled = false;
-//        }
-//    }
+	public float Map (float x, float in_min, float in_max, float out_min, float out_max)
+	{
+		return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+	}
 
 }

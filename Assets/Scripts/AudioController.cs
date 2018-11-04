@@ -10,26 +10,15 @@ public class AudioController : MonoBehaviour
 
     public static AudioController instance;
 
-
-
-    [SerializeField]
-    private AudioSource ambient01;
-    [SerializeField]
-    private AudioSource ambient02;
-    [SerializeField]
-    private AudioSource ambient03;
-    [SerializeField]
-    private AudioSource intro;
-    [SerializeField]
-    private AudioSource susbell;
-    [SerializeField]
-    private AudioSource bellscu;
-    [SerializeField]
-    private AudioSource scifiCommunication;
-    [SerializeField]
-    private AudioSource colorAmbient;
-    [SerializeField]
-    private AudioSource glitch;
+    public AudioSource ambient01;
+	public AudioSource ambient02;
+	public AudioSource ambient03;
+	public AudioSource intro;
+	public AudioSource susbell;
+	public AudioSource bellscu;
+	public AudioSource scifiCommunication;
+	public AudioSource colorAmbient;
+	public AudioSource glitch;
 
     public float overallDB;
     public float ambient01DB;
@@ -42,7 +31,7 @@ public class AudioController : MonoBehaviour
     public float introDB;
     public float bellscuDB;
 
-    private AudioSource[] allSources;
+    public AudioSource[] allSources;
     public static float LENGTH = 0;
 
     void Awake()

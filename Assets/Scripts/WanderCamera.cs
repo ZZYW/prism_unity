@@ -4,105 +4,73 @@ using UnityEngine;
 
 public class WanderCamera : MonoBehaviour
 {
-    public float speed = 1f;
+    public float speed;
 	public MirrorManager MM;
 
+	float area;
+	float r;
 
-    float area;
-    float x1, x2;
-    float y1, y2;
-    float z1, z2;
+	float x;
+	float y; 
+	float z;
+
+	float theta;
+	float phi;
 
     Quaternion originalRot;
     GameObject target;
 
-	//Enumerations allow you to create a collection of related constants.
-    public enum MODE
-    {
-        BIG_PRISM, NORMAL, LOOK_AT_CENTER_CUBE
-    }
-
-    public MODE Mode = MODE.NORMAL;
-
     // Use this for initialization
     void Start()
     {
-		area = MM.matrixDiameter * 0.8f;
-        x1 = Random.Range(0f, 100f);
-        x2 = Random.Range(0f, 100f);
-        y1 = Random.Range(0f, 100f);
-        y2 = Random.Range(0f, 100f);
-        z1 = Random.Range(0f, 100f);
-        z2 = Random.Range(0f, 100f);
-
-        originalRot = transform.rotation;
+		area = MirrorManager.instance.matrixDiameter;
+		generateRadius ();
+		generateAngel ();
+		updatePos ();
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (Mode)
-        {
-            case MODE.BIG_PRISM:
-                transform.position = new Vector3(5.4f, 41f, -120f);
-                transform.LookAt(MainPrism.main.gameObject.transform);
-                break;
+		//always look at the center cubeof cube matrix
+		target = MirrorManager.instance.centerCube;
+		transform.LookAt(target.transform);
 
-
-            case MODE.NORMAL:
-                float x = Mathf.PerlinNoise(x1, x2) * area - area / 3;
-                float y = Mathf.PerlinNoise(y1, y2) * area - area / 3;
-                float z = Mathf.PerlinNoise(z1, z2) * area - area / 3;
-
-                x1 += speed * Time.deltaTime;
-                x2 += speed * Time.deltaTime;
-                y1 += speed * Time.deltaTime;
-                y2 += speed * Time.deltaTime;
-                z1 += speed * Time.deltaTime;
-                z2 += speed * Time.deltaTime;
-
-                Vector3 nextPos = new Vector3(x, y, z);
-
-                transform.position = nextPos;
-                break;
-
-
-            case MODE.LOOK_AT_CENTER_CUBE:
-                Vector3 pos = transform.position;
-                pos.z += 1f * Time.deltaTime;
-                transform.position = pos;
-                transform.LookAt(target.transform);
-                float dis = Vector3.Distance(transform.position, target.transform.position);
-
-                break;
-        }
-
-
+		speed = Random.Range (-0.01f, 0.01f);
+		move (speed);
+		updatePos ();
     }
-
-
-    public void SwitchMode(MODE newMode)
-    {
-        Mode = newMode;
-        if (Mode == MODE.NORMAL)
-        {
-            transform.rotation = originalRot;
-        }
-        if (Mode == MODE.LOOK_AT_CENTER_CUBE)
-        {
-            target = MirrorManager.instance.centerCube;
-            transform.position = target.transform.position;
-        }
-    }
+	
 
     public void GoForward(float value)
     {
-        x1 += value;
-        x2 += value;
-        y1 += value;
-        y2 += value;
-        z1 += value;
-        z2 += value;
+        theta += value;
+		phi += value;
     }
+
+	public void generateAngel(){
+		
+		theta = Random.Range (-Mathf.PI, Mathf.PI);
+		phi = Random.Range (-Mathf.PI, Mathf.PI);
+	}
+
+	public void generateRadius(){
+		r = MirrorManager.instance.matrixDiameter * Random.Range(0, 2); //start some
+	}
+
+	private void move(float speed){
+		theta += speed;
+		phi += speed;
+	}
+		
+	private void updatePos(){		
+		x = r * Mathf.Sin (theta) * Mathf.Cos (phi);
+		y = r * Mathf.Sin (theta) * Mathf.Sin (phi);
+		z = r * Mathf.Cos (theta);
+
+		Vector3 nextPos = new Vector3(x, y, z);
+		transform.position = nextPos;
+	}
+		
 
 }
