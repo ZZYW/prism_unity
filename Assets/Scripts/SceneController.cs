@@ -34,6 +34,13 @@ public class SceneController : MonoBehaviour
 
 	private void Update ()
 	{
+		//test
+		/*
+		Material mymat;
+		mymat.SetColor ("_Color", Color.red);
+		mymat.SetFloat ("_Multiplier_displacement", 0.5f);
+		*/
+
 		//set stage
 		if (Input.GetKeyDown (KeyCode.Alpha1)) {
 			SwitchStage (0);
