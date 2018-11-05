@@ -49,18 +49,23 @@ public class SceneController : MonoBehaviour
 			SwitchStage (1);
 		}
 
+		//once stage is switched to the matching stage, the following functions will always get called 40 times per second
 		switch (stage) {
 		case 0:
 			anaGlitch.verticalJump = Map (AC.introDB, 0.002f, 0.08f, 0, 1);
 			digiGlitch.intensity = Map (AC.introDB, 0.002f, 0.08f, 0, 1);
-			Debug.Log ("introDB " + AC.introDB);
+			//Debug.Log ("introDB " + AC.introDB);
 			break;
 		case 1:
+			anaGlitch.verticalJump = Map (AC.colorAmbientDB, 0.01f, 0.2f, 0, 1);
+			digiGlitch.intensity = Map (AC.colorAmbientDB, 0.01f, 0.2f, 0, 1);
+			Debug.Log ("colorAmbientDB " + AC.colorAmbientDB);
 			break;
 		}
 
 	}
 
+	//switchStage will only get called once whenever keys mapped to this stage is pressed
 	private void SwitchStage (int targetStage)
 	{
 		switch (targetStage) {
@@ -86,83 +91,11 @@ public class SceneController : MonoBehaviour
 			for (int i = 0; i < AC.allSources.Length; i++) {
 				AC.allSources [i].Stop ();
 			}
-			AC.intro.Play ();
+			AC.colorAmbient.Play ();
 				//Debug.Log (AC.allSources[5].isPlaying);
 
 
 			break;
-		
-
-		/*
-            //just mirrors
-            case 0:
-                //mirrors
-                MirrorManager.mirrorContainer.gameObject.SetActive(true);
-                MirrorManager.instance.SetSelfRotate(true);
-                MirrorManager.wireframeCubeContainer.gameObject.SetActive(false);
-                MainPrism.main.gameObject.SetActive(false);
-                //MirrorManager.instance.SetMirrorSize(DATA.LARGE_MIRROR_SIZE_PERCENTAGE);
-//                EnvController.instance.SetWorldColor(normalWorldColor);
-                camControl.SwitchMode(WanderCamera.MODE.NORMAL);
-                //MirrorManager.instance.UseBugFixValueInShader(true);
-                break;
-
-            //smaller mirror and wireframe
-            case 1:
-                //mirror
-                MirrorManager.mirrorContainer.gameObject.SetActive(true);
-                MirrorManager.instance.SetSelfRotate(true);
-                //wireframe cube
-                MirrorManager.wireframeCubeContainer.gameObject.SetActive(true);
-                //big prism
-                MainPrism.main.gameObject.SetActive(false);
-
-                //MirrorManager.instance.SetMirrorSize(DATA.SMALL_MIRROR_SIZE_PERCENTAGE);
-//                EnvController.instance.SetWorldColor(normalWorldColor);
-                camControl.SwitchMode(WanderCamera.MODE.NORMAL);
-
-                break;
-
-            // mirror only but no self rotating
-            case 2:
-                //mirror
-                //MirrorManager.instance.UseBugFixValueInShader(true);
-                MirrorManager.mirrorContainer.gameObject.SetActive(true);
-                MirrorManager.instance.SetSelfRotate(false);
-                //wireframe cube
-                MirrorManager.wireframeCubeContainer.gameObject.SetActive(false);
-                //big prism
-                MainPrism.main.gameObject.SetActive(false);
-
-                //MirrorManager.instance.SetMirrorSize(DATA.MEDIUM_MIRROR_SIZE_PERCENTAGE);
-                camControl.SwitchMode(WanderCamera.MODE.NORMAL);
-//                EnvController.instance.SetWorldColor(normalWorldColor);
-                camControl.GoForward(10);
-                break;
-
-            //just big prism
-            case 3:
-                //mirror
-                MirrorManager.mirrorContainer.gameObject.SetActive(false);
-                //wireframe cube
-                MirrorManager.wireframeCubeContainer.gameObject.SetActive(false);
-                //big prism
-                MainPrism.main.gameObject.SetActive(true);
-//                EnvController.instance.SetWorldColor(bigPrismWorldColor);
-                camControl.SwitchMode(WanderCamera.MODE.BIG_PRISM);
-                break;
-
-            case 4:
-                //mirror
-                MirrorManager.mirrorContainer.gameObject.SetActive(true);
-                MirrorManager.instance.SetSelfRotate(false);
-                //wireframe cube
-                MirrorManager.wireframeCubeContainer.gameObject.SetActive(false);
-                //big prism
-                MainPrism.main.gameObject.SetActive(false);
-                camControl.SwitchMode(WanderCamera.MODE.LOOK_AT_CENTER_CUBE);
-                break;
-			*/
 		}
 
 	}

@@ -1,4 +1,4 @@
-﻿Shader "Custom/sad"
+﻿Shader "Custom/checker"
 {
 	Properties
 	{
