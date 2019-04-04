@@ -15,7 +15,12 @@ public class VideoSource : MonoBehaviour {
         main = this;
         WebCamDevice[] devices = WebCamTexture.devices;
 
-        webcamTexture = new WebCamTexture (devices[1].name);
+        int webCamIndex = 0;
+        if (devices.Length > 1) {
+            webCamIndex = 1;
+        }
+        
+        webcamTexture = new WebCamTexture (devices[webCamIndex].name);
     }
 
     private void Start () {
