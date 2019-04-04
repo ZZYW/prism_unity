@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MirrorManager : MonoBehaviour
-{
+public class MirrorManager : MonoBehaviour {
     public static MirrorManager main;
 
     public Dimensional Dimension { get; private set; }
-    public struct Dimensional
-    {
+    public struct Dimensional {
         public int n { get { return 12; } }
         public float diameter { get { return grid * n; } }
         public float grid { get { return 50; } }
@@ -17,7 +15,6 @@ public class MirrorManager : MonoBehaviour
 
     //controls
     public bool CubeSelfRotate;
-
 
     //Materials
     public Material mirrorMat;
@@ -31,31 +28,24 @@ public class MirrorManager : MonoBehaviour
     GameObject[] mirrors;
     float rotateAngle = 1f;
 
-
-    private void Awake()
-    {
+    private void Awake () {
         main = this;
-        mirrors = new GameObject[(int)Mathf.Pow(Dimension.n, 3)];
+        mirrors = new GameObject[(int) Mathf.Pow (Dimension.n, 3)];
 
-
-        if (wireframeCubeContainer == null)
-        {
-            wireframeCubeContainer = new GameObject("Wireframe Cube Container");
+        if (wireframeCubeContainer == null) {
+            wireframeCubeContainer = new GameObject ("Wireframe Cube Container");
             wireframeCubeContainer.transform.parent = transform;
         }
 
-
-        if (mirrorContainer == null)
-        {
-            mirrorContainer = new GameObject("Mirror Container");
+        if (mirrorContainer == null) {
+            mirrorContainer = new GameObject ("Mirror Container");
             mirrorContainer.transform.parent = transform;
         }
     }
 
     // Use this for initialization
-    void Start()
-    {
-        print(mirrors.Length + " mirror in total.");
+    void Start () {
+        print (mirrors.Length + " mirror in total.");
 
         int i = 0;
 
@@ -63,37 +53,33 @@ public class MirrorManager : MonoBehaviour
         float diameter = Dimension.diameter;
         float size = Dimension.size;
 
-        for (int x = 0; x < Dimension.n; x++)
-        {
-            for (int y = 0; y < Dimension.n; y++)
-            {
-                for (int z = 0; z < Dimension.n; z++)
-                {
-                    mirrors[i] = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        for (int x = 0; x < Dimension.n; x++) {
+            for (int y = 0; y < Dimension.n; y++) {
+                for (int z = 0; z < Dimension.n; z++) {
+                    mirrors[i] = GameObject.CreatePrimitive (PrimitiveType.Cube);
                     mirrors[i].transform.parent = mirrorContainer.transform;
-                    mirrors[i].transform.localScale = new Vector3(size, size, size);
-                    mirrors[i].GetComponent<Collider>().enabled = false;
-                    mirrors[i].transform.position = new Vector3(x * scale - Dimension.diameter / 2 + transform.position.x,
-                                                                y * scale - diameter / 2 + transform.position.y,
-                                                                z * scale - diameter / 2 + transform.position.z);
-                    mirrors[i].GetComponent<Renderer>().material = mirrorMat;
-                    Mirror code = mirrors[i].AddComponent<Mirror>();
+                    mirrors[i].transform.localScale = new Vector3 (size, size, size);
+                    mirrors[i].GetComponent<Collider> ().enabled = false;
+                    mirrors[i].transform.position = new Vector3 (x * scale - Dimension.diameter / 2 + transform.position.x,
+                        y * scale - diameter / 2 + transform.position.y,
+                        z * scale - diameter / 2 + transform.position.z);
+                    mirrors[i].GetComponent<Renderer> ().material = mirrorMat;
+                    Mirror code = mirrors[i].AddComponent<Mirror> ();
                     code.SelfRotate = CubeSelfRotate;
-                    code.SpaceID = new Vector3(x, y, z);
+                    code.SpaceID = new Vector3 (x, y, z);
                     i++;
 
-
                     //wireframe
-                    GameObject wireframeCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    Destroy(wireframeCube.GetComponent<Collider>());
+                    GameObject wireframeCube = GameObject.CreatePrimitive (PrimitiveType.Cube);
+                    Destroy (wireframeCube.GetComponent<Collider> ());
                     wireframeCube.name = "wireframe Cube";
                     wireframeCube.transform.parent = transform;
-                    wireframeCube.transform.position = new Vector3(x * scale - Dimension.diameter / 2 + transform.position.x,
-                                                                y * scale - diameter / 2 + transform.position.y,
-                                                                z * scale - diameter / 2 + transform.position.z);
-                    wireframeCube.transform.localScale = new Vector3(scale, scale, scale);
+                    wireframeCube.transform.position = new Vector3 (x * scale - Dimension.diameter / 2 + transform.position.x,
+                        y * scale - diameter / 2 + transform.position.y,
+                        z * scale - diameter / 2 + transform.position.z);
+                    wireframeCube.transform.localScale = new Vector3 (scale, scale, scale);
 
-                    Renderer r = wireframeCube.GetComponent<Renderer>();
+                    Renderer r = wireframeCube.GetComponent<Renderer> ();
                     r.material = lineMat;
                     r.lightProbeUsage = UnityEngine.Rendering.LightProbeUsage.Off;
                     r.receiveShadows = false;
@@ -105,49 +91,38 @@ public class MirrorManager : MonoBehaviour
             }
 
         }
-
+        //set texture
+        mirrorMat.mainTexture = VideoSource.main.webcamTexture;
 
         //wireframeCubeContainer.isStatic = true;
 
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        mirrorMat.mainTexture = WebStream.main.GetLatestFrame();
+    void Update () {
 
-        transform.Rotate(Vector3.up + Vector3.forward / 2, rotateAngle * Time.deltaTime);
+        transform.Rotate (Vector3.up + Vector3.forward / 2, rotateAngle * Time.deltaTime);
 
     }
 
-
-    internal void SetMirrorSize(float size)
-    {
-        foreach (GameObject mirror in mirrors)
-        {
+    internal void SetMirrorSize (float size) {
+        foreach (GameObject mirror in mirrors) {
             float s = size * Dimension.grid;
-            if (mirror != null) mirror.transform.localScale = new Vector3(s, s, s);
+            if (mirror != null) mirror.transform.localScale = new Vector3 (s, s, s);
         }
     }
 
-
-    internal void SetSelfRotate(bool value)
-    {
-        try
-        {
-            foreach (GameObject mirror in mirrors)
-            {
-                Mirror code = mirror.GetComponent<Mirror>();
+    internal void SetSelfRotate (bool value) {
+        try {
+            foreach (GameObject mirror in mirrors) {
+                Mirror code = mirror.GetComponent<Mirror> ();
                 code.SelfRotate = value;
-                if (!value)
-                {
+                if (!value) {
                     mirror.transform.localRotation = Quaternion.identity;
                 }
             }
-        }
-        catch (System.Exception e)
-        {
-            print(e);
+        } catch (System.Exception e) {
+            print (e);
         }
     }
 }

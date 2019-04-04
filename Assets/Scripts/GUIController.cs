@@ -20,7 +20,7 @@ public class GUIController : MonoBehaviour
 
     public void UpdateIP(string input)
     {
-        WebStream.main.ResetIP(input);
+        // VideoSource.main.ResetIP(input);
     }
 
     public void UpdateSyphonState(bool state)
